@@ -1,0 +1,9 @@
+
+
+<!-- <h4 *ngIf="loading">Loading...</h4> -->
+
+<ngx-datatable class="material" [rows]="allMedcins" [columns]="[{name:'id'},{name:'firstName'},{name:'lastName'},{name:'sexe'},{name:'specialty'},{name:'email'}]"
+
+[columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="3">
+
+</ngx-datatable>

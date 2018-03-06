@@ -1,0 +1,38 @@
+<div class="session mat-indigo">
+  <div class="session-content">
+    <div class="session-wrapper">
+      <mat-card>
+        <mat-card-content>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="text-xs-center pb-1">
+              <img src="assets/images/logo-dark.svg" alt=""/>
+              <p class="mat-text-muted">Sign in with your app id to continue.</p>
+            </div>
+            <div fxLayout="column" fxLayoutAlign="space-around">
+              <div class="pb-1">
+                <mat-form-field style="width: 100%">
+                  <input matInput placeholder="Username" [formControl]="form.controls['uname']">
+                </mat-form-field>
+                <small *ngIf="form.controls['uname'].hasError('required') && form.controls['uname'].touched" class="mat-text-warn">Username is required.</small>
+              </div>
+              <div class="pb-1">
+                <mat-form-field style="width: 100%">
+                  <input matInput type="password" placeholder="Password" [formControl]="form.controls['password']">
+                </mat-form-field>
+                <small *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched" class="mat-text-warn">Password is required.</small>
+              </div>
+              <div class="pb-1">
+                <mat-checkbox>Stay logged in</mat-checkbox>
+              </div>
+              <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Login</button>
+            </div>
+            <div class="pt-1 pb-1 text-xs-center">
+              <a [routerLink]="['/session/forgot']">Forgot password?</a>&nbsp;&nbsp;&nbsp;&nbsp;
+              <a [routerLink]="['/session/signup']">Sign up for a new account.</a>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

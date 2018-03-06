@@ -1,0 +1,25 @@
+<div class="session mat-indigo">
+  <div class="session-content">
+    <div class="lockscreen-wrapper text-xs-center">
+      <mat-card>
+        <mat-card-content>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="lockscreen-avatar">
+              <img src="assets/images/avatar.jpg" class="radius-round" alt="user" title="user"/>
+            </div>
+            <p class="center-block mt-1">David Miller</p>
+            <div fxLayout="column" fxLayoutAlign="space-around">
+              <div class="pb-1">
+                <mat-form-field style="width: 100%">
+                  <input matInput placeholder="Username" [formControl]="form.controls['uname']">
+                </mat-form-field>
+                <small *ngIf="form.controls['uname'].hasError('required') && form.controls['uname'].touched" class="mat-text-warn">Username is required.</small>
+              </div>
+              <div> <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Unlock</button></div>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>   
+    </div>
+  </div>
+</div>
