@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 
@@ -22,6 +23,7 @@ export class AddMedcinComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private apollo: Apollo, private router: Router) { }
+
   ngOnInit() {
     this.form = this.fb.group({
       fname: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(10)])],
@@ -41,7 +43,7 @@ export class AddMedcinComponent implements OnInit {
       variables: {
         firstName: this.form.controls['fname'].value,
         lastName: this.form.controls['lname'].value,
-        // dateDeNaissance: this.form.controls['date'].value,
+        dateDeNaissance: this.form.controls['date'].value,
         sexe: this.form.controls['gender'].value,
         specialty: this.form.controls['specialty'].value,
         email: this.form.controls['email'].value,
@@ -52,11 +54,13 @@ export class AddMedcinComponent implements OnInit {
           query: ALL_MEDCINS_QUERY
         });
 
+        const dateN = new Date(createMedcin['dateDeNaissance']);
+        createMedcin['dateDeNaissance'] = dateN.toLocaleDateString();
+
         data.allMedcins.push(createMedcin);
         store.writeQuery({ query: ALL_MEDCINS_QUERY, data });
       },
     }).subscribe((response) => {
-      // console.log(response);
       this.router.navigate(['medcin/medcins']);
     });
 
@@ -64,6 +68,7 @@ export class AddMedcinComponent implements OnInit {
 
   annulerForm() {
     this.router.navigate(['medcin/medcins']);
+
   }
 
 }

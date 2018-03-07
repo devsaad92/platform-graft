@@ -9,7 +9,9 @@ import {
     MatButtonModule,
     MatProgressBarModule,
     MatToolbarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatPaginatorModule,
+    MatTableModule
 } from '@angular/material';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -39,6 +41,8 @@ import { MedcinsComponent } from './medcins/medcins.component';
         MatProgressBarModule,
         MatToolbarModule,
         MatSelectModule,
+        MatPaginatorModule,
+        MatTableModule,
         FlexLayoutModule,
         NgxDatatableModule,
         FormsModule,

@@ -8,6 +8,7 @@ export const ALL_MEDCINS_QUERY = gql`
       id
       firstName
       lastName
+      dateDeNaissance
       sexe
       specialty
       email
@@ -25,11 +26,12 @@ export interface AllMedcinQueryResponse {
 
 export const CREATE_MEDCIN_MUTATION = gql`
 
-  mutation createMedcinMutation($firstName: String!, $lastName: String!, $sexe: String, $specialty: String!,
+  mutation createMedcinMutation($firstName: String!, $lastName: String!, $dateDeNaissance: String, $sexe: String, $specialty: String!,
   $email: String!, $password: String!) {
     createMedcin(
       firstName: $firstName,
-      lastName: $lastName
+      lastName: $lastName,
+      dateDeNaissance: $dateDeNaissance,
       sexe: $sexe,
       specialty: $specialty,
       email: $email,
@@ -38,6 +40,7 @@ export const CREATE_MEDCIN_MUTATION = gql`
       id
       firstName
       lastName
+      dateDeNaissance
       sexe
       specialty
       email

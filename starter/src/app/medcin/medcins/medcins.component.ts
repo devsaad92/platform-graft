@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Apollo } from 'apollo-angular';
 import { Medcin } from '../../types';
 
@@ -11,10 +12,12 @@ import { ALL_MEDCINS_QUERY, AllMedcinQueryResponse } from '../graphql';
   styleUrls: ['./medcins.component.scss']
 })
 export class MedcinsComponent implements OnInit {
-
   allMedcins: Medcin[] = [];
   loading: Boolean = true;
+  displayedColumns = ['id', 'firstName', 'lastName', 'dateDeNaissance', 'sexe', 'specialty', 'email'];
+  dataSource: any;
 
+  // @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private apollo: Apollo) {
   }
@@ -27,7 +30,12 @@ export class MedcinsComponent implements OnInit {
 
       this.allMedcins = response.data.allMedcins;
       this.loading = response.data.loading;
+      this.dataSource = new MatTableDataSource(this.allMedcins);
     });
   }
+
+/*   ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  } */
 
 }

@@ -12,14 +12,16 @@ const typeDefs = [`
      scalar Date
 
     type Medcin {
-        id: Int
+        id: Int!
         firstName: String
         lastName: String
         sexe: String
-        dateDeNaissance: Date        
+        dateDeNaissance: String       
         specialty: String!
         email: String!
         password: String!
+        createdAt: String
+        updatedAt: String
     }
     type Query {
         allMedcins: [Medcin]
@@ -27,8 +29,8 @@ const typeDefs = [`
     }
 
     type Mutation {
-        createMedcin(firstName: String!, lastName: String!, dateDeNaissance: Date, sexe: String, specialty: String!, email: String!, password: String!): Medcin!
-        updateMedcin(id:Int!, firstName: String, lastName: String, dateDeNaissance: Date, sexe: String, specialty: String, email: String, password: String): Medcin
+        createMedcin(firstName: String!, lastName: String!, dateDeNaissance: String, sexe: String, specialty: String!, email: String!, password: String!): Medcin!
+        updateMedcin(id:Int!, firstName: String, lastName: String, dateDeNaissance: String, sexe: String, specialty: String, email: String, password: String): Medcin
         deleteMedcin(id:Int!):Medcin
     }
 `];

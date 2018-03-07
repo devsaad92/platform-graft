@@ -1,9 +1,71 @@
 
 
-<!-- <h4 *ngIf="loading">Loading...</h4> -->
+ <h4 *ngIf="loading">Loading...</h4> 
 
-<ngx-datatable class="material" [rows]="allMedcins" [columns]="[{name:'id'},{name:'firstName'},{name:'lastName'},{name:'sexe'},{name:'specialty'},{name:'email'}]"
+<!-- <ngx-datatable class="material" [rows]="allMedcins" [columns]="[{name:'id'},{name:'firstName'},{name:'lastName'},{name:'dateDeNaissance'},{name:'sexe'},{name:'specialty'},{name:'email'}]"
 
-[columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="3">
+[columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
 
 </ngx-datatable>
+ -->
+
+
+<mat-card>
+    <mat-card-title>MEDCINS</mat-card-title>
+    <mat-card-content>
+
+      <div class="example-container mat-elevation-z8">
+
+        <mat-table #table [dataSource]="dataSource">
+
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let medcin"> {{medcin.id}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="firstName">
+            <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
+            <mat-cell *matCellDef="let medcin"> {{medcin.firstName}} <!-- {{medcin.lastName }} --> </mat-cell>
+
+          </ng-container>
+
+          <ng-container matColumnDef="lastName">
+            <mat-header-cell *matHeaderCellDef> Prenom </mat-header-cell>
+            <mat-cell *matCellDef="let medcin"> {{medcin.lastName}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="dateDeNaissance">
+            <mat-header-cell *matHeaderCellDef> Date de Naissance </mat-header-cell>
+            <mat-cell *matCellDef="let medcin"> {{medcin.dateDeNaissance}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="sexe">
+          <mat-header-cell *matHeaderCellDef> Genre </mat-header-cell>
+          <mat-cell *matCellDef="let medcin"> {{medcin.sexe}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="specialty">
+          <mat-header-cell *matHeaderCellDef> Specialité </mat-header-cell>
+          <mat-cell *matCellDef="let medcin"> {{medcin.specialty}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+          <mat-cell *matCellDef="let medcin"> {{medcin.email}} </mat-cell>
+          </ng-container>
+
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+      <!-- <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]"> </mat-paginator> -->
+
+      </div>
+
+
+    </mat-card-content>
+    <hr>
+    <mat-card-footer></mat-card-footer>
+</mat-card>
+

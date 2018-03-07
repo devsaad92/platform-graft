@@ -7,5 +7,5 @@ export class Medcin {
   specialty: string;
   email: string;
   password: string;
-  dateDeNaissance: any;
+  dateDeNaissance: string;
 }
