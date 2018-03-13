@@ -1,14 +1,5 @@
 
-
  <h4 *ngIf="loading">Loading...</h4> 
-
-<!-- <ngx-datatable class="material" [rows]="allMedcins" [columns]="[{name:'id'},{name:'firstName'},{name:'lastName'},{name:'dateDeNaissance'},{name:'sexe'},{name:'specialty'},{name:'email'}]"
-
-[columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10">
-
-</ngx-datatable>
- -->
-
 
 <mat-card>
     <mat-card-title>MEDCINS</mat-card-title>
@@ -25,13 +16,9 @@
 
           <ng-container matColumnDef="firstName">
             <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
-            <mat-cell *matCellDef="let medcin"> {{medcin.firstName}} <!-- {{medcin.lastName }} --> </mat-cell>
-
-          </ng-container>
-
-          <ng-container matColumnDef="lastName">
-            <mat-header-cell *matHeaderCellDef> Prenom </mat-header-cell>
-            <mat-cell *matCellDef="let medcin"> {{medcin.lastName}} </mat-cell>
+              <mat-cell *matCellDef="let medcin">
+                {{medcin.firstName}} {{medcin.lastName }}             
+              </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="dateDeNaissance">
@@ -52,6 +39,13 @@
           <ng-container matColumnDef="email">
           <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
           <mat-cell *matCellDef="let medcin"> {{medcin.email}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="lastName">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let medcin">
+              <a mat-raised-button color="primary" [routerLink]="['/medcin/editMedcin/'+medcin.id]" href="">Edit </a>
+            </mat-cell>
           </ng-container>
 
 

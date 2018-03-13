@@ -12,7 +12,9 @@ const resolvers = {
 }
  */
 
-function medcin(_, args) {
+// import { models } from '../models';
+
+function medcinQuery(_, args) {
     return models.Medcin.find({ where: args });
  }
 
@@ -22,4 +24,4 @@ function allMedcins(_, args) {
 }
  
 
-module.exports = {medcin, allMedcins};
+module.exports = { medcinQuery, allMedcins};

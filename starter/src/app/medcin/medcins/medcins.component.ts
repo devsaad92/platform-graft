@@ -4,6 +4,10 @@ import { Apollo } from 'apollo-angular';
 import { Medcin } from '../../types';
 
 import { ALL_MEDCINS_QUERY, AllMedcinQueryResponse } from '../graphql';
+import { NEW_MEDCINS_SUBSCRIPTION, NewMedcinSubcriptionResponse } from '../graphql';
+
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 
 @Component({
@@ -14,10 +18,10 @@ import { ALL_MEDCINS_QUERY, AllMedcinQueryResponse } from '../graphql';
 export class MedcinsComponent implements OnInit {
   allMedcins: Medcin[] = [];
   loading: Boolean = true;
-  displayedColumns = ['id', 'firstName', 'lastName', 'dateDeNaissance', 'sexe', 'specialty', 'email'];
+  displayedColumns = ['id', 'firstName', 'dateDeNaissance', 'sexe', 'specialty', 'email', 'lastName'];
   dataSource: any;
 
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
+  subscriptions: Subscription[] = [];
 
   constructor(private apollo: Apollo) {
   }
@@ -25,7 +29,8 @@ export class MedcinsComponent implements OnInit {
   ngOnInit() {
 
     this.apollo.watchQuery<AllMedcinQueryResponse>({
-      query: ALL_MEDCINS_QUERY
+      query: ALL_MEDCINS_QUERY,
+      pollInterval: 1000,
     }).valueChanges.subscribe((response) => {
 
       this.allMedcins = response.data.allMedcins;
@@ -34,8 +39,32 @@ export class MedcinsComponent implements OnInit {
     });
   }
 
-/*   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  } */
+/*     const allMEdcinQuery = this.apollo.watchQuery<AllMedcinQueryResponse>({
+      query: ALL_MEDCINS_QUERY
+    });
 
+    allMEdcinQuery
+      .subscribeToMore({
+        document: NEW_MEDCINS_SUBSCRIPTION,
+        updateQuery: (previous, { subscriptionData }) => {
+          console.log(subscriptionData);
+          const newAllMedcins = [
+            (<any>subscriptionData).newMedcin,
+            ...(<any>previous).allMedcins
+          ];
+          return {
+            ...previous,
+            allMedcins: newAllMedcins
+          };
+        }
+      });
+
+    const querySubscription = allMEdcinQuery.valueChanges.subscribe((response) => {
+      this.allMedcins = response.data.allMedcins;
+      this.loading = response.data.loading;
+    });
+
+    this.subscriptions = [...this.subscriptions, querySubscription];
+  }
+ */
 }

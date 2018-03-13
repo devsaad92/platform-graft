@@ -27,6 +27,7 @@ import { MedcinRoutes } from './medcin.routing';
 import { AddMedcinComponent } from './add-medcin/add-medcin.component';
 // import { MedcinItemComponent } from './medcin-item/medcin-item.component';
 import { MedcinsComponent } from './medcins/medcins.component';
+import { EditMedcinComponent } from './edit-medcin/edit-medcin.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { MedcinsComponent } from './medcins/medcins.component';
     ],
     declarations: [
         MedcinsComponent,
-        AddMedcinComponent
+        AddMedcinComponent,
+        EditMedcinComponent
     ],
 })
 
