@@ -1,3 +1,4 @@
+import { MedcinService } from './../../shared/services/medcin.service';
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -5,7 +6,7 @@ import { CustomValidators } from 'ng2-validation';
 
 import { Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
-import { Medcin } from '../../types';
+import { Medcin } from '../../shared/models/Medcin';
 import { ALL_MEDCINS_QUERY, CREATE_MEDCIN_MUTATION, CreateMedcinMutationResponse } from '../graphql';
 
 const password = new FormControl('', Validators.required);
@@ -22,7 +23,7 @@ export class AddMedcinComponent implements OnInit {
   selected = 'chirigein';
 
 
-  constructor(private fb: FormBuilder, private apollo: Apollo, private router: Router) { }
+  constructor(private fb: FormBuilder, private medcinService: MedcinService, private router: Router) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -37,9 +38,11 @@ export class AddMedcinComponent implements OnInit {
   }
 
   createMedcin() {
+    this.medcinService.createMedcin(this.form.value)
+      .subscribe(() => this.router.navigate(['medcin/medcins']));
 
-    this.apollo.mutate({
-       mutation: CREATE_MEDCIN_MUTATION,
+    /* this.apollo.mutate({
+        mutation: CREATE_MEDCIN_MUTATION,
       variables: {
         firstName: this.form.controls['fname'].value,
         lastName: this.form.controls['lname'].value,
@@ -49,7 +52,8 @@ export class AddMedcinComponent implements OnInit {
         email: this.form.controls['email'].value,
         password: this.form.controls['password'].value
       },
-      update: (store, { data: { createMedcin } }) => {
+      //   IMPORTANT
+       update: (store, { data: { createMedcin } }) => {
         const data: any = store.readQuery({
           query: ALL_MEDCINS_QUERY
         });
@@ -59,11 +63,11 @@ export class AddMedcinComponent implements OnInit {
 
         data.allMedcins.push(createMedcin);
         store.writeQuery({ query: ALL_MEDCINS_QUERY, data });
-      },
-    }).subscribe((response) => {
+      },   ///   FIN
+     }).subscribe((response) => {
       this.router.navigate(['medcin/medcins']);
     });
-
+ */
   }
 
   annulerForm() {

@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../../shared/services/auth.service';
 import { Component, EventEmitter, Output } from '@angular/core';
 
 import * as screenfull from 'screenfull';
@@ -11,7 +13,12 @@ export class HeaderComponent {
   @Output() toggleSidenav = new EventEmitter<void>();
   @Output() toggleNotificationSidenav = new EventEmitter<void>();
 
-  constructor() {
+  constructor(private authService: AuthService, private router: Router) {
+  }
+
+  signOut() {
+    this.authService.logout();
+    this.router.navigate(['/session/signin']);
   }
 
   fullScreenToggle(): void {
@@ -19,4 +26,5 @@ export class HeaderComponent {
       screenfull.toggle();
     }
   }
+
 }

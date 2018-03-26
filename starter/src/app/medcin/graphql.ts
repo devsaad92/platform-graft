@@ -1,4 +1,4 @@
-import { Medcin } from '../types';
+import { Medcin } from '../shared/models/Medcin';
 import gql from 'graphql-tag';
 
 // query
@@ -33,7 +33,6 @@ export const MEDCIN_QUERY = gql`
       sexe
       specialty
       email
-      password
     }
   }
 `;
@@ -60,19 +59,44 @@ export const CREATE_MEDCIN_MUTATION = gql`
       password: $password
     ) {
       id
-      firstName
-      lastName
-      dateDeNaissance
-      sexe
-      specialty
-      email
+    }
+
+    login(
+      email: $email,
+      password: $password
+    ) {
+      token
     }
   }
 `;
 
 export interface CreateMedcinMutationResponse {
-  // medcin: Medcin;
   loading: boolean;
+  createMedcin: Medcin;
+  login: {
+  token: string
+  };
+}
+
+// mutation login
+
+export const SIGNIN_USER_MUTATION = gql`
+  mutation SigninUserMutation($email: String!, $password: String!) {
+    login(
+      email: $email,
+      password: $password
+    ) {
+      token
+    }
+  }
+`;
+
+
+export interface SigninUserMutationResponse {
+  loading: boolean;
+  login: {
+    token: string
+  };
 }
 
 // mutation upadate of medcin
@@ -80,7 +104,7 @@ export interface CreateMedcinMutationResponse {
 export const UPDATE_MEDCIN_MUTATION = gql`
 
   mutation updateMedcinMutation($id: Int!, $firstName: String!, $lastName: String!, $dateDeNaissance: String, $sexe: String,
-   $specialty: String!, $email: String!, $password: String!) {
+   $specialty: String!, $email: String!) {
     updateMedcin(
       id: $id
       firstName: $firstName,
@@ -88,8 +112,7 @@ export const UPDATE_MEDCIN_MUTATION = gql`
       dateDeNaissance: $dateDeNaissance,
       sexe: $sexe,
       specialty: $specialty,
-      email: $email,
-      password: $password
+      email: $email
     ) {
       id
       firstName
@@ -103,7 +126,7 @@ export const UPDATE_MEDCIN_MUTATION = gql`
 `;
 
 export interface UpdateMedcinMutationResponse {
- // medcin: Medcin;
+  medcin: Medcin;
   loading: boolean;
 }
 
@@ -131,7 +154,7 @@ export interface DeleteMedcinMutationResponse {
 
 export const NEW_MEDCINS_SUBSCRIPTION = gql`
   subscription {
-    newMedcin {
+    medcinAdded {
       id
       firstName
       lastName
@@ -144,6 +167,6 @@ export const NEW_MEDCINS_SUBSCRIPTION = gql`
 `;
 
 export interface NewMedcinSubcriptionResponse {
-  node: Medcin;
+  medcin: Medcin;
 }
 

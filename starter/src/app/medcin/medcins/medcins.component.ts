@@ -1,13 +1,9 @@
-import { Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
-import { Apollo } from 'apollo-angular';
-import { Medcin } from '../../types';
-
-import { ALL_MEDCINS_QUERY, AllMedcinQueryResponse } from '../graphql';
-import { NEW_MEDCINS_SUBSCRIPTION, NewMedcinSubcriptionResponse } from '../graphql';
-
-import { Observable } from 'rxjs/Observable';
+import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material';
 import { Subscription } from 'rxjs/Subscription';
+
+import { Medcin } from '../../shared/models/Medcin';
+import { MedcinService } from './../../shared/services/medcin.service';
 
 
 @Component({
@@ -23,23 +19,24 @@ export class MedcinsComponent implements OnInit {
 
   subscriptions: Subscription[] = [];
 
-  constructor(private apollo: Apollo) {
-  }
+  constructor(private medcinService: MedcinService) {  }
 
   ngOnInit() {
-
-    this.apollo.watchQuery<AllMedcinQueryResponse>({
-      query: ALL_MEDCINS_QUERY,
-      pollInterval: 1000,
-    }).valueChanges.subscribe((response) => {
-
-      this.allMedcins = response.data.allMedcins;
-      this.loading = response.data.loading;
-      this.dataSource = new MatTableDataSource(this.allMedcins);
-    });
+    this.getAllMedcins();
   }
 
-/*     const allMEdcinQuery = this.apollo.watchQuery<AllMedcinQueryResponse>({
+  getAllMedcins() {
+    this.medcinService.getAll()
+      .subscribe((medcins) => {
+        this.allMedcins = medcins.allMedcins;
+        this.loading = medcins.loading;
+        this.dataSource = new MatTableDataSource(this.allMedcins);
+
+       // console.log(this.authService.currentUser.user);
+      });
+  }
+
+ /*    const allMEdcinQuery = this.apollo.watchQuery<AllMedcinQueryResponse>({
       query: ALL_MEDCINS_QUERY
     });
 
@@ -49,22 +46,27 @@ export class MedcinsComponent implements OnInit {
         updateQuery: (previous, { subscriptionData }) => {
           console.log(subscriptionData);
           const newAllMedcins = [
-            (<any>subscriptionData).newMedcin,
+            subscriptionData.data.medcinAdded,
             ...(<any>previous).allMedcins
           ];
           return {
             ...previous,
             allMedcins: newAllMedcins
           };
+
         }
       });
 
     const querySubscription = allMEdcinQuery.valueChanges.subscribe((response) => {
       this.allMedcins = response.data.allMedcins;
       this.loading = response.data.loading;
+      this.dataSource = new MatTableDataSource(this.allMedcins);
     });
 
     this.subscriptions = [...this.subscriptions, querySubscription];
-  }
- */
+  } */
+
 }
+
+
+

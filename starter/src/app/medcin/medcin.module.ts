@@ -1,33 +1,28 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
+    MatButtonModule,
     MatCardModule,
     MatIconModule,
     MatInputModule,
-    MatRadioModule,
-    MatButtonModule,
-    MatProgressBarModule,
-    MatToolbarModule,
-    MatSelectModule,
     MatPaginatorModule,
-    MatTableModule
+    MatProgressBarModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatTableModule,
+    MatToolbarModule,
 } from '@angular/material';
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
-import { TreeModule } from 'angular-tree-component';
+import { RouterModule } from '@angular/router';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { TreeModule } from 'angular-tree-component';
+import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 
-import { GraphQLModule } from '../apollo.config';
-
-import { MedcinRoutes } from './medcin.routing';
 import { AddMedcinComponent } from './add-medcin/add-medcin.component';
-// import { MedcinItemComponent } from './medcin-item/medcin-item.component';
-import { MedcinsComponent } from './medcins/medcins.component';
 import { EditMedcinComponent } from './edit-medcin/edit-medcin.component';
+import { MedcinRoutes } from './medcin.routing';
+import { MedcinsComponent } from './medcins/medcins.component';
 
 
 @NgModule({
@@ -50,7 +45,7 @@ import { EditMedcinComponent } from './edit-medcin/edit-medcin.component';
         ReactiveFormsModule,
         FileUploadModule,
         TreeModule,
-        GraphQLModule
+      //  GraphQLModule
     ],
     declarations: [
         MedcinsComponent,

@@ -1,9 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Apollo, ApolloModule } from 'apollo-angular';
 import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-
 import { split } from 'apollo-link';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
@@ -11,11 +10,19 @@ import { getMainDefinition } from 'apollo-utilities';
 
 
 @NgModule({
+    imports: [
+        HttpClientModule, // provides HttpClient for HttpLink
+        ApolloModule,
+        HttpLinkModule
+    ],
     exports: [
         HttpClientModule,
         ApolloModule,
-        HttpLinkModule
-    ]
+        HttpLinkModule,
+    ],
+    providers: [
+       // Apollo
+    ],
 })
 export class GraphQLModule {
 

@@ -1,16 +1,17 @@
-const models = require('../models');
-const { PubSub } = require('graphql-subscriptions');
-import { withFilter } from 'graphql-subscriptions';
+import { PubSub } from 'graphql-subscriptions'
+// import { withFilter } from 'graphql-subscriptions';
 
 
 export const pubsub = new PubSub();
 
-function newMedcin(){
-    subcribe: async () =>{ return  await pubsub.asyncIterator('MEDCIN_ADDED') }
+
+const medcinAdded = {
+    medcinAdded: {
+        subscribe: () => pubsub.asyncIterator('MEDCIN_ADDED'),
+    },
 }
 
-
-module.exports = { newMedcin, pubsub }
+module.exports = { medcinAdded, pubsub }
 
 
 

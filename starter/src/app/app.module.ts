@@ -1,54 +1,50 @@
+import { AppErrorHandler } from './common/app-error-handler';
+import { AuthService } from './shared/services/auth.service';
+import { BidiModule } from '@angular/cdk/bidi';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule } from '@angular/forms';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatIconModule,
+  MatListModule,
+  MatMenuModule,
+  MatProgressBarModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSlideToggleModule,
+  MatTabsModule,
+  MatToolbarModule,
+} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-
-
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface, PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
-import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-
-import { AgmCoreModule } from '@agm/core';
-
+import { AppComponent } from './app.component';
+import { AppRoutes } from './app.routing';
 import {
-  MatSidenavModule,
-  MatCardModule,
-  MatMenuModule,
-  MatCheckboxModule,
-  MatIconModule,
-  MatButtonModule,
-  MatToolbarModule,
-  MatTabsModule,
-  MatListModule,
-  MatSlideToggleModule,
-  MatSelectModule,
-  MatProgressBarModule } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import {BidiModule} from '@angular/cdk/bidi';
-
-import {
-  MenuComponent,
-  HeaderComponent,
-  SidebarComponent,
-  NotificationComponent,
-  OptionsComponent,
+  AccordionAnchorDirective,
+  AccordionDirective,
+  AccordionLinkDirective,
   AdminLayoutComponent,
   AuthLayoutComponent,
-  AccordionAnchorDirective,
-  AccordionLinkDirective,
-  AccordionDirective} from './core';
+  HeaderComponent,
+  MenuComponent,
+  NotificationComponent,
+  OptionsComponent,
+  SidebarComponent,
+} from './core';
+import { GraphQLModule } from './shared/apollo.config';
+import { AuthGuardService } from './shared/services/auth-guard.service';
+import { MedcinService } from './shared/services/medcin.service';
 
-import { AppRoutes } from './app.routing';
-import { AppComponent } from './app.component';
-
-import { GraphQLModule } from './apollo.config';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -105,14 +101,18 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FlexLayoutModule,
     BidiModule,
    // AgmCoreModule.forRoot({apiKey: 'YOURAPIKEY'}),
-    PerfectScrollbarModule
-    // GraphQLModule
+    PerfectScrollbarModule,
+    GraphQLModule
   ],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    }
+    },
+    AuthService,
+    AuthGuardService,
+    MedcinService,
+    { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent]
 })

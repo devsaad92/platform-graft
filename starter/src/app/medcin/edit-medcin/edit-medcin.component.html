@@ -53,23 +53,13 @@
         <div class="mb-1 col-4">
           <mat-form-field style="width: 100%">
             <mat-select [(value)]="selected" [(ngModel)]="medcin.specialty" placeholder="Spécialité" [formControl]="form.controls['specialty']">
-              <mat-option>None</mat-option>
+              <mat-option> </mat-option>
               <mat-option value="chirigien">Chirigien</mat-option>
               <mat-option value="pediatrie">Pediatrie</mat-option>
               <mat-option value="radiology">Radiology</mat-option>
             </mat-select>
           </mat-form-field>
           <small *ngIf="form.controls['specialty'].hasError('required') && form.controls['specialty'].touched" class="mat-text-warn">You must include a specialty.</small>
-        </div>
-        <div class="col-6"></div>
-      </div>
-
-      <div fxLayout="row" class=" row justify-content-center" fxLayoutWrap="wrap">
-        <div class="mb-1 col-4">
-          <mat-form-field style="width: 100%">
-            <input matInput [(ngModel)]="medcin.password" placeholder="Password" [formControl]="form.controls['password']" type="password">
-          </mat-form-field>
-          <small *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched" class="mat-text-warn">You must include password.</small>
         </div>
         <div class="col-6"></div>
       </div>

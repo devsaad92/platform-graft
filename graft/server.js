@@ -8,16 +8,20 @@ import  { createServer } from 'http'
 import { SubscriptionServer } from 'subscriptions-transport-ws'
 
 import schema from './schemas/schema'
-
+import models from './models'
 
 const PORT = 3000;
 const server = express();
+const SECRET = 'aslkdjlkaj10830912039jlkoaiuwerasdjflkasd';
 
-//server.use('*', cors({ origin: `http://localhost:${PORT}` }));
 server.use('*', cors())
 
 server.use('/graphql', bodyParser.json(), graphqlExpress({
-    schema
+    schema,
+    context: {
+        models,
+        SECRET
+    }
 }));
 
 server.use('/graphiql', graphiqlExpress({

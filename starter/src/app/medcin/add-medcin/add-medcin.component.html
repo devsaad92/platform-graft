@@ -3,7 +3,7 @@
   <mat-card-subtitle>Saisir les infos:</mat-card-subtitle>
   <form [formGroup]="form">
     <mat-card-content>
-      <div fxLayout="row" class=" row justify-content-center" fxLayoutWrap="wrap">
+      <div fxLayout="row" class="row justify-content-center" fxLayoutWrap="wrap">
         <div class="mb-1 col-4">
           <mat-form-field style="width: 100%">
             <input matInput placeholder="First name" [formControl]="form.controls['fname']">
@@ -15,7 +15,7 @@
         <div class="col-6"></div>
       </div>
 
-      <div fxLayout="row" class=" row justify-content-center" fxLayoutWrap="wrap">
+      <div fxLayout="row" class="row justify-content-center" fxLayoutWrap="wrap">
         <div class="mb-1 col-4">
           <mat-form-field style="width: 100%">
             <input matInput placeholder="Last name" [formControl]="form.controls['lname']">
@@ -27,7 +27,7 @@
         <div class="col-6"></div>
       </div>
 
-      <div fxLayout="row" class=" row justify-content-center" fxLayoutWrap="wrap">
+      <div fxLayout="row" class="row justify-content-center" fxLayoutWrap="wrap">
         <div class="mb-1 col-4">
           <mat-form-field style="width: 100%">
             <input matInput placeholder="Email address" [formControl]="form.controls['email']" type="email">
@@ -38,7 +38,7 @@
         <div class="col-6"></div>
       </div>
 
-      <div fxLayout="row" class=" row justify-content-center" fxLayoutWrap="wrap">
+      <div fxLayout="row" class="row justify-content-center" fxLayoutWrap="wrap">
         <div class="mb-1 col-4">
           <mat-form-field style="width: 100%">
             <input matInput placeholder="Date de Naissance" [formControl]="form.controls['date']" type="date">
@@ -49,11 +49,11 @@
         <div class="col-6"></div>
       </div>
 
-      <div fxLayout="row" class=" row justify-content-center" fxLayoutWrap="wrap">
+      <div fxLayout="row" class="row justify-content-center" fxLayoutWrap="wrap">
         <div class="mb-1 col-4">
         <mat-form-field style="width: 100%">
           <mat-select [(value)]="selected" placeholder="Spécialité" [formControl]="form.controls['specialty']">
-            <mat-option>None</mat-option>
+            <mat-option></mat-option>
             <mat-option value="chirigien">Chirigien</mat-option>
             <mat-option value="pediatrie">Pediatrie</mat-option>
             <mat-option value="radiology">Radiology</mat-option>
@@ -64,7 +64,7 @@
         <div class="col-6"></div>
       </div>
 
-      <div fxLayout="row" class=" row justify-content-center" fxLayoutWrap="wrap">
+      <div fxLayout="row" class="row justify-content-center" fxLayoutWrap="wrap">
         <div class="mb-1 col-4">
           <mat-form-field style="width: 100%">
             <input matInput placeholder="Password" [formControl]="form.controls['password']" type="password">
@@ -103,7 +103,7 @@
              <button mat-raised-button color="primary" type="submit" (click)="createMedcin()" [disabled]="!form.valid">Ajouter</button>
             </div>
             <div class="col-4">
-              <button mat-raised-button color="warn" (click)="annulerForm()">Annuler</button>
+              <button mat-raised-button color="warn" type="button" (click)="annulerForm()">Annuler</button>
             </div>
           </div>
         </div>
