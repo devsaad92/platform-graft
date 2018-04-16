@@ -13,6 +13,10 @@ export const AppRoutes: Routes = [{
   }, {
       path: 'medcin',
       loadChildren: './medcin/medcin.module#MedcinModule'
+    },
+    {
+      path: 'patient',
+      loadChildren: './patient/patient.module#PatientModule'
     }]
 },  {
   path: '',

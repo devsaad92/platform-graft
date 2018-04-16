@@ -3,10 +3,9 @@ import { NgModule } from '@angular/core';
 import { Apollo, ApolloModule } from 'apollo-angular';
 import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { split } from 'apollo-link';
+import { ApolloLink, split } from 'apollo-link';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
-
 
 
 @NgModule({
@@ -39,6 +38,35 @@ export class GraphQLModule {
             }
         });
 
+        const middlewareLink = new ApolloLink((operation, forward) => {
+            operation.setContext({
+                headers: {
+                    'x-token': localStorage.getItem('token') || null,
+                    'x-refresh-token': localStorage.getItem('refreshToken') || null,
+                }
+            });
+            return forward(operation);
+        });
+
+        const afterwareLink = new ApolloLink((operation, forward) => {
+            const { headers } = operation.getContext();
+
+            if (headers) {
+                const token = headers.get('x-token');
+                const refreshToken = headers.get('x-refresh-token');
+
+                if (token) {
+                    localStorage.setItem('token', token);
+                }
+
+                if (refreshToken) {
+                    localStorage.setItem('refreshToken', refreshToken);
+                }
+            }
+
+            return forward(operation);
+        });
+
         // using the ability to split links, you can send data to each link
         // depending on what kind of operation is being sent
         const link = split(
@@ -48,17 +76,15 @@ export class GraphQLModule {
                 return kind === 'OperationDefinition' && operation === 'subscription';
             },
             ws,
-            http,
+           // http,
+            afterwareLink.concat(middlewareLink.concat(http))
         );
+
+        // const link1 = afterwareLink.concat(middlewareLink.concat(link));
 
         apollo.create({
             link,
             cache: new InMemoryCache()
         });
-
-       /*  apollo.create({
-            link: http,
-            cache: new InMemoryCache()
-        }); */
     }
 }

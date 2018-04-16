@@ -18,15 +18,25 @@ export class AuthService {
     return this._isAuthenticated.asObservable();
   }
 
-  saveUserData(token: string) {
+  saveUserData(token: string, refreshToken: string) {
     if (token) {
       localStorage.setItem(GC_AUTH_TOKEN, token);
+      localStorage.setItem('refreshToken', refreshToken);
       this.setUserToken(token);
     }
   }
 
+  getToken(token: string) {
+    try {
+    const jwt = new JwtHelper();
+    return jwt.decodeToken(token);
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  }
 
-  setUserToken(token: string) {
+  setUserToken(token?: string) {
     const jwt = new JwtHelper();
     this.currentUser = jwt.decodeToken(token);
 
@@ -35,6 +45,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem(GC_AUTH_TOKEN);
+    // localStorage.removeItem('refreshToken');
     this.currentUser = null;
 
     this._isAuthenticated.next(false);
@@ -42,6 +53,8 @@ export class AuthService {
 
   loggedIn() {
     return tokenNotExpired();
+    // const jwt = new JwtHelper();
+    // return jwt.getTokenExpirationDate(token);
   }
 
   autoLogin() {

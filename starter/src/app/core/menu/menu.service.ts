@@ -26,27 +26,17 @@ const MENUITEMS = [
     name: 'HOME',
     type: 'link',
     icon: 'explore',
-   /*  badge: [{
+    /* badge: [{
       type: 'extLink',
       value: 'aaaaaaaaaa'
     }] */
   },
- /*  {
+  /* {
     state: 'http://primer.nyasha.me/docs',
     name: 'DOCS',
     type: 'extTabLink',
     icon: 'local_library'
   }, */
-  {
-    state: 'medcin',
-    name: 'MEDCIN',
-    type: 'sub',
-    icon: 'person',
-    children: [
-      { state: 'medcins', name: 'All Medcins' },
-      { state: 'addMedcin', name: 'Create Medcin' }
-  ]
-  }
 ];
 
 @Injectable()

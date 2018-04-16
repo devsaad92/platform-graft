@@ -1,13 +1,10 @@
-import { MedcinService } from './../../shared/services/medcin.service';
 import { Component, OnInit } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CustomValidators } from 'ng2-validation';
 
-import { Router } from '@angular/router';
-import { Apollo } from 'apollo-angular';
 import { Medcin } from '../../shared/models/Medcin';
-import { ALL_MEDCINS_QUERY, CREATE_MEDCIN_MUTATION, CreateMedcinMutationResponse } from '../graphql';
+import { MedcinService } from './../../shared/services/medcin.service';
 
 const password = new FormControl('', Validators.required);
 
@@ -19,7 +16,7 @@ const password = new FormControl('', Validators.required);
 })
 export class AddMedcinComponent implements OnInit {
   public form: FormGroup;
-  medcin: Medcin;
+  // medcin: Medcin;
   selected = 'chirigein';
 
 

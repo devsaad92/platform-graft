@@ -11,7 +11,7 @@ import { MedcinService } from './../../shared/services/medcin.service';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-  invalidLogin: boolean;
+  validLogin = true ;
   public form: FormGroup;
 
 
@@ -31,14 +31,15 @@ export class SigninComponent implements OnInit {
   singin() {
     this.medcinService.login(this.form.value)
       .subscribe((user) => {
+        if (!user.login.ok) {
+          this.validLogin = user.login.ok;
+          return null;
+        }
         const token = user.login.token;
-        this.authService.saveUserData(token);
-
+        const refreshToken = user.login.refreshToken;
+        this.authService.saveUserData(token, refreshToken);
         this.router.navigate(['/']);
 
-      }, (error) => {
-        this.invalidLogin = true;
-        // alert(error);
       });
   }
 

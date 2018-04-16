@@ -1,3 +1,4 @@
+import { MedcinProfileComponent } from './medcin-profile/medcin-profile.component';
 import { Routes } from '@angular/router';
 
 import { AddMedcinComponent } from './add-medcin/add-medcin.component';
@@ -17,6 +18,10 @@ export const MedcinRoutes: Routes = [
         {
             path: 'editMedcin/:id',
             component: EditMedcinComponent
+        },
+        {
+            path: 'user-profile/:id',
+            component: MedcinProfileComponent
         }
       ]
     }

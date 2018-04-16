@@ -1,24 +1,7 @@
-import { AppErrorHandler } from './common/app-error-handler';
-import { AuthService } from './shared/services/auth.service';
+import { PatientService } from './patient/services/patient.service';
 import { BidiModule } from '@angular/cdk/bidi';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { NgModule, ErrorHandler } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatCheckboxModule,
-  MatIconModule,
-  MatListModule,
-  MatMenuModule,
-  MatProgressBarModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatSlideToggleModule,
-  MatTabsModule,
-  MatToolbarModule,
-} from '@angular/material';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -43,7 +26,10 @@ import {
 } from './core';
 import { GraphQLModule } from './shared/apollo.config';
 import { AuthGuardService } from './shared/services/auth-guard.service';
+import { AuthService } from './shared/services/auth.service';
 import { MedcinService } from './shared/services/medcin.service';
+import { ResetGuardService } from './shared/services/reset-guard.service';
+import { SharedModule } from './shared/shared.module';
 
 
 
@@ -70,13 +56,13 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AuthLayoutComponent,
     AccordionAnchorDirective,
     AccordionLinkDirective,
-    AccordionDirective
+    AccordionDirective,
+    // ****
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes),
-    FormsModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -86,22 +72,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       }
     }),
     LoadingBarRouterModule,
-    MatSidenavModule,
-    MatCardModule,
-    MatMenuModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatTabsModule,
-    MatListModule,
-    MatSlideToggleModule,
-    MatSelectModule,
-    MatProgressBarModule,
-    FlexLayoutModule,
     BidiModule,
    // AgmCoreModule.forRoot({apiKey: 'YOURAPIKEY'}),
     PerfectScrollbarModule,
+    SharedModule,
     GraphQLModule
   ],
   providers: [
@@ -111,8 +85,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     },
     AuthService,
     AuthGuardService,
+    ResetGuardService,
     MedcinService,
-    { provide: ErrorHandler, useClass: AppErrorHandler }
+    PatientService,
+   // { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent]
 })

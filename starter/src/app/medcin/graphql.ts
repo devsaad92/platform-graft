@@ -2,6 +2,8 @@ import { Medcin } from '../shared/models/Medcin';
 import gql from 'graphql-tag';
 
 // query
+
+
 export const ALL_MEDCINS_QUERY = gql`
   query {
     allMedcins {
@@ -65,7 +67,9 @@ export const CREATE_MEDCIN_MUTATION = gql`
       email: $email,
       password: $password
     ) {
+      ok
       token
+      refreshToken
     }
   }
 `;
@@ -74,7 +78,9 @@ export interface CreateMedcinMutationResponse {
   loading: boolean;
   createMedcin: Medcin;
   login: {
-  token: string
+    ok: boolean,
+    token: string,
+    refreshToken: string
   };
 }
 
@@ -86,7 +92,9 @@ export const SIGNIN_USER_MUTATION = gql`
       email: $email,
       password: $password
     ) {
+      ok
       token
+      refreshToken
     }
   }
 `;
@@ -95,7 +103,9 @@ export const SIGNIN_USER_MUTATION = gql`
 export interface SigninUserMutationResponse {
   loading: boolean;
   login: {
-    token: string
+    ok: boolean,
+    token: string,
+    refreshToken: string
   };
 }
 
@@ -125,11 +135,11 @@ export const UPDATE_MEDCIN_MUTATION = gql`
   }
 `;
 
-export interface UpdateMedcinMutationResponse {
+/* export interface UpdateMedcinMutationResponse {
   medcin: Medcin;
   loading: boolean;
 }
-
+ */
 // mutation delete of medcin
 
 
@@ -144,11 +154,39 @@ export const DELETE_MEDCIN_MUTATION = gql`
   }
 `;
 
-export interface DeleteMedcinMutationResponse {
+/* export interface DeleteMedcinMutationResponse {
   // medcin: Medcin;
    loading: boolean;
+} */
+
+export const FORGET_PASSWORD_MUTATION = gql`
+
+  mutation ForgetPasswordMutation($email: String!) {
+    forgetPassword(
+      email: $email
+    ) {
+      id
+    }
+  }
+`;
+
+export interface ForgetPasswordMutationResponse {
+  loading: boolean;
 }
 
+export const RESET_PASSWORD_MUTATION = gql`
+
+  mutation ResetPasswordMutation($userId: Int!, $newPassword: String!) {
+    resetPassword(
+      userId: $userId,
+      newPassword: $newPassword
+    )
+  }
+`;
+
+export interface ResetPasswordMutationResponse {
+  loading: boolean;
+}
 
 //  subscribtion
 

@@ -41,7 +41,9 @@
       <div fxLayout="row" class="row justify-content-center" fxLayoutWrap="wrap">
         <div class="mb-1 col-4">
           <mat-form-field style="width: 100%">
-            <input matInput placeholder="Date de Naissance" [formControl]="form.controls['date']" type="date">
+            <input matInput (focus)="dt.open()" [matDatepicker]="dt" placeholder="Date de Naissance" [formControl]="form.controls['date']">
+            <mat-datepicker-toggle matSuffix [for]="dt"></mat-datepicker-toggle>
+            <mat-datepicker #dt></mat-datepicker>
           </mat-form-field>
           <small *ngIf="form.controls['date'].hasError('required') && form.controls['date'].touched" class="mat-text-warn">You must include a date.</small>
           <small *ngIf="form.controls['date'].errors?.date && form.controls['date'].touched" class="mat-text-warn">You must include a valid date.</small>
@@ -78,14 +80,14 @@
       <!-- <label>Gender</label> -->
       <div class="col-4">
         <mat-radio-group [formControl]="form.controls['gender']">
-        <div fxLayout="row" class=" row justify-content-around">
-          <div class="col-4">
-              <mat-radio-button value="male">Male</mat-radio-button>
+          <div fxLayout="row" class=" row justify-content-around">
+            <div class="col-4">
+                <mat-radio-button value="male">Male</mat-radio-button>
+            </div>
+            <div class="col-4">
+              <mat-radio-button value="female">Female</mat-radio-button>
+            </div>
           </div>
-          <div class="col-4">
-            <mat-radio-button value="female">Female</mat-radio-button>
-          </div>
-        </div>
         </mat-radio-group>
         <small *ngIf="!form.controls['gender'].valid && form.controls['gender'].touched" class="mat-text-warn">You must select a gender.</small>
       </div>

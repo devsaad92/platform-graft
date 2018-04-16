@@ -1,0 +1,98 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row></mat-toolbar-row>
+  <mat-toolbar-row></mat-toolbar-row>
+</mat-toolbar>
+
+<div fxLayout="row" fxLayoutWrap="wrap" class="main-content">
+  <div fxFlex.gt-sm="60" fxFlex="100">
+    <mat-card>
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <span fxFlex="35"></span>
+          <mat-card-title>Patient Demographics</mat-card-title>
+        </mat-toolbar-row>
+      </mat-toolbar>
+   
+      <form [formGroup]="form">
+        <mat-card-content>            
+          <mat-form-field style="width: 50%"> 
+            <input matInput placeholder="Email address" type="email" disabled>
+          </mat-form-field>
+          <br><br>
+
+          <div fxLayout="row">
+            <div fxFlex="55">
+              <mat-form-field style="width: 90%">
+                <input matInput placeholder="First name" [formControl]="form.controls['fname']" [(ngModel)]="medcin.firstName">
+              </mat-form-field>
+            </div>
+            <div fxFlex="45">
+              <mat-form-field style="width: 100%">
+                <input matInput placeholder="Last name" [(ngModel)]="medcin.lastName" [formControl]="form.controls['lname']">
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <br>
+
+          <div fxLayout="row">
+            <div fxFlex="55">
+              <mat-form-field style="width: 90%">
+                <input matInput placeholder="Date de Naissance" [(ngModel)]="medcin.dateDeNaissance" [formControl]="form.controls['date']"
+                  type="date">
+              </mat-form-field>
+            </div>
+            <div fxFlex="45">
+              <mat-form-field style="width: 100%">
+                <mat-select [(value)]="selected" [(ngModel)]="medcin.specialty" placeholder="Spécialité" [formControl]="form.controls['specialty']">
+                  <mat-option> </mat-option>
+                  <mat-option value="chirigien">Chirigien</mat-option>
+                  <mat-option value="pediatrie">Pediatrie</mat-option>
+                  <mat-option value="radiology">Radiology</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <mat-radio-group [formControl]="form.controls['gender']">
+            <mat-radio-button selected value="male">Male</mat-radio-button>
+            <span fxFlex></span>
+            <mat-radio-button value="female">Female</mat-radio-button>
+          </mat-radio-group>
+        
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="accent" class="float-right">Update Profile</button>
+          </mat-card-actions>
+          <br><br>
+        </form>
+    </mat-card>
+  </div>
+  <div fxFlex.gt-sm="40" fxFlex="100">
+    <mat-card>
+      <!-- <mat-selection-list #groceries [ngModel]="selectedOptions" (ngModelChange)="onSelectedOptionsChange($event)" (change)="changeEventCount = changeEventCount + 1"> -->
+        <mat-selection-list>
+        <h3 mat-subheader>Permissions</h3>
+    
+        <mat-list-option value="bananas">Create</mat-list-option>
+        <mat-list-option selected value="oranges">Read</mat-list-option>
+        <mat-list-option value="apples">Update</mat-list-option>
+        <mat-list-option value="strawberries">Delete</mat-list-option>
+      </mat-selection-list>
+    
+      <!-- <mat-card-content>
+        <p>Selected: {{selectedOptions | json}}</p>
+        <p>Change Event Count {{changeEventCount}}</p>
+        <p>Model Change Event Count {{modelChangeEventCount}}</p>
+    
+        <p>
+          <button mat-raised-button (click)="groceries.selectAll()">Select all</button>
+          <button mat-raised-button (click)="groceries.deselectAll()">Deselect all</button>
+        </p>
+      </mat-card-content> -->
+    
+    </mat-card>
+  </div>
+</div>
+
+

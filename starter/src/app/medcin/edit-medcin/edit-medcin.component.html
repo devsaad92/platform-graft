@@ -41,7 +41,9 @@
       <div fxLayout="row" class=" row justify-content-center" fxLayoutWrap="wrap">
         <div class="mb-1 col-4">
           <mat-form-field style="width: 100%">
-            <input matInput placeholder="Date de Naissance" [(ngModel)]="medcin.dateDeNaissance" [formControl]="form.controls['date']" type="date">
+            <input matInput [matDatepicker]="dt" placeholder="Date de Naissance" [value]="medcin.dateDeNaissance" [formControl]="form.controls['date']">
+            <mat-datepicker-toggle matSuffix [for]="dt"></mat-datepicker-toggle>
+            <mat-datepicker #dt></mat-datepicker>
           </mat-form-field>
           <small *ngIf="form.controls['date'].hasError('required') && form.controls['date'].touched" class="mat-text-warn">You must include a date.</small>
           <small *ngIf="form.controls['date'].errors?.date && form.controls['date'].touched" class="mat-text-warn">You must include a valid date.</small>

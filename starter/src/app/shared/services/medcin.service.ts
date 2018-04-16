@@ -5,21 +5,50 @@ import { Apollo } from 'apollo-angular';
 
 import {
   ALL_MEDCINS_QUERY,
+  AllMedcinQueryResponse,
   CREATE_MEDCIN_MUTATION,
   DELETE_MEDCIN_MUTATION,
+  FORGET_PASSWORD_MUTATION,
   MEDCIN_QUERY,
+  MedcinQueryResponse,
+  RESET_PASSWORD_MUTATION,
   SIGNIN_USER_MUTATION,
   UPDATE_MEDCIN_MUTATION,
 } from './../../medcin/graphql';
-import { DataService } from './data.service';
+
 
 @Injectable()
-export class MedcinService extends DataService {
+export class MedcinService {
 
-  constructor(apollo: Apollo) {
-    super(apollo, ALL_MEDCINS_QUERY, MEDCIN_QUERY, DELETE_MEDCIN_MUTATION);
+  constructor(private apollo: Apollo) { }
+
+  getAll() {
+    return this.apollo.watchQuery<AllMedcinQueryResponse>({
+      query: ALL_MEDCINS_QUERY
+      // pollInterval: 1000,
+    }).valueChanges.map(response => response.data);
   }
 
+  getOne(id) {
+    return this.apollo.watchQuery<MedcinQueryResponse>({
+      query: MEDCIN_QUERY,
+      variables: {
+        id
+      }
+    }).valueChanges.map(response => response.data);
+    //  .catch(this.handleError);
+  }
+
+
+  delete(id) {
+    return this.apollo.mutate({
+      mutation: DELETE_MEDCIN_MUTATION,
+      variables: {
+        id
+      },
+      refetchQueries: [{ query: ALL_MEDCINS_QUERY }]
+    });
+  }
 
   login(value) {
     return this.apollo.mutate({
@@ -63,5 +92,23 @@ export class MedcinService extends DataService {
     });
   }
 
-}
+  forgetPassword(email: string) {
+    return this.apollo.mutate({
+      mutation: FORGET_PASSWORD_MUTATION,
+      variables: {
+        email
+      }
+    });
+  }
 
+  resetPassword(id: number, newpass: string) {
+    return this.apollo.mutate({
+      mutation: RESET_PASSWORD_MUTATION,
+      variables: {
+        userId: id,
+        newPassword: newpass
+      }
+    });
+  }
+
+}

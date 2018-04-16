@@ -36,7 +36,9 @@ export class SignupComponent implements OnInit {
     this.medcinService.createMedcin(this.form.value)
       .subscribe((user) => {
         const token = user.login.token;
-        this.authService.saveUserData(token);
+        const refreshToken = user.login.refreshToken;
+        this.authService.saveUserData(token, refreshToken);
+
         this.router.navigate(['/']);
       }, (error) => {
         alert(error);

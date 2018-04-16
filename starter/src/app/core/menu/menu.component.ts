@@ -1,4 +1,4 @@
-import { Component, NgZone, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, NgZone, ViewChild, Output, EventEmitter, OnInit } from '@angular/core';
 import { MenuService } from './menu.service';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -42,15 +42,19 @@ import { TranslateService } from '@ngx-translate/core';
     </mat-nav-list>`,
   providers: [MenuService]
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
   currentLang = 'en';
 
   constructor(
     public menuService: MenuService,
-    public translate: TranslateService) {
+    public translate: TranslateService) { }
+
+  ngOnInit() {
+      this.addMenuItem();
+      this.addMenuItem2();
   }
 
-  addMenuItem(): void {
+  addMenuItem1(): void {
     this.menuService.add({
       state: 'menu',
       name: 'MENU',
@@ -59,6 +63,32 @@ export class MenuComponent {
       children: [
         {state: 'menu', name: 'MENU'},
         {state: 'timeline', name: 'MENU'}
+      ]
+    });
+  }
+
+  addMenuItem() {
+    this.menuService.add({
+      state: 'medcin',
+      name: 'MEDCIN',
+      type: 'sub',
+      icon: 'person',
+      children: [
+        { state: 'medcins', name: 'All Medcins' },
+        { state: 'addMedcin', name: 'Ajouter Medcin' }
+      ]
+    });
+  }
+
+  addMenuItem2() {
+    this.menuService.add({
+      state: 'patient',
+      name: 'PATIENT',
+      type: 'sub',
+      icon: 'person',
+      children: [
+        { state: 'patients', name: 'All Patients' },
+        { state: 'add-patient', name: 'Ajouter Patient' }
       ]
     });
   }

@@ -27,7 +27,7 @@ export class MedcinsComponent implements OnInit {
 
   getAllMedcins() {
     this.medcinService.getAll()
-      .subscribe((medcins) => {
+      .subscribe(medcins => {
         this.allMedcins = medcins.allMedcins;
         this.loading = medcins.loading;
         this.dataSource = new MatTableDataSource(this.allMedcins);
