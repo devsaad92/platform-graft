@@ -12,7 +12,7 @@ export default `
     instructions: [Instruction]
     traitements: [Traitement]
     informations: [Information]
-    bilans: [Bilan]    
+    bilans: [Bilan]   
   }
 
   type Query {

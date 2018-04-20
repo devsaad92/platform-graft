@@ -11,7 +11,7 @@ import { MatTableDataSource } from '@angular/material';
 export class PatientsComponent implements OnInit {
   allPatients: Patient[] = [];
   loading: Boolean ;
-  displayedColumns = ['id', 'firstName', 'dateDeNaissance', 'sexe', 'dateDeGreffe', 'lastName'];
+  displayedColumns = ['id', 'firstName', 'dateDeNaissance', 'sexe', 'dateDeGreffe', 'postGreffe', 'action'];
   dataSource: any;
 
   constructor(private patientService: PatientService) { }

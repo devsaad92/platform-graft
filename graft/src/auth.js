@@ -57,7 +57,7 @@ export const refreshTokens = async (token, refreshToken, models, SECRET, SECRET2
   return {
     token: newToken,
     refreshToken: newRefreshToken,
-    user,
+    user: _.pick(user, ['id', 'firstName', 'lastName', 'email']),
   };
 };
 

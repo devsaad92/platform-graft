@@ -1,11 +1,13 @@
 
 export class Medcin {
-  id?: number;
-  firstName?: string;
-  lastName?: string;
-  sexe?: string;
-  specialty?: string;
-  email?: string;
-  password?: string;
-  dateDeNaissance?: string;
+  constructor (
+    public id?: number,
+    public firstName?: string,
+    public lastName?: string,
+    public sexe?: string,
+    public dateDeNaissance?: Date,
+    public specialty?: string,
+    public email?: string,
+    public password?: string,
+  ) {}
 }

@@ -57,7 +57,6 @@
             <mat-datepicker-toggle matSuffix [for]="dateGreffe"></mat-datepicker-toggle>
             <mat-datepicker #dateGreffe></mat-datepicker>
           </mat-form-field>
-          <small *ngIf="form.controls['dateGreffe'].hasError('required') && form.controls['dateGreffe'].touched" class="mat-text-warn">You must include a date.</small>
           <small *ngIf="form.controls['dateGreffe'].errors?.date && form.controls['dateGreffe'].touched" class="mat-text-warn">You must include a valid date.</small>
         </div>
         <div class="col-6">
@@ -70,7 +69,6 @@
       </div>
 
       <div class="row justify-content-center">
-        <!-- <label>Gender</label> -->
         <div class="col-4">
           <mat-radio-group [formControl]="form.controls['gender']">
             <div fxLayout="row" class=" row justify-content-around">

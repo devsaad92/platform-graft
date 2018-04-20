@@ -123,15 +123,7 @@ export const UPDATE_MEDCIN_MUTATION = gql`
       sexe: $sexe,
       specialty: $specialty,
       email: $email
-    ) {
-      id
-      firstName
-      lastName
-      dateDeNaissance
-      sexe
-      specialty
-      email
-    }
+    )
   }
 `;
 

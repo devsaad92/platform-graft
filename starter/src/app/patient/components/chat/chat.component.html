@@ -1,0 +1,40 @@
+
+<mat-card>
+  <mat-toolbar></mat-toolbar>
+  <mat-card-content *ngFor="let msg of messages">
+    <div fxLayout="row" fxLayoutAlign="center">
+         {{ msg.date | date: 'dd/MM/yyyy' }}
+    </div>
+
+    <div *ngIf="msg.medcin.id === userId" class="chat-conversation-user me">
+      <div class="chat-conversation-message">
+        <p>
+          {{msg.text}}
+          <span class="chat-date">{{ msg.date | date: 'shortTime' }}</span>
+        </p>
+      </div>
+    </div>
+    <div *ngIf="msg.medcin.id !== userId" class="chat-conversation-user them">
+      <div class="chat-conversation-message">
+        <p> 
+          {{ msg.medcin.firstName  }}  {{ msg.medcin.lastName }}  <br> 
+          {{msg.text}}
+          <span class="chat-date">{{ msg.date | date: 'shortTime' }}</span>
+        </p>
+      </div>
+    </div>
+  </mat-card-content>
+  <hr>
+  <mat-card-actions>
+    <div fxLayout="row" layout-align="start center">
+      <mat-form-field class="mr-1 ml-1" fxFlex>
+        <input matInput placeholder="Send message" [(ngModel)]="msg">
+      </mat-form-field>
+      <button mat-fab (click)="createClinique()">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>
+
+ 

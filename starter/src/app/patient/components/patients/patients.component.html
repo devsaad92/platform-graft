@@ -1,6 +1,6 @@
 
 <mat-card>
-  <mat-card-title>PATIENTS</mat-card-title>
+  <mat-card-title> PATIENTS </mat-card-title>
   <mat-card-content>
 
     <div class="example-container mat-elevation-z8">
@@ -20,8 +20,8 @@
         </ng-container>
 
         <ng-container matColumnDef="dateDeNaissance">
-          <mat-header-cell *matHeaderCellDef> Date de Naissance </mat-header-cell>
-          <mat-cell *matCellDef="let patient"> {{patient.dateDeNaissance}} </mat-cell>
+          <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
+          <mat-cell *matCellDef="let patient"> {{ patientService.getDate(patient.dateDeNaissance) }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="sexe">
@@ -31,10 +31,17 @@
 
         <ng-container matColumnDef="dateDeGreffe">
           <mat-header-cell *matHeaderCellDef> Date de greffe </mat-header-cell>
-          <mat-cell *matCellDef="let patient"> {{patient.dateDeGreffe}} </mat-cell>
+          <mat-cell *matCellDef="let patient"> {{ patient.dateDeGreffe | date: 'yyyy-MM-dd HH:mm'}} </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="lastName">
+        <ng-container matColumnDef="postGreffe">
+          <mat-header-cell *matHeaderCellDef> Post greffe </mat-header-cell>
+          <mat-cell *matCellDef="let patient">
+            <span class="rouge">   {{ patientService.getJour(patient.dateDeGreffe) }} </span>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
           <mat-header-cell *matHeaderCellDef> </mat-header-cell>
           <mat-cell *matCellDef="let patient">
             <a mat-raised-button color="primary" [routerLink]="['/patient/patient-item/'+patient.id]">Voir </a>

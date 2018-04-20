@@ -6,7 +6,7 @@ import { CustomValidators } from 'ng2-validation';
 import { Medcin } from '../../shared/models/Medcin';
 import { MedcinService } from './../../shared/services/medcin.service';
 
-const password = new FormControl('', Validators.required);
+// const password = new FormControl('', Validators.required);
 
 
 @Component({
@@ -30,12 +30,14 @@ export class AddMedcinComponent implements OnInit {
       date: [null, Validators.compose([Validators.required, CustomValidators.date])],
       specialty: [null, Validators.compose([Validators.required])],
       gender: [null, Validators.required],
-      password: password
+      password: [null, Validators.required]
     });
   }
 
   createMedcin() {
-    this.medcinService.createMedcin(this.form.value)
+    const { id, fname, lname, date, specialty, gender, email, password } = this.form.value;
+    const medcin = new Medcin(id, fname, lname, gender, date, specialty, email, password);
+    this.medcinService.createMedcin(medcin)
       .subscribe(() => this.router.navigate(['medcin/medcins']));
 
     /* this.apollo.mutate({

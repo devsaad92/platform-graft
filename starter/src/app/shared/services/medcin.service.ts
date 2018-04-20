@@ -1,3 +1,4 @@
+import { Medcin } from './../models/Medcin';
 import 'rxjs/add/operator/map';
 
 import { Injectable } from '@angular/core';
@@ -60,14 +61,14 @@ export class MedcinService {
     }).map(response => response.data);
   }
 
-  createMedcin(medcin) {
+  createMedcin(medcin: Medcin) {
     return this.apollo.mutate({
       mutation: CREATE_MEDCIN_MUTATION,
       variables: {
-        firstName: medcin.fname,
-        lastName: medcin.lname,
-        dateDeNaissance: medcin.date,
-        sexe: medcin.gender,
+        firstName: medcin.firstName,
+        lastName: medcin.lastName,
+        dateDeNaissance: medcin.dateDeNaissance,
+        sexe: medcin.sexe,
         specialty: medcin.specialty,
         email: medcin.email,
         password: medcin.password
@@ -76,15 +77,15 @@ export class MedcinService {
     }).map(response => response.data);
   }
 
-  updateMedcin(id: string, medcin) {
+  updateMedcin(medcin: Medcin) {
     return this.apollo.mutate({
       mutation: UPDATE_MEDCIN_MUTATION,
       variables: {
-        id,
-        firstName: medcin.fname,
-        lastName: medcin.lname,
-        dateDeNaissance: medcin.date,
-        sexe: medcin.gender,
+        id: medcin.id,
+        firstName: medcin.firstName,
+        lastName: medcin.lastName,
+        dateDeNaissance: medcin.dateDeNaissance,
+        sexe: medcin.sexe,
         specialty: medcin.specialty,
         email: medcin.email
       },

@@ -1,6 +1,5 @@
 import bcrypt from 'bcrypt';
 import { PubSub } from 'graphql-subscriptions';
-import _ from 'lodash';
 import { tryLogin, tryForgetPassword, tryResetPassword } from '../auth';
 
 const pubsub = new PubSub();
@@ -25,17 +24,12 @@ export default {
 
       return medcinAdded;
     },
-    updateMedcin: (parent, args, { models }) =>
-      models.Medcin.update(_.omit(args, 'id'), { where: { id: args.id } }),
-    deleteMedcin: async (parent, args, { models }) => {
-      models.Medcin.findById(args.id).then((medcin) => {
-        if (medcin) {
-          return medcin.destroy();
-        }
-
-        throw new Error('error id!');
-      });
+    updateMedcin: async (parent, args, { models }) => {
+      const { id, ...params } = args;
+      return models.Medcin.update(params, { where: { id } });
     },
+    deleteMedcin: async (parent, args, { models }) =>
+      models.Medcin.destroy({ where: { id: args.id } }),
     login: (parent, { email, password }, { models, SECRET, SECRET2 }) =>
       tryLogin(email, password, models, SECRET, SECRET2),
     forgetPassword: async (parent, { email }, { transporter, models, SECRET }) =>

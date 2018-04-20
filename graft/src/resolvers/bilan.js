@@ -8,7 +8,7 @@ export default {
       try {
         await models.Bilan.create({
           ...args,
-          medcinId: user.id,
+          medcinId: 1,
         });
         console.log(user);
         return true;

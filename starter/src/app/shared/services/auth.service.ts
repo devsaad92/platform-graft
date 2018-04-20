@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { GC_AUTH_TOKEN } from '../constants';
 import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
 
 @Injectable()
@@ -20,7 +19,7 @@ export class AuthService {
 
   saveUserData(token: string, refreshToken: string) {
     if (token) {
-      localStorage.setItem(GC_AUTH_TOKEN, token);
+      localStorage.setItem('token', token);
       localStorage.setItem('refreshToken', refreshToken);
       this.setUserToken(token);
     }
@@ -44,7 +43,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem(GC_AUTH_TOKEN);
+    localStorage.removeItem('token');
     // localStorage.removeItem('refreshToken');
     this.currentUser = null;
 
@@ -58,7 +57,7 @@ export class AuthService {
   }
 
   autoLogin() {
-    const token = localStorage.getItem(GC_AUTH_TOKEN);
+    const token = localStorage.getItem('token');
 
     if (token) {
       this.setUserToken(token);

@@ -1,12 +1,12 @@
-import { Patient } from '../shared/models/Patient';
 import gql from 'graphql-tag';
+
+import { Patient } from './../shared/models/Patient';
 
 // query
 
-
-export const ALL_PATIENTS_QUERY = gql`
-  query {
-    allPatients {
+const patientFragments = {
+  patient: gql`
+    fragment patientInfos on Patient {
       id
       firstName
       lastName
@@ -14,7 +14,17 @@ export const ALL_PATIENTS_QUERY = gql`
       sexe
       dateDeGreffe
     }
+  `,
+};
+
+
+export const ALL_PATIENTS_QUERY = gql`
+  query {
+    allPatients {
+      ...patientInfos
+    }
   }
+  ${patientFragments.patient}
 `;
 
 export interface AllPatientQueryResponse {
@@ -26,20 +36,69 @@ export interface AllPatientQueryResponse {
 
 export const PATIENT_QUERY = gql`
   query patientQuery($id: Int!) {
-    patientQuery(id: $id) {
-      id
-      firstName
-      lastName
-      dateDeNaissance
-      sexe
-      dateDeGreffe
+    getPatient(id: $id) {
+      ...patientInfos
+      ...bilans
+      ...instructions
+      ...cliniques
+      ...traitements
     }
   }
+  fragment instructions on Patient {
+    instructions {
+      id
+      text
+      date
+      medcin {
+        id
+        firstName
+        lastName
+      }
+    }
+  }
+  fragment cliniques on Patient {
+    cliniques {
+      id
+      text
+      date
+      medcin {
+        id
+        firstName
+        lastName
+      }
+    }
+  }
+  fragment traitements on Patient {
+    traitements {
+      id
+      text
+      date
+    }
+  }
+  fragment bilans on Patient {
+    bilans {
+      id
+      soduim
+      crp
+      magnesuim
+      glucose
+      ggt
+      potassuim
+      uree
+      calcuim
+      ldh
+      sgpt
+      albumine
+      lipase
+      date
+    }
+  }
+  ${patientFragments.patient}
 `;
 
 export interface PatientQueryResponse {
-    patientQuery: Patient;
-    loading: boolean;
+  getPatient: Patient;
+  loading: boolean;
 }
 
 
@@ -48,7 +107,7 @@ export interface PatientQueryResponse {
 export const CREATE_PATIENT_MUTATION = gql`
 
   mutation createPatientMutation(
-       $firstName: String!, $lastName: String!, $dateDeNaissance: String!, $sexe: String!, $dateDeGreffe: String) {
+      $firstName: String!, $lastName: String!, $dateDeNaissance: String!, $sexe: String!, $dateDeGreffe: String) {
     createPatient(
       firstName: $firstName,
       lastName: $lastName,
@@ -56,28 +115,29 @@ export const CREATE_PATIENT_MUTATION = gql`
       sexe: $sexe,
       dateDeGreffe: $dateDeGreffe
     ) {
-      id
-      firstName
-      lastName
-      dateDeNaissance
-      sexe
-      dateDeGreffe
+      ...patientInfos
     }
   }
+  ${patientFragments.patient}
 `;
-
-// mutation {
-//     createPatient(firstName: "aaaaaaa", lastName: "bbbbb", sexe: "Famele", dateDeNaissance: "02/03/1992"){
-//         id
-//         firstName
-//         lastName
-//         sexe
-//         dateDeGreffe
-//         dateDeNaissance
-//     }
-// }
 
 export interface CreatePatientMutationResponse {
     loading: boolean;
     createPatient: Patient;
 }
+
+export const CREATE_CLINIQUE_MUTATION = gql`
+  mutation createCliniqueMutation($patientId: Int!, $text: String!, $date: String!){
+    createClinique(patientId: $patientId, text: $text, date: $date){
+      id
+    }
+  }
+`;
+
+export const CREATE_INSTRUCTION_MUTATION = gql`
+  mutation createInstructionMutation($patientId: Int!, $text: String!, $date: String!){
+    createInstruction(patientId: $patientId, text: $text, date: $date){
+      id
+    }
+  }
+`;
