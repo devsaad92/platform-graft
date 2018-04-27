@@ -21,7 +21,7 @@ export default `
       PA: String,
       SaO2: String,
       date: String!
-    ): Information!
+    ): Information
   }
 
 `;

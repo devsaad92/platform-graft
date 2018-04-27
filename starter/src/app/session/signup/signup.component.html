@@ -47,15 +47,12 @@
               </div>
               <div class="mb-1">
                 <mat-form-field style="width: 100%">
-                  <input matInput placeholder="Date de Naissance" [formControl]="form.controls['date']" type="date">
-                </mat-form-field>
-                <!-- <mat-form-field>
-                  <input matInput [matDatepicker]="picker" placeholder="Date de Naissance" [formControl]="form.controls['date']" type="date">
-                  <mat-datepicker-toggle matSuffix [for]="picker">
-                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                  <input matInput (focus)="dt.open()" [matDatepicker]="dt" placeholder="Date de Naissance" [formControl]="form.controls['date']">
+                  <mat-datepicker-toggle matSuffix [for]="dt">
+                    <!-- <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon> -->
                   </mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field> -->
+                  <mat-datepicker #dt></mat-datepicker>
+                </mat-form-field>
                 <small *ngIf="form.controls['date'].hasError('required') && form.controls['date'].touched" class="mat-text-warn">You must include a date.</small>
                 <small *ngIf="form.controls['date'].errors?.date && form.controls['date'].touched" class="mat-text-warn">You must include a valid date.</small>
               </div>

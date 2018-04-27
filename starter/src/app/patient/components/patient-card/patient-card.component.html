@@ -1,0 +1,77 @@
+<mat-card>
+  <mat-card-content>
+    <div fxLayout="row">
+      <div fxFlex="60">
+        <h1 class="ma-0"> {{patient.firstName}}
+          <b>{{patient.lastName}}</b>
+        </h1>
+        <br>
+        <p>
+          <b>Sexe: </b>{{patient.sexe}}</p>
+        <p>
+          <b>Age: </b>{{ patientService.getDate(patient.dateDeNaissance) }}</p>
+        <p>
+          <b>Date de la greffe: </b>
+          {{patient.dateDeGreffe | date:'yyyy-MM-dd HH:mm'}}
+        </p>
+
+        <button mat-raised-button (click)="updatePatient()" color="primary" class="ml-xs mr-xs">MAJ</button>
+      </div>
+      <div fxFlex="40">
+        <span fxFlex></span>
+        <div class="rouge">
+          {{ patientService.getJour(patient.dateDeGreffe) }}
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+  <hr>
+  <mat-card-content>
+    <div fxLayout="row" class="text-xs-center">
+      <div fxFlex="33">
+        <h1 class="ma-0">
+          <b>Temp=</b>
+        </h1>
+      </div>
+      <div fxFlex="33">
+        <h1 class="ma-0">
+          <b>FC=</b>
+        </h1>
+      </div>
+      <div fxFlex="33">
+        <h1 class="ma-0">
+          <b>FR=</b>
+        </h1>
+      </div>
+    </div>
+    <div fxLayout="row" class="text-xs-center">
+      <div fxFlex="33">
+        <h1 class="ma-0">
+          <b>PA=</b>
+        </h1>
+      </div>
+      <div fxFlex="33">
+        <h1 class="ma-0">
+          <b>SaO2=</b>
+        </h1>
+      </div>
+      <div fxFlex="33"> 
+        <button mat-raised-button [matMenuTriggerFor]="menu" color="primary">
+          <span>Historique</span>
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="ajouterInformation()">
+            <mat-icon>add</mat-icon>
+            <span>Information</span>
+          </button>
+          <button mat-menu-item (click)="afficherInformations()">
+            <mat-icon>view_list</mat-icon>
+            <span>Informations</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </mat-card-content>
+  <hr>
+</mat-card>

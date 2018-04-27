@@ -32,6 +32,7 @@ export class ChatComponent implements OnInit {
     if (this.index === 0) {
       this.patientService.createClinique(clinique)
        .subscribe(msg => console.log(msg));
+       this.index = 2;
     }
     if (this.index === 1) {
       this.patientService.createInstruction(instruction)

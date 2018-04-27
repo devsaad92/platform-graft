@@ -1,7 +1,9 @@
 
 export class Bilan {
     constructor(
-        public id: number,
+        public id?: number,
+        public patientId?: number,
+        public nom?: String,
         public soduim?: string,
         public crp?: string,
         public magnesuim?: String,
@@ -13,6 +15,7 @@ export class Bilan {
         public ldh?: String,
         public sgpt?: String,
         public albumine?: String,
-        public lipase?: String
+        public lipase?: String,
+        public date?: String,
     ) {}
 }

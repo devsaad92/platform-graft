@@ -9,6 +9,11 @@ import { PatientItemComponent } from './components/patient-item/patient-item.com
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ChatComponent } from './components/chat/chat.component';
 import { BilansComponent } from './components/bilans/bilans.component';
+import { PatientCardComponent } from './components/patient-card/patient-card.component';
+import { EditPatientComponent } from './components/edit-patient/edit-patient.component';
+import { BilanFromComponent } from './components/bilan-from/bilan-from.component';
+import { InformationComponent } from './components/information/information.component';
+import { InformationFormComponent } from './components/information-form/information-form.component';
 
 @NgModule({
   imports: [
@@ -21,7 +26,12 @@ import { BilansComponent } from './components/bilans/bilans.component';
     PatientsComponent,
     PatientItemComponent,
     ChatComponent,
-    BilansComponent
+    BilansComponent,
+    PatientCardComponent,
+    EditPatientComponent,
+    BilanFromComponent,
+    InformationComponent,
+    InformationFormComponent
   ]
 })
 export class PatientModule { }

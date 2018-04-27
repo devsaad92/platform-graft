@@ -1,3 +1,4 @@
+import { Medcin } from './../../shared/models/Medcin';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -6,8 +7,8 @@ import { CustomValidators } from 'ng2-validation';
 import { AuthService } from './../../shared/services/auth.service';
 import { MedcinService } from './../../shared/services/medcin.service';
 
-const password = new FormControl('', Validators.required);
-const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
+const password1 = new FormControl('', Validators.required);
+const confirmPassword1 = new FormControl('', CustomValidators.equalTo(password1));
 
 @Component({
   selector: 'app-signup',
@@ -27,13 +28,15 @@ export class SignupComponent implements OnInit {
       date: [null, Validators.compose([Validators.required, CustomValidators.date])],
       specialty: [null, Validators.compose([Validators.required])],
       gender: [null, Validators.required],
-      password: password,
-      confirmPassword: confirmPassword
-    } );
+      password: password1,
+      confirmPassword: confirmPassword1
+    });
   }
 
   onSubmit() {
-    this.medcinService.createMedcin(this.form.value)
+    const {id, fname, lname, email, password, date, gender, specialty} = this.form.value;
+    const medcin = new Medcin(id, fname, lname, gender, date, specialty, email, password);
+    this.medcinService.createMedcin(medcin)
       .subscribe((user) => {
         const token = user.login.token;
         const refreshToken = user.login.refreshToken;

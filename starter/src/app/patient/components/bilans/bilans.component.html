@@ -1,5 +1,9 @@
 <mat-card class="shadow-none">
   <mat-card-content>
+    <div>
+      <span fxFlex></span>
+      <button mat-raised-button color="primary" (click)="ajouterBilan()"> <mat-icon>add</mat-icon>NEW </button>
+    </div>
       <mat-table #table [dataSource]="dataSource">
 
         <ng-container matColumnDef="date">

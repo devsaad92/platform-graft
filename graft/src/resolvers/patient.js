@@ -6,6 +6,10 @@ export default {
   },
   Mutation: {
     createPatient: (parent, args, { models }) => models.Patient.create(args),
+    updatePatient: async (parent, args, { models }) => {
+      const { id, ...params } = args;
+      return models.Patient.update(params, { where: { id } });
+    },
   },
   Patient: {
     bilans: ({ id }, args, { models }) => models.Bilan.findAll({ where: { patientId: id } }),

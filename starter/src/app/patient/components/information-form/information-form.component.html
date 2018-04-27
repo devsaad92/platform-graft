@@ -1,0 +1,70 @@
+<mat-card>
+  <mat-card-title>Ajouter des Informations</mat-card-title>
+  <mat-card-subtitle>Saisir les infos:</mat-card-subtitle>
+  <form (ngSubmit)="onSubmit(); informationForm.reset()" #informationForm="ngForm">
+    <mat-card-content>
+      <div fxLayout="row">
+        <div fxFlex="20"></div>
+        <div fxFlex="60">
+          <mat-form-field style="width:80%">
+            <input matInput [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time" [(ngModel)]="information.date" name="date">
+            <owl-date-time #dt1></owl-date-time>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div fxFlex="20"></div>
+        <div fxFlex="60">
+          <mat-form-field style="width:80%">
+            <input matInput placeholder="Temp" [(ngModel)]="information.Temp" name="Temp">
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div fxFlex="20"></div>
+        <div fxFlex="60">
+          <mat-form-field style="width:80%">
+            <input matInput placeholder="FC" [(ngModel)]="information.FC" name="FC">
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div fxFlex="20"></div>
+        <div fxFlex="60">
+          <mat-form-field style="width:80%">
+            <input matInput placeholder="FR" [(ngModel)]="information.FR" name="FR">
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div fxFlex="20"></div>
+        <div fxFlex="60">
+          <mat-form-field style="width:80%">
+            <input matInput placeholder="PA" [(ngModel)]="information.PA" name="PA">
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row">
+        <div fxFlex="20"></div>
+        <div fxFlex="60">
+          <mat-form-field style="width:80%">
+            <input matInput placeholder="SaO2" [(ngModel)]="information.SaO2" name="SaO2">
+          </mat-form-field>
+        </div>
+      </div>
+      <hr>
+    </mat-card-content>
+    <mat-card-actions>
+      <div fxLayout="row">
+        <div fxFlex="35">
+          <span fxFlex></span>
+          <button mat-raised-button color="primary" type="submit"> Ajouter </button>
+        </div>
+        <div fxFlex="33">
+          <span fxFlex></span>
+          <button mat-raised-button color="warn" (click)="cancelForm()"> Annuler </button>
+        </div>
+      </div>
+    </mat-card-actions>
+  </form>
+</mat-card>

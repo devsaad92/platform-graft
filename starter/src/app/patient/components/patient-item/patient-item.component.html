@@ -1,68 +1,24 @@
 <div class="wrapper">
   <div fxLayout="row" fxLayoutWrap="wrap">
     <div fxFlex.gt-sm="40" fxFlex="100">
-      <mat-card>
-        <mat-card-content>
-          <div fxLayout="row">
-            <div fxFlex="60">
-              <h1 class="ma-0"> {{patient.firstName}}
-                <b>{{patient.lastName}}</b>
-              </h1>
-              <br>
-              <p><b>Sexe: </b>{{patient.sexe}}</p>
-              <p><b>Age: </b>{{ patientService.getDate(patient.dateDeNaissance) }}</p>
-              <p>
-                <b>Date de la greffe: </b>
-                 {{patient.dateDeGreffe | date:'yyyy-MM-dd HH:mm'}}
-              </p>
-               
-              <button mat-raised-button color="primary" class="ml-xs mr-xs">MAJ</button>
-            </div>
-            <div fxFlex="40">
-              <span fxFlex></span>
-              <div class="rouge">
-                {{ patientService.getJour(patient.dateDeGreffe) }}
-              </div>
-            </div>
-          </div>
-        </mat-card-content>
-        <hr>
-        <mat-card-content>
-          <div fxLayout="row" class="text-xs-center">
-            <div fxFlex="33">
-              <h1 class="ma-0">
-                <b>Temp=</b>
-              </h1>      
-            </div>
-            <div fxFlex="33">
-              <h1 class="ma-0">
-                <b>FC=</b>
-              </h1>
-            </div>
-            <div fxFlex="33">
-              <h1 class="ma-0">
-                <b>FR=</b>
-              </h1>             
-            </div>
-          </div>
-          <div fxLayout="row" class="text-xs-center">
-            <div fxFlex="33">
-              <h1 class="ma-0">
-                <b>PA=</b>
-              </h1>
-            </div>
-            <div fxFlex="33">
-              <h1 class="ma-0">
-                <b>SaO2=</b>
-              </h1>
-            </div>
-            <div fxFlex="33">
-              <button mat-raised-button color="primary"> Historique </button>
-            </div>
-          </div>
-        </mat-card-content>
-        <hr>
-      </mat-card>
+      <app-patient-card *ngIf="switch && switchInfor && informations"
+        [patient]="patient"
+        (updatePatientForm)="updatePatientForm($event)" 
+        (addInforForm)="addInforForm($event)"
+        (afficherInforForm)="afficherInforForm($event)"
+        >
+      </app-patient-card>
+      <app-edit-patient *ngIf="!switch"
+        [patient]="patient"
+        [patientId]="patientId"
+        (annulerPatientForm)="annulerPatientForm($event)"
+        (updateForm)="updateForm($event)">
+      </app-edit-patient>
+      <app-information-form *ngIf="!switchInfor" (annulerInformationForm)="annulerInformationForm($event)"></app-information-form>
+      <app-information *ngIf="!informations"
+        [informations]="patient.informations"
+        (return)="return($event)">
+      </app-information>
     </div>
     <div fxFlex.gt-sm="60" fxFlex="100">
       <div fxLayout="column">
@@ -77,7 +33,7 @@
                 </mat-tab>
                 <mat-tab>
                   <ng-template matTabLabel>Instruction</ng-template>
-                  <app-chat [messages]="patient.instructions" [patientId]="patientId" [index]="index"></app-chat>
+                  <app-chat [messages]="instructions" [patientId]="patientId" [index]="index"></app-chat>
                 </mat-tab>
               </mat-tab-group>
             </mat-tab>
@@ -87,7 +43,8 @@
                 <mat-tab>
                   <ng-template matTabLabel>Chimie</ng-template>
                   <mat-card-content>
-                    <app-bilans [bilans]="patient.bilans"></app-bilans>
+                    <app-bilans *ngIf="switchbilan" [bilans]="patient.bilans" (ajoutBilanForm)="ajoutBilanForm($event)"></app-bilans>
+                     <app-bilan-from *ngIf="!switchbilan" (annulerForm)="annulerForm($event)"></app-bilan-from>
                   </mat-card-content>
                 </mat-tab>
                 <mat-tab>

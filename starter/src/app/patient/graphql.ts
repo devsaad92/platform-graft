@@ -42,6 +42,7 @@ export const PATIENT_QUERY = gql`
       ...instructions
       ...cliniques
       ...traitements
+      ...informations
     }
   }
   fragment instructions on Patient {
@@ -66,6 +67,17 @@ export const PATIENT_QUERY = gql`
         firstName
         lastName
       }
+    }
+  }
+  fragment informations on Patient {
+    informations {
+      id
+      Temp
+      FC
+      FR
+      PA
+      SaO2
+      date
     }
   }
   fragment traitements on Patient {
@@ -126,6 +138,23 @@ export interface CreatePatientMutationResponse {
     createPatient: Patient;
 }
 
+export const UPDATE_PATIENT_MUTATION = gql`
+
+  mutation updatePatientMutation(
+    $id: Int!,
+    $firstName: String, $lastName: String, $dateDeNaissance: String, $sexe: String,
+    $dateDeGreffe: String) {
+    updatePatient(
+      id: $id
+      firstName: $firstName,
+      lastName: $lastName,
+      dateDeNaissance: $dateDeNaissance,
+      sexe: $sexe,
+      dateDeGreffe: $dateDeGreffe
+    )
+  }
+`;
+
 export const CREATE_CLINIQUE_MUTATION = gql`
   mutation createCliniqueMutation($patientId: Int!, $text: String!, $date: String!){
     createClinique(patientId: $patientId, text: $text, date: $date){
@@ -141,3 +170,97 @@ export const CREATE_INSTRUCTION_MUTATION = gql`
     }
   }
 `;
+
+export const newMedcinMessageSubscription = gql`
+  subscription {
+    newMessageInstruction {
+      id
+      text
+      date
+      medcin {
+        id
+        firstName
+        lastName
+      }
+    }
+  }
+`;
+
+export const MSGINSTRUCTION_QUERY = gql`
+  query msgInstructionQuery($patientId: Int!) {
+    instructions(patientId: $patientId) {
+      id
+      text
+      date
+      medcin {
+        id
+        firstName
+        lastName
+      }
+    }
+  }
+`;
+
+export const CREATE_MUTATION_INFORMATION = gql`
+  mutation createInformationMutation(
+      $patientId: Int!,
+      $Temp: String,
+      $FC: String,
+      $FR: String,
+      $PA: String,
+      $SaO2: String,
+      $date: String!) {
+    createInformation(
+      patientId: $patientId,
+      Temp: $Temp,
+      FC: $FC,
+      FR: $FR,
+      PA: $PA,
+      SaO2: $SaO2,
+      date: $date
+    ){
+      id
+    }
+  }
+
+`
+;
+
+export const CREATE_BILAN_MUTATION = gql`
+  mutation createBilanMutation(
+      $patientId: Int!,
+      $nom: String,
+      $soduim: String,
+      $crp: String,
+      $magnesuim: String,
+      $glucose: String,
+      $ggt: String,
+      $potassuim: String,
+      $uree: String,
+      $calcuim: String,
+      $ldh: String,
+      $sgpt: String,
+      $albumine: String,
+      $lipase: String,
+      $date: String!) {
+    createBilan(
+      patientId: $patientId,
+      nom: $nom,
+      soduim: $soduim,
+      crp: $crp,
+      magnesuim: $magnesuim,
+      glucose: $glucose,
+      ggt: $ggt,
+      potassuim: $potassuim,
+      uree: $uree,
+      calcuim: $calcuim,
+      ldh: $ldh,
+      sgpt: $sgpt,
+      albumine: $albumine,
+      lipase: $lipase,
+      date: $date
+    )
+  }
+
+`
+  ;

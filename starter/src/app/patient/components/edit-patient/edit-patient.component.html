@@ -1,10 +1,10 @@
 <mat-card>
-  <mat-card-title>Ajout d'un Patient</mat-card-title>
+  <mat-card-title>Mettre à jour un Patient</mat-card-title>
   <mat-card-subtitle>Saisir les infos:</mat-card-subtitle>
-  <form [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-card-content>
       <div fxLayout="row" class="row justify-content-center" fxLayoutWrap="wrap">
-        <div class="mb-1 col-4">
+        <div class="mb-1 col-8">
           <mat-form-field style="width: 100%">
             <input matInput placeholder="First name" [formControl]="form.controls['fname']">
           </mat-form-field>
@@ -12,11 +12,11 @@
           <small *ngIf="form.controls['fname'].hasError('minlength') && form.controls['fname'].touched" class="mat-text-warn">Your first name must be at least 5 characters long.</small>
           <small *ngIf="form.controls['fname'].hasError('maxlength') && form.controls['fname'].touched" class="mat-text-warn">Your first name cannot exceed 10 characters.</small>
         </div>
-        <div class="col-6"></div>
+        <div class="col-2"></div>
       </div>
 
       <div fxLayout="row" class="row justify-content-center" fxLayoutWrap="wrap">
-        <div class="mb-1 col-4">
+        <div class="mb-1 col-8">
           <mat-form-field style="width: 100%">
             <input matInput placeholder="Last name" [formControl]="form.controls['lname']">
           </mat-form-field>
@@ -24,48 +24,37 @@
           <small *ngIf="form.controls['lname'].hasError('minlength') && form.controls['lname'].touched" class="mat-text-warn">Your last name must be at least 5 characters long.</small>
           <small *ngIf="form.controls['lname'].hasError('maxlength') && form.controls['lname'].touched" class="mat-text-warn">Your last name cannot exceed 10 characters.</small>
         </div>
-        <div class="col-6"></div>
+        <div class="col-2"></div>
       </div>
 
       <div fxLayout="row" class="row justify-content-center" fxLayoutWrap="wrap">
-        <div class="mb-1 col-4">
+        <div class="mb-1 col-8">
           <mat-form-field style="width: 100%">
-            <input
-              matInput
-              (focus)="dt.open()"
-              [matDatepicker]="dt" 
-              placeholder="Date de Naissance" 
-              [formControl]="form.controls['date']">
+            <input matInput (focus)="dt.open()" [matDatepicker]="dt" placeholder="Date de Naissance" [formControl]="form.controls['date']">
             <mat-datepicker-toggle matSuffix [for]="dt"></mat-datepicker-toggle>
             <mat-datepicker #dt></mat-datepicker>
           </mat-form-field>
           <small *ngIf="form.controls['date'].hasError('required') && form.controls['date'].touched" class="mat-text-warn">You must include a date.</small>
           <small *ngIf="form.controls['date'].errors?.date && form.controls['date'].touched" class="mat-text-warn">You must include a valid date.</small>
         </div>
-        <div class="col-6"></div>
+        <div class="col-2"></div>
       </div>
 
-
       <div fxLayout="row" class="row justify-content-center" fxLayoutWrap="wrap">
-        <div class="mb-1 col-4">
+        <div class="mb-1 col-8">
           <mat-form-field style="width: 100%">
-            <input
-              (focus)="dateGreffe.open()" 
-              matInput [matDatepicker]="dateGreffe" 
-              placeholder="date de greffe" 
-              [formControl]="form.controls['dateGreffe']">
+            <input (focus)="dateGreffe.open()" matInput [matDatepicker]="dateGreffe" placeholder="date de greffe" [formControl]="form.controls['dateGreffe']">
             <mat-datepicker-toggle matSuffix [for]="dateGreffe"></mat-datepicker-toggle>
             <mat-datepicker #dateGreffe></mat-datepicker>
           </mat-form-field>
           <small *ngIf="form.controls['dateGreffe'].errors?.date && form.controls['dateGreffe'].touched" class="mat-text-warn">You must include a valid date.</small>
         </div>
-        <div class="col-6">
-          
+        <div class="col-2">
         </div>
       </div>
 
       <div class="row justify-content-center">
-        <div class="col-4">
+        <div class="col-8">
           <mat-radio-group [formControl]="form.controls['gender']">
             <div fxLayout="row" class=" row justify-content-around">
               <div class="col-4">
@@ -78,7 +67,7 @@
           </mat-radio-group>
           <small *ngIf="!form.controls['gender'].valid && form.controls['gender'].touched" class="mat-text-warn">You must select a gender.</small>
         </div>
-        <div class="col-6"></div>
+        <div class="col-2"></div>
       </div>
 
 
@@ -86,17 +75,17 @@
     <hr>
     <mat-card-actions>
       <div class="row justify-content-center">
-        <div class="col-4">
+        <div class="col-8">
           <div class="row justify-content-around">
             <div class="mb-1 col-4">
-              <button mat-raised-button color="primary" type="submit" (click)="createPatient()" [disabled]="!form.valid">Ajouter</button>
+              <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">OK</button>
             </div>
             <div class="col-4">
               <button mat-raised-button color="warn" type="button" (click)="annulerForm()">Annuler</button>
             </div>
           </div>
         </div>
-        <div class="col-6"></div>
+        <div class="col-2"></div>
       </div>
 
     </mat-card-actions>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 
 import { Bilan } from './../../../shared/models/Bilan';
@@ -11,6 +11,7 @@ import { Bilan } from './../../../shared/models/Bilan';
 export class BilansComponent implements OnInit, OnChanges {
   @Input()
   bilans: Bilan[];
+  @Output() ajoutBilanForm = new EventEmitter();
   displayedColumns = ['date', 'soduim', 'crp', 'magnesuim', 'glucose', 'ggt', 'potassuim'];
   dataSource: any;
 
@@ -22,5 +23,9 @@ export class BilansComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.dataSource = new MatTableDataSource(this.bilans);
+  }
+
+  ajouterBilan() {
+    this.ajoutBilanForm.emit();
   }
 }

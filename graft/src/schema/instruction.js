@@ -8,12 +8,20 @@ export default `
     patient: Patient
   }
 
+  type Query {
+    instructions(patientId: Int!): [Instruction!]!
+  }
+
   type Mutation {
     createInstruction(
       patientId: Int!,
       text: String!,
       date: String!
     ): Instruction!
+  }
+
+   type Subscription {
+    newMessageInstruction: Instruction!
   }
 
 `;

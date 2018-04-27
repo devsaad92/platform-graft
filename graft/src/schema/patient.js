@@ -29,7 +29,13 @@ export default `
       dateDeGreffe: String
     ): Patient!
 
-    updatePatient(id:Int!, dateDeGreffe: String!): Patient
+    updatePatient(
+      id:Int!,
+      firstName: String,
+      lastName: String,
+      dateDeNaissance: String,
+      sexe: String,
+      dateDeGreffe: String): Int
   }
 
 `;

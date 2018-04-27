@@ -1,3 +1,4 @@
+import { Instruction } from './../../../shared/models/Instruction';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -29,9 +30,16 @@ export class PatientItemComponent implements OnInit {
   pieChartData: number[] = [300, 500, 100];
   pieChartType = 'pie';
 
+  // mes variables
+
   patientId: number;
   patient: Patient = {};
   index = 0;
+  switch = true;
+  switchbilan = true;
+  switchInfor = true;
+  informations = true;
+  instructions: Instruction[];
 
 
   constructor(private patientService: PatientService, private router: Router, private route: ActivatedRoute) { }
@@ -41,6 +49,9 @@ export class PatientItemComponent implements OnInit {
       this.images.push(this.num);
     }
     this.getPatient();
+
+    this.getInstructions();
+    this.patientService.subscribeToNewMessages();
   }
 
   getPatient() {
@@ -56,5 +67,46 @@ export class PatientItemComponent implements OnInit {
     // console.log('index => ', tabChangeEvent.index);
     this.index = tabChangeEvent.index;
   }
+  getInstructions() {
+    this.patientService.getInstructions(this.patientId)
+      .subscribe((instruction) => {
+        this.instructions = instruction.instructions;
+      });
+  }
 
+  updatePatientForm() {
+    this.switch = false;
+  }
+
+  annulerPatientForm() {
+    this.switch = true;
+  }
+
+  updateForm() {
+    this.switch = true;
+  }
+
+  ajoutBilanForm() {
+    this.switchbilan = false;
+  }
+
+  annulerForm() {
+    this.switchbilan = true;
+  }
+
+  annulerInformationForm() {
+    this.switchInfor = true;
+  }
+
+  addInforForm() {
+    this.switchInfor = false;
+  }
+
+  afficherInforForm() {
+    this.informations = false;
+  }
+
+  return() {
+    this.informations = true;
+  }
 }

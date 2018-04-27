@@ -22,12 +22,12 @@ export class EditMedcinComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      fname: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(10)])],
-      lname: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(10)])],
-      email: [null, Validators.compose([Validators.required, CustomValidators.email])],
-      date: [null, Validators.compose([CustomValidators.date])],
-      specialty: [null, Validators.compose([Validators.required])],
-      gender: [null, Validators.required]
+      fname: [this.medcin.firstName, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(10)])],
+      lname: [this.medcin.lastName, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(10)])],
+      email: [this.medcin.email, Validators.compose([Validators.required, CustomValidators.email])],
+      date: [new Date(this.medcin.dateDeNaissance), Validators.compose([CustomValidators.date])],
+      specialty: [this.medcin.specialty, Validators.compose([Validators.required])],
+      gender: [this.medcin.sexe, Validators.required]
     });
 
     this.getMedcin();
@@ -36,10 +36,12 @@ export class EditMedcinComponent implements OnInit {
   getMedcin() {
     this.id = this.route.snapshot.params['id'];
     this.medcinService.getOne(this.id)
-      .subscribe(medcin => this.medcin = medcin.medcinQuery);
+      .subscribe(medcin => {
+        this.medcin = medcin.medcinQuery;
+      });
   }
 
-  updateMedcin() {
+  onSubmit() {
     const { fname, lname, date, specialty, gender, email, password } = this.form.value;
     const medcin = new Medcin(this.id, fname, lname, gender, date, specialty, email, password);
     this.medcinService.updateMedcin(medcin)
