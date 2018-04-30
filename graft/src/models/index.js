@@ -1,16 +1,13 @@
 import Sequelize from 'sequelize';
 
-const sequelize = new Sequelize(
-  'greffe', 'postgres', '1234',
-  {
-    host: 'localhost',
-    dialect: 'postgres',
-    operatorsAliases: Sequelize.Op,
-    define: {
-      underscored: true,
-    },
+const sequelize = new Sequelize('greffe', 'postgres', '1234', {
+  host: 'localhost',
+  dialect: 'postgres',
+  operatorsAliases: Sequelize.Op,
+  define: {
+    underscored: true,
   },
-);
+});
 
 const models = {
   Medcin: sequelize.import('./medcin'),
@@ -20,6 +17,7 @@ const models = {
   Bilan: sequelize.import('./bilan'),
   Traitement: sequelize.import('./traitement'),
   Information: sequelize.import('./information'),
+  Upload: sequelize.import('./upload'),
 };
 
 Object.keys(models).forEach((modelName) => {

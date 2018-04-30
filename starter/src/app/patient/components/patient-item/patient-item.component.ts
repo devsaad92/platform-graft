@@ -15,21 +15,6 @@ export class PatientItemComponent implements OnInit {
   images: any[] = [];
   num = 1;
 
-  pieChartColors: any[] = [{
-    backgroundColor: ['#f44336', '#3f51b5', '#ffeb3b', '#4caf50', '#2196f']
-  }];
-
-  pieOptions: any = {
-    responsive: true,
-    legend: {
-      position: 'right'
-    }
-  };
-
-  pieChartLabels: string[] = ['MS Word', 'Typing', 'Sage Pastel'];
-  pieChartData: number[] = [300, 500, 100];
-  pieChartType = 'pie';
-
   // mes variables
 
   patientId: number;

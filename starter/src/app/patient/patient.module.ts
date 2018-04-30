@@ -14,12 +14,14 @@ import { EditPatientComponent } from './components/edit-patient/edit-patient.com
 import { BilanFromComponent } from './components/bilan-from/bilan-from.component';
 import { InformationComponent } from './components/information/information.component';
 import { InformationFormComponent } from './components/information-form/information-form.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
     RouterModule.forChild(PatientRoutes),
     SharedModule,
-    MatGridListModule
+    MatGridListModule,
+    ChartsModule
   ],
   declarations: [
     AddPatientComponent,
