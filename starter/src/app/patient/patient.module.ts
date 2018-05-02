@@ -15,13 +15,15 @@ import { BilanFromComponent } from './components/bilan-from/bilan-from.component
 import { InformationComponent } from './components/information/information.component';
 import { InformationFormComponent } from './components/information-form/information-form.component';
 import { ChartsModule } from 'ng2-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   imports: [
     RouterModule.forChild(PatientRoutes),
     SharedModule,
     MatGridListModule,
-    ChartsModule
+    ChartsModule,
+    NgxChartsModule
   ],
   declarations: [
     AddPatientComponent,
