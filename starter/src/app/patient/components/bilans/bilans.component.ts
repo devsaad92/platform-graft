@@ -161,18 +161,31 @@ export class BilansComponent implements OnInit, OnChanges {
     if (!this.bilans) {
       return null;
     }
-    const series: [{}] = [{value: 11, name: 'jj'}];
-    const result: [{}] = [{name: 'oooo', series: [{}]}];
+    const result: [{}] = [{ name: 'oooo', series: [{}] }];
+    const soduims: [{}] = [{value: 0, name: ''}];
+    const crps: [{}] = [{ value: 0, name: '' }];
+
     for (const i in this.bilans) {
-      if (i) {
+      if (this.bilans[i]) {
+
         const soduim = { value: this.bilans[i].soduim, name: this.bilans[i].date };
-        series[i] = soduim ;
+        soduims[i] = soduim;
+
+        const crp = { value: this.bilans[i].crp, name: this.bilans[i].date };
+        crps[i] = crp;
       }
     }
 
-    const sss = { name: 'Soduim', series };
-    result[0] = sss;
+    const sod = { name: 'Soduim', series: soduims };
+    result[0] = sod;
+
+    const cpr = { name: 'Crp', series: crps };
+    result[1] = cpr;
     this.result = result;
+  }
+
+  getTime(dateString) {
+    return new Date(dateString).getHours();
   }
 
   ajouterBilan() {
