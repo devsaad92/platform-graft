@@ -10,4 +10,12 @@ export default `
     patient: Patient
   }
 
+  type Mutation {
+    uploadFile(patientId: Int!,
+      title: String,
+      description: String,
+      file: String!,
+      date: String!
+    ): Upload
+  }
 `;

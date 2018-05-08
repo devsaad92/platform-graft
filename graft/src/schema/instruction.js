@@ -20,7 +20,7 @@ export default `
     ): Instruction!
   }
 
-   type Subscription {
+  type Subscription {
     newMessageInstruction: Instruction!
   }
 

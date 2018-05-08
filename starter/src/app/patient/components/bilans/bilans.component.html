@@ -56,7 +56,7 @@
     <!-- <h4 class="mt-0 mb-1">Courbe</h4> -->
       <!-- <canvas height="100" baseChart class="chart" [data]="pieChartData" [options]="pieOptions" [colors]="pieChartColors" [labels]="pieChartLabels"
       [chartType]="pieChartType"></canvas>   -->
-      <div>
+      <div *ngIf="result" style="width: 600px; height: 400px;">
         <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="result"
           xAxis="true" yAxis="true" roundDomains="true" legend="true" (select)="onSelect($event)">
         </ngx-charts-line-chart>

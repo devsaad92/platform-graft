@@ -43,6 +43,7 @@ export const PATIENT_QUERY = gql`
       ...cliniques
       ...traitements
       ...informations
+      ...uploads
     }
   }
   fragment instructions on Patient {
@@ -84,6 +85,15 @@ export const PATIENT_QUERY = gql`
     traitements {
       id
       text
+      date
+    }
+  }
+  fragment uploads on Patient {
+    uploads {
+      id
+      title
+      description
+      file
       date
     }
   }
@@ -201,6 +211,37 @@ export const MSGINSTRUCTION_QUERY = gql`
   }
 `;
 
+// Chat Cliniques
+export const newMedcinMessageCliniqueSubscription = gql`
+  subscription {
+    newMessageClinique {
+      id
+      text
+      date
+      medcin {
+        id
+        firstName
+        lastName
+      }
+    }
+  }
+`;
+
+export const MSG_CLINIQUE_QUERY = gql`
+  query msgCliniqueQuery($patientId: Int!) {
+    cliniques(patientId: $patientId) {
+      id
+      text
+      date
+      medcin {
+        id
+        firstName
+        lastName
+      }
+    }
+  }
+`;
+
 export const CREATE_MUTATION_INFORMATION = gql`
   mutation createInformationMutation(
       $patientId: Int!,
@@ -222,9 +263,7 @@ export const CREATE_MUTATION_INFORMATION = gql`
       id
     }
   }
-
-`
-;
+`;
 
 export const CREATE_BILAN_MUTATION = gql`
   mutation createBilanMutation(
@@ -260,6 +299,25 @@ export const CREATE_BILAN_MUTATION = gql`
       lipase: $lipase,
       date: $date
     )
+  }
+`;
+
+export const FILE_UPLOADED_MUTATION = gql`
+  mutation uploadFileMutation(
+      $patientId: Int!,
+      $title: String,
+      $description: String,
+      $file: String!,
+      $date: String!) {
+    uploadFile(
+      patientId: $patientId,
+      title: $title,
+      description: $description,
+      file: $file,
+      date: $date
+    ){
+      id
+    }
   }
 
 `

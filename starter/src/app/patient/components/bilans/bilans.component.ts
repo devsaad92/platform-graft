@@ -158,30 +158,7 @@ export class BilansComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     this.dataSource = new MatTableDataSource(this.bilans);
-    if (!this.bilans) {
-      return null;
-    }
-    const result: [{}] = [{ name: 'oooo', series: [{}] }];
-    const soduims: [{}] = [{value: 0, name: ''}];
-    const crps: [{}] = [{ value: 0, name: '' }];
-
-    for (const i in this.bilans) {
-      if (this.bilans[i]) {
-
-        const soduim = { value: this.bilans[i].soduim, name: this.bilans[i].date };
-        soduims[i] = soduim;
-
-        const crp = { value: this.bilans[i].crp, name: this.bilans[i].date };
-        crps[i] = crp;
-      }
-    }
-
-    const sod = { name: 'Soduim', series: soduims };
-    result[0] = sod;
-
-    const cpr = { name: 'Crp', series: crps };
-    result[1] = cpr;
-    this.result = result;
+    this.viewCourbe();
   }
 
   getTime(dateString) {
@@ -192,7 +169,40 @@ export class BilansComponent implements OnInit, OnChanges {
     this.ajoutBilanForm.emit();
   }
 
-  onSelect() {
+  onSelect(event) {
     console.log(`hhhhh ${event}`);
+  }
+
+  private viewCourbe() {
+    if (!this.bilans) {
+      return null;
+    }
+    const result: [{}] = [{}]; // [{ name: '', series: [{}] }]
+    const soduims: [{}] = [{}]; // [{value: 0, name: ''}];
+    const crps: [{}] = [{}];
+
+    for (const i in this.bilans) {
+      if (this.bilans[i]) {
+        if (this.bilans[i].soduim) {
+          const soduim = { value: this.bilans[i].soduim, name: this.bilans[i].date };
+          soduims[i] = soduim;
+        }
+        if (this.bilans[i].crp) {
+          const crp = { value: this.bilans[i].crp, name: this.bilans[i].date };
+          crps[i] = crp;
+        }
+      }
+    }
+
+    if (soduims.length >= 1 && soduims[0]['name']) {
+      result[0] = { name: 'Soduim', series: soduims };
+    }
+    if (crps.length >= 1 && soduims[0]['name']) {
+      result[1] = { name: 'Crp', series: crps };
+    }
+
+    if (result.length >= 1 && result[0]['name']) {
+      this.result = result;
+    }
   }
 }

@@ -7,6 +7,9 @@ export default `
     medcin: Medcin
     patient: Patient
   }
+  type Query {
+    cliniques(patientId: Int!): [Clinique!]!
+  }
 
   type Mutation {
     createClinique(
@@ -15,5 +18,9 @@ export default `
       date: String!
     ): Clinique!
   }
-  
+
+  type Subscription {
+    newMessageClinique: Clinique!
+  }
+
 `;

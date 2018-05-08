@@ -12,7 +12,8 @@ export default `
     instructions: [Instruction]
     traitements: [Traitement]
     informations: [Information]
-    bilans: [Bilan]   
+    bilans: [Bilan]
+    uploads: [Upload]
   }
 
   type Query {
