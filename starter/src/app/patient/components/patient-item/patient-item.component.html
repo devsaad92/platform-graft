@@ -1,8 +1,9 @@
 <div class="wrapper">
   <div fxLayout="row" fxLayoutWrap="wrap">
-    <div fxFlex.gt-sm="40" fxFlex="100">
+    <div fxFlex.gt-sm="100" fxFlex="100">
       <app-patient-card *ngIf="switch && switchInfor && informations"
         [patient]="patient"
+        [lastInformation] = "lastInformation"
         (updatePatientForm)="updatePatientForm($event)" 
         (addInforForm)="addInforForm($event)"
         (afficherInforForm)="afficherInforForm($event)"
@@ -20,7 +21,7 @@
         (return)="return($event)">
       </app-information>
     </div>
-    <div fxFlex.gt-sm="60" fxFlex="100">
+    <div fxFlex.gt-sm="100" fxFlex="100">
       <div fxLayout="column">
         <mat-card>
           <mat-tab-group>
