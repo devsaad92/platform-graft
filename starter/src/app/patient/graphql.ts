@@ -39,35 +39,9 @@ export const PATIENT_QUERY = gql`
     getPatient(id: $id) {
       ...patientInfos
       ...bilans
-      ...instructions
-      ...cliniques
       ...traitements
       ...informations
       ...uploads
-    }
-  }
-  fragment instructions on Patient {
-    instructions {
-      id
-      text
-      date
-      medcin {
-        id
-        firstName
-        lastName
-      }
-    }
-  }
-  fragment cliniques on Patient {
-    cliniques {
-      id
-      text
-      date
-      medcin {
-        id
-        firstName
-        lastName
-      }
     }
   }
   fragment informations on Patient {

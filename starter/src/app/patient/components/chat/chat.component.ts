@@ -26,18 +26,18 @@ export class ChatComponent implements OnInit {
   }
 
   createClinique() {
-    const instruction = new Instruction(this.patientId, this.msg, new Date());
-    const clinique = new Clinique(this.patientId, this.msg, new Date());
-    this.msg = '';
     if (this.index === 0) {
+      const clinique = new Clinique(this.patientId, this.msg, new Date());
       this.patientService.createClinique(clinique)
        .subscribe(msg => console.log(msg));
-       this.index = 2;
+      // this.index = 2;
     }
     if (this.index === 1) {
+      const instruction = new Instruction(this.patientId, this.msg, new Date());
       this.patientService.createInstruction(instruction)
         .subscribe(msg => console.log(msg));
     }
+    this.msg = '';
   }
 
 }
