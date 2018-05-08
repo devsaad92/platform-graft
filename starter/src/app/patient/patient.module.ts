@@ -16,6 +16,8 @@ import { InformationComponent } from './components/information/information.compo
 import { InformationFormComponent } from './components/information-form/information-form.component';
 import { ChartsModule } from 'ng2-charts';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { UploadFormComponent } from './components/upload-form/upload-form.component';
+import { UploadsComponent } from './components/uploads/uploads.component';
 
 @NgModule({
   imports: [
@@ -35,7 +37,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     EditPatientComponent,
     BilanFromComponent,
     InformationComponent,
-    InformationFormComponent
+    InformationFormComponent,
+    UploadFormComponent,
+    UploadsComponent
   ]
 })
 export class PatientModule { }

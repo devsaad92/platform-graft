@@ -1,3 +1,4 @@
+import { Upload } from './../../shared/models/upload';
 import { Bilan } from './../../shared/models/Bilan';
 import 'rxjs/add/operator/map';
 
@@ -18,14 +19,18 @@ import {
   CREATE_PATIENT_MUTATION,
   MSGINSTRUCTION_QUERY,
   newMedcinMessageSubscription,
+  MSG_CLINIQUE_QUERY,
+  newMedcinMessageCliniqueSubscription,
   PATIENT_QUERY,
   PatientQueryResponse,
   UPDATE_PATIENT_MUTATION,
+  FILE_UPLOADED_MUTATION
 } from './../graphql';
 
 @Injectable()
 export class PatientService {
   messagesQuery: QueryRef<any>;
+  messagesCliniqueQuery: QueryRef<any>;
 
   constructor(private apollo: Apollo) { }
 
@@ -65,6 +70,7 @@ export class PatientService {
     }).valueChanges.map(response => response.data);
   }
 
+  // Chat Instructions
   getInstructions(id) {
     this.messagesQuery = this.apollo.watchQuery<any>({
       query: MSGINSTRUCTION_QUERY,
@@ -87,6 +93,35 @@ export class PatientService {
         return {
           ...prev,
           instructions: [...prev['instructions'], subscriptionData.data.newMessageInstruction],
+        };
+      }
+    });
+  }
+
+  // chat cliniques
+
+  getCliniques(id) {
+    this.messagesCliniqueQuery = this.apollo.watchQuery<any>({
+      query: MSG_CLINIQUE_QUERY,
+      variables: {
+        patientId: id
+      }
+    });
+
+    return this.messagesCliniqueQuery.valueChanges.map(res => res.data);
+  }
+
+  subscribeToNewMessagesCliniques() {
+    this.messagesCliniqueQuery.subscribeToMore({
+      document: newMedcinMessageCliniqueSubscription,
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) {
+          return prev;
+        }
+
+        return {
+          ...prev,
+          cliniques: [...prev['cliniques'], subscriptionData.data.newMessageClinique],
         };
       }
     });
@@ -181,5 +216,18 @@ export class PatientService {
       },
       refetchQueries: [{ query: ALL_PATIENTS_QUERY }]
     }).map(response => response.data);
+  }
+
+  uploadFile(upload: Upload) {
+    return this.apollo.mutate({
+      mutation: FILE_UPLOADED_MUTATION,
+      variables: {
+        patientId: upload.patientId,
+        title: upload.title,
+        description: upload.description,
+        file: upload.file.name,
+        date: upload.date
+      }
+    }).map(res => res.data);
   }
 }

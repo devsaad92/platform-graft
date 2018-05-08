@@ -1,0 +1,54 @@
+<mat-card>
+  <form>
+    <mat-card-content>
+      <div fxLayout="row">
+        <div fxFlex="30"></div>
+        <div fxFlex="50">
+          <mat-form-field style="width:80%">
+            <input matInput [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time" [(ngModel)]="upload.date" name="date">
+            <owl-date-time #dt1></owl-date-time>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="column">
+        <div fxFlex="33">
+          <mat-form-field style="width:100%">
+            <input matInput placeholder="Titre" [(ngModel)]="upload.title" name="title">
+          </mat-form-field>
+        </div>
+        <div fxFlex="33">
+          <mat-form-field style="width:100%">
+            <textarea matInput placeholder="Description" rows="3"
+              [(ngModel)]="upload.description" name="description">
+            </textarea>
+          </mat-form-field>
+        </div>
+        <br>
+        <div fxFlex="33">
+          <div style="width:100%">
+            <input type="file"
+              placeholder="Fichier" 
+              name="file" 
+              hidden="true"
+              (change)="onFileSelected($event)"
+              #fileInput>
+            <button mat-icon-button (click)="fileInput.click()">
+              <mat-icon>insert_photo</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+    </mat-card-content>
+    <mat-card-actions>
+      <div fxLayout="row">
+        <div fxFlex="30"></div>
+        <button mat-raised-button color="primary" (click)="onUpload()"> Ajouter </button>
+        <div fxFlex="20"></div>
+        <button mat-raised-button color="warn" (click)="cancelForm()"> Annuler </button>
+        <div fxFlex="30"></div>
+      </div>
+    </mat-card-actions>
+  </form>
+</mat-card>

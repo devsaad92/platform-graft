@@ -29,7 +29,7 @@ export class GraphQLModule {
     constructor(apollo: Apollo, httpLink: HttpLink) {
         // Create an http link:
         const uri = 'http://localhost:3000/graphql';
-        const http = httpLink.create({ uri });
+        const http = httpLink.create({ uri }); // createUploadLink(uri)
 
         const middlewareLink = setContext((_, { headers }) => {
             const token = localStorage.getItem('token');
@@ -39,7 +39,6 @@ export class GraphQLModule {
                 return {};
             } else {
                 return {
-                    // headers: headers.append('Authorization', `Bearer ${token}`)
                     headers: {
                         'x-token': localStorage.getItem('token'),
                         'x-refresh-token': localStorage.getItem('refreshToken'),
@@ -79,11 +78,10 @@ export class GraphQLModule {
 
         const link = split(
             ({ query }) => {
-                const { kind, operation } = getMainDefinition(query);
-                return kind === 'OperationDefinition' && operation === 'subscription';
+                const definition = getMainDefinition(query);
+                return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
             },
             ws,
-           // http,
             httpLinkwithMiddleware
         );
 

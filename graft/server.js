@@ -60,7 +60,6 @@ const addUser = async (req, res, next) => {
       }
       if (newTokens.user) {
         req.user = newTokens.user;
-        // console.log(newTokens.user);
       }
     }
   }

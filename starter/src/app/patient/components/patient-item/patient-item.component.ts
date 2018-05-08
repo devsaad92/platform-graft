@@ -1,3 +1,4 @@
+import { Clinique } from './../../../shared/models/Clinique';
 import { Instruction } from './../../../shared/models/Instruction';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,6 +26,7 @@ export class PatientItemComponent implements OnInit {
   switchInfor = true;
   informations = true;
   instructions: Instruction[];
+  cliniques: Clinique[];
 
 
   constructor(private patientService: PatientService, private router: Router, private route: ActivatedRoute) { }
@@ -37,6 +39,9 @@ export class PatientItemComponent implements OnInit {
 
     this.getInstructions();
     this.patientService.subscribeToNewMessages();
+
+    this.getCliniques();
+    this.patientService.subscribeToNewMessagesCliniques();
   }
 
   getPatient() {
@@ -48,14 +53,20 @@ export class PatientItemComponent implements OnInit {
   }
 
   tabChanged(tabChangeEvent: MatTabChangeEvent): void {
-    // console.log('tabChangeEvent => ', tabChangeEvent);
-    // console.log('index => ', tabChangeEvent.index);
     this.index = tabChangeEvent.index;
   }
+
   getInstructions() {
     this.patientService.getInstructions(this.patientId)
       .subscribe((instruction) => {
         this.instructions = instruction.instructions;
+      });
+  }
+
+  getCliniques() {
+    this.patientService.getCliniques(this.patientId)
+      .subscribe((clinique) => {
+        this.cliniques = clinique.cliniques;
       });
   }
 
