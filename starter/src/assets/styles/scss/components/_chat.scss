@@ -53,7 +53,7 @@
   width: 0;
   height: 0;
   content: '';
-  border: 5px solid mat-color($accent);
+  border: 5px solid mat-color($mechat);
   border-top-color: transparent;
   border-right-color: transparent;
   @include right(-7px);
@@ -87,7 +87,7 @@
 }
 .chat-conversation-user.me .chat-conversation-message {
   position: relative;
-  background-color: mat-color($accent);
+  background-color: mat-color($mechat);
   @include float(right);
   p {
     color: white;

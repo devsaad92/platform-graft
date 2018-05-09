@@ -1,7 +1,9 @@
 
-<mat-card>
-  <mat-toolbar></mat-toolbar>
-  <mat-card-content *ngFor="let msg of messages">
+<mat-card class="mat-card-top">
+  <mat-toolbar class="chat-toolbar"></mat-toolbar>
+  <hr>
+  <mat-card-content style="height: 550px;overflow: auto"  [ngStyle]="{'background-color':index === 0 ? '#E3F2FD' : '#fde8a9' }" #scrollI [scrollTop]="scrollI.scrollHeight" >
+    <div *ngFor="let msg of messages">
     <div fxLayout="row" fxLayoutAlign="center">
          {{ msg.date | date: 'dd/MM/yyyy' }}
     </div>
@@ -23,6 +25,7 @@
         </p>
       </div>
     </div>
+  </div>
   </mat-card-content>
   <hr>
   <mat-card-actions>
@@ -30,7 +33,7 @@
       <mat-form-field class="mr-1 ml-1" fxFlex>
         <input matInput placeholder="Send message" [(ngModel)]="msg">
       </mat-form-field>
-      <button mat-fab (click)="createClinique()">
+      <button mat-fab [ngStyle]="{'background-color':index === 0 ? '#E3F2FD' : '#fde8a9' }" (click)="createClinique()">
         <mat-icon>send</mat-icon>
       </button>
     </div>

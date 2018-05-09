@@ -77,10 +77,14 @@ export class GraphQLModule {
         });
 
         const link = split(
+            // ({ query }) => {
+            //     const { kind, operation } = getMainDefinition(query);
+            //     return kind === 'OperationDefinition' && operation === 'subscription';
+            // },
             ({ query }) => {
-                const definition = getMainDefinition(query);
+                let definition = getMainDefinition(query);
                 return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
-            },
+              },
             ws,
             httpLinkwithMiddleware
         );

@@ -1,42 +1,40 @@
 <div class="wrapper">
   <div fxLayout="row" fxLayoutWrap="wrap">
-    <div fxFlex.gt-sm="40" fxFlex="100">
-      <app-patient-card *ngIf="switch && switchInfor && informations"
-        [patient]="patient"
-        (updatePatientForm)="updatePatientForm($event)" 
-        (addInforForm)="addInforForm($event)"
-        (afficherInforForm)="afficherInforForm($event)"
-        >
+    <div fxFlex.gt-sm="100" fxFlex="100">
+      <app-patient-card *ngIf="switch && switchInfor && informations" [patient]="patient" [lastInformation]="lastInformation" (updatePatientForm)="updatePatientForm($event)"
+        (addInforForm)="addInforForm($event)" (afficherInforForm)="afficherInforForm($event)">
       </app-patient-card>
-      <app-edit-patient *ngIf="!switch"
-        [patient]="patient"
-        [patientId]="patientId"
-        (annulerPatientForm)="annulerPatientForm($event)"
+      <app-edit-patient *ngIf="!switch" [patient]="patient" [patientId]="patientId" (annulerPatientForm)="annulerPatientForm($event)"
         (updateForm)="updateForm($event)">
       </app-edit-patient>
       <app-information-form *ngIf="!switchInfor" (annulerInformationForm)="annulerInformationForm($event)"></app-information-form>
-      <app-information *ngIf="!informations"
-        [informations]="patient.informations"
-        (return)="return($event)">
+      <app-information *ngIf="!informations" [informations]="patient.informations" (return)="return($event)">
       </app-information>
     </div>
-    <div fxFlex.gt-sm="60" fxFlex="100">
+    <div fxFlex.gt-sm="100" fxFlex="100">
       <div fxLayout="column">
         <mat-card>
+
           <mat-tab-group>
+
             <mat-tab>
+
+
               <ng-template matTabLabel>Chat</ng-template>
-              <mat-tab-group (selectedTabChange)="tabChanged($event)">
-                <mat-tab>
-                  <ng-template matTabLabel>Clinique</ng-template>
+              <div fxLayout="row" fxLayoutWrap="wrap">
+                <div fxFlex="65">
+                  <h1>Clinique</h1>
                   <!-- <app-chat [messages]="patient.cliniques" [patientId]="patientId" [index]="index"></app-chat> -->
-                  <app-chat [messages]="cliniques" [patientId]="patientId" [index]="index"></app-chat>
-                </mat-tab>
-                <mat-tab>
-                  <ng-template matTabLabel>Instruction</ng-template>
-                  <app-chat [messages]="instructions" [patientId]="patientId" [index]="index"></app-chat>
-                </mat-tab>
-              </mat-tab-group>
+                  <app-chat [messages]="cliniques" [patientId]="patientId" [index]="0"></app-chat>
+                </div>
+                <div fxFlex="35">
+
+                  <h1>instructions</h1>
+                  <app-chat [messages]="instructions" [patientId]="patientId" [index]="1"></app-chat>
+                </div>
+
+              </div>
+
             </mat-tab>
             <mat-tab>
               <ng-template matTabLabel>Bio</ng-template>
@@ -45,12 +43,12 @@
                   <ng-template matTabLabel>Chimie</ng-template>
                   <mat-card-content>
                     <app-bilans *ngIf="switchbilan" [bilans]="patient.bilans" (ajoutBilanForm)="ajoutBilanForm($event)"></app-bilans>
-                     <app-bilan-from *ngIf="!switchbilan" (annulerForm)="annulerForm($event)"></app-bilan-from>
+                    <app-bilan-from *ngIf="!switchbilan" (annulerForm)="annulerForm($event)"></app-bilan-from>
                   </mat-card-content>
                 </mat-tab>
                 <mat-tab>
                   <ng-template matTabLabel>Hémathologie</ng-template>
-                
+
                 </mat-tab>
               </mat-tab-group>
             </mat-tab>

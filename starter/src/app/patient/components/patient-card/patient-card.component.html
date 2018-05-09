@@ -28,34 +28,39 @@
   <hr>
   <mat-card-content>
     <div fxLayout="row" class="text-xs-center">
-      <div fxFlex="33">
-        <h1 class="ma-0">
-          <b>Temp=</b>
-        </h1>
+      <div fxFlex="14">
+            <h3 class="ma-0">
+              <b>date= {{ lastInformation.date | date: 'yyyy-MM-dd HH:mm' }}</b>
+            </h3>
+          </div>
+      <div fxFlex="14">
+        <h3 class="ma-0">
+          <b>Temp= {{ lastInformation.Temp }}</b>
+        </h3>
       </div>
-      <div fxFlex="33">
-        <h1 class="ma-0">
-          <b>FC=</b>
-        </h1>
+      <div fxFlex="14">
+        <h3 class="ma-0">
+          <b>FC= {{ lastInformation.FC }}</b>
+        </h3>
       </div>
-      <div fxFlex="33">
-        <h1 class="ma-0">
-          <b>FR=</b>
-        </h1>
+      <div fxFlex="14">
+        <h3 class="ma-0">
+          <b>FR= {{ lastInformation.FR }}</b>
+        </h3>
       </div>
-    </div>
-    <div fxLayout="row" class="text-xs-center">
-      <div fxFlex="33">
-        <h1 class="ma-0">
-          <b>PA=</b>
-        </h1>
+
+      <div fxFlex="14">
+        <h3 class="ma-0">
+          <b>PA= {{ lastInformation.PA }}</b>
+        </h3>
       </div>
-      <div fxFlex="33">
-        <h1 class="ma-0">
-          <b>SaO2=</b>
-        </h1>
+      <div fxFlex="14">
+        <h3 class="ma-0">
+          <b>SaO2= {{ lastInformation.SaO2 }}</b>
+        </h3>
       </div>
-      <div fxFlex="33"> 
+      
+      <div fxFlex="14"> 
         <button mat-raised-button [matMenuTriggerFor]="menu" color="primary">
           <span>Historique</span>
           <mat-icon>more_vert</mat-icon>

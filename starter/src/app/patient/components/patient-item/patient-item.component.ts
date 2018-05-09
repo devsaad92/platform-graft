@@ -26,6 +26,7 @@ export class PatientItemComponent implements OnInit {
   switchInfor = true;
   informations = true;
   instructions: Instruction[];
+  lastInformation : any ;
   cliniques: Clinique[];
 
 
@@ -49,6 +50,12 @@ export class PatientItemComponent implements OnInit {
     this.patientService.getOne(this.patientId)
       .subscribe(patient => {
         this.patient = patient.getPatient;
+        // todo imporove this
+        if (this.patient.informations){
+                 this.lastInformation = this.patient.informations[ this.patient.informations.length-1]
+                 console.log('last', this.lastInformation)
+        }    
+
       });
   }
 
