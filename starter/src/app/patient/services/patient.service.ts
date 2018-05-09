@@ -225,9 +225,10 @@ export class PatientService {
         patientId: upload.patientId,
         title: upload.title,
         description: upload.description,
-        file: upload.file.name,
+        file: upload.file,
         date: upload.date
-      }
+      },
+      refetchQueries: [{ query: ALL_PATIENTS_QUERY }]
     }).map(res => res.data);
   }
 }

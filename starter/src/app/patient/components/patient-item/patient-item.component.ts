@@ -27,6 +27,7 @@ export class PatientItemComponent implements OnInit {
   informations = true;
   instructions: Instruction[];
   cliniques: Clinique[];
+  switchUpload = true;
 
 
   constructor(private patientService: PatientService, private router: Router, private route: ActivatedRoute) { }
@@ -100,6 +101,14 @@ export class PatientItemComponent implements OnInit {
 
   afficherInforForm() {
     this.informations = false;
+  }
+
+  uploadForm() {
+    this.switchUpload = false;
+  }
+
+  annulerUploadForm() {
+    this.switchUpload = true;
   }
 
   return() {

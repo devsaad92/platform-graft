@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Upload } from '../../../shared/models/upload';
 
 @Component({
   selector: 'app-uploads',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./uploads.component.scss']
 })
 export class UploadsComponent implements OnInit {
+  @Input() uploads: Upload[];
+  @Output() uploadForm = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  uploadFile() {
+    this.uploadForm.emit();
   }
 
 }

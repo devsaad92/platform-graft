@@ -57,29 +57,9 @@
             <mat-tab>
               <mat-card-content>
                 <ng-template matTabLabel>Photos</ng-template>
-                <!-- <mat-grid-list cols="3">
-                  <mat-grid-tile *ngFor="let id of images" rowHeight="4:3">
-                    <img src="https://source.unsplash.com/600x600?{{ id }}" alt="Card image cap" />
-                    <mat-grid-tile-footer>
-                      <h3 matLine>{{ id }}</h3>
-                      <span matLine>Gallery image: {{ id }}</span>
-                      <mat-icon>favorite</mat-icon>
-                    </mat-grid-tile-footer>
-                  </mat-grid-tile>
-                </mat-grid-list> -->
+                <app-uploads *ngIf="switchUpload" [uploads]="patient.uploads" (uploadForm)="uploadForm($event)"></app-uploads>
 
-                <mat-grid-list cols="3">
-                  <mat-grid-tile *ngFor="let image of patient.uploads" rowHeight="4:3">
-                    <img src="C:/Users/Saad/Desktop/PFE/{{ image.file }}" alt="Card image cap" />
-                    <mat-grid-tile-footer>
-                      <h3 matLine>{{ image.id }}</h3>
-                      <span matLine>{{image.title }}</span>
-                      <mat-icon>favorite</mat-icon>
-                    </mat-grid-tile-footer>
-                  </mat-grid-tile>
-                </mat-grid-list>
-
-                <!-- <app-upload-form></app-upload-form> -->
+                <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="annulerUploadForm($event)"></app-upload-form>
               </mat-card-content>
             </mat-tab>
           </mat-tab-group>

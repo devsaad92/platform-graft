@@ -281,7 +281,7 @@ export const FILE_UPLOADED_MUTATION = gql`
       $patientId: Int!,
       $title: String,
       $description: String,
-      $file: String!,
+      $file: File,
       $date: String!) {
     uploadFile(
       patientId: $patientId,
@@ -289,9 +289,7 @@ export const FILE_UPLOADED_MUTATION = gql`
       description: $description,
       file: $file,
       date: $date
-    ){
-      id
-    }
+    )
   }
 
 `
