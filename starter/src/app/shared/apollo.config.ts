@@ -7,6 +7,7 @@ import { ApolloLink, split, concat } from 'apollo-link';
 import { WebSocketLink } from 'apollo-link-ws';
 import { setContext } from 'apollo-link-context';
 import { getMainDefinition } from 'apollo-utilities';
+import createFileLink from './createFileLink';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ export class GraphQLModule {
     constructor(apollo: Apollo, httpLink: HttpLink) {
         // Create an http link:
         const uri = 'http://localhost:3000/graphql';
-        const http = httpLink.create({ uri }); // createUploadLink(uri)
+        const http = createFileLink({uri}); // httpLink.create({ uri });
 
         const middlewareLink = setContext((_, { headers }) => {
             const token = localStorage.getItem('token');

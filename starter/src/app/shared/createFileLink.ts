@@ -118,8 +118,9 @@ export default (
 
                 if (variables.file) {
                     // delete options.headers['content-type'];
+                    const stringBody = serializedBody;
                     serializedBody = new FormData();
-                    serializedBody.append('operations', body);
+                    serializedBody.append('operations', stringBody);
                     serializedBody.append('file', variables.file);
                 } else {
                     // serializedBody.body = body;
