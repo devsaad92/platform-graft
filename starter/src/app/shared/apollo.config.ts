@@ -30,7 +30,7 @@ export class GraphQLModule {
     constructor(apollo: Apollo, httpLink: HttpLink) {
         // Create an http link:
         const uri = 'http://localhost:3000/graphql';
-        const http = createFileLink({uri}); // httpLink.create({ uri }); // createUploadLink(uri)
+        const http = createFileLink({uri}); // httpLink.create({ uri });
 
         const middlewareLink = setContext((_, { headers }) => {
             const token = localStorage.getItem('token');
