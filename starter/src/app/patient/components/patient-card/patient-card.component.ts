@@ -10,7 +10,7 @@ import { last } from '@angular/router/src/utils/collection';
 })
 export class PatientCardComponent implements OnInit {
   @Input() patient: Patient = {};
-  @Input() lastInformation:any;
+  @Input() lastInformation: any;
 
   @Output() updatePatientForm = new EventEmitter();
   @Output() addInforForm = new EventEmitter();
@@ -19,9 +19,6 @@ export class PatientCardComponent implements OnInit {
   constructor(private patientService: PatientService) { }
 
   ngOnInit() {
-
-    
- 
   }
 
   updatePatient() {

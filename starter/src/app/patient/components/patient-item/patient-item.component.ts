@@ -13,11 +13,6 @@ import { MatTabChangeEvent } from '@angular/material';
   styleUrls: ['./patient-item.component.scss']
 })
 export class PatientItemComponent implements OnInit {
-  images: any[] = [];
-  num = 1;
-
-  // mes variables
-
   patientId: number;
   patient: Patient = {};
   index = 0;
@@ -34,9 +29,6 @@ export class PatientItemComponent implements OnInit {
   constructor(private patientService: PatientService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    for (this.num; this.num <= 9; this.num += 1) {
-      this.images.push(this.num);
-    }
     this.getPatient();
 
     this.getInstructions();
@@ -53,8 +45,8 @@ export class PatientItemComponent implements OnInit {
         this.patient = patient.getPatient;
         // todo imporove this
         if (this.patient['informations']) {
-                 this.lastInformation = this.patient['informations'][ this.patient['informations'].length - 1];
-                 console.log('last', this.lastInformation);
+            this.lastInformation = this.patient['informations'][ this.patient['informations'].length - 1];
+            console.log('last', this.lastInformation);
         }
 
       });
