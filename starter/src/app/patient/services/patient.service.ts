@@ -195,25 +195,13 @@ export class PatientService {
   }
 
   createBilan(bilan: Bilan) {
+    console.log('ddddddddd', bilan)
+    const variables = bilan 
+    console.log('ddddddddd', variables)
+
     return this.apollo.mutate({
       mutation: CREATE_BILAN_MUTATION,
-      variables: {
-        patientId: bilan.patientId,
-        nom: bilan.nom,
-        soduim: bilan.soduim,
-        crp: bilan.crp,
-        magnesuim: bilan.magnesuim,
-        glucose: bilan.glucose,
-        ggt: bilan.ggt,
-        potassuim: bilan.potassuim,
-        uree: bilan.uree,
-        calcuim: bilan.calcuim,
-        ldh: bilan.ldh,
-        sgpt: bilan.sgpt,
-        albumine: bilan.albumine,
-        lipase: bilan.lipase,
-        date: bilan.date
-      },
+      variables ,
       refetchQueries: [{ query: ALL_PATIENTS_QUERY }]
     }).map(response => response.data);
   }

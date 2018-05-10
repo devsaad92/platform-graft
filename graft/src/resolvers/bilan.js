@@ -6,6 +6,9 @@ export default {
   Mutation: {
     createBilan: async (parant, args, { models, user }) => {
       try {
+        console.log('fffffffffffffffffffffffffffffffffffffffffffffffffffffff')
+        console.log(args)
+        console.log('fffffffffffffffffffffffffffffffffffffffffffffffffffffff')
         await models.Bilan.create({
           ...args,
           medcinId: user.id,

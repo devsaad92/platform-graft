@@ -11,6 +11,33 @@ export class BilanFromComponent implements OnInit {
   @Output() annulerForm = new EventEmitter();
   // @Output() ajouterBilan = new EventEmitter();
   bilan: Bilan = {};
+  bilanFeilds = [
+        'soduim',
+         'potassuim',
+         'chlore',
+         'uree',
+         'creatinine',
+         'calcuim',
+         'calcuimCorrige',
+         'phosphore',
+         'magnesuim',
+         'glucose',
+         'albumine',
+         'bilirubineT',
+         'bilirubineD',
+         'phosphataseAlcaline',
+         'sgot',
+         'sgpt',
+         'ggt',
+         'ldh',
+         'triglyceride',
+         'cholesterole',
+         'ammonemie',
+         'lactate',
+         'amylase',
+         'lipase',
+         'crp',
+  ]
 
   constructor(private patientService: PatientService, private route: ActivatedRoute) { }
 
@@ -25,7 +52,7 @@ export class BilanFromComponent implements OnInit {
     this.bilan.patientId = +this.route.snapshot.params['id'];
     this.patientService.createBilan(this.bilan)
         .subscribe();
-
   }
+
 
 }

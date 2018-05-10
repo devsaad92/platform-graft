@@ -75,17 +75,30 @@ export const PATIENT_QUERY = gql`
     bilans {
       id
       soduim
-      crp
+      potassuim
+      chlore
+      uree
+      creatinine
+      calcuim
+      calcuimCorrige
+      phosphore
       magnesuim
       glucose
-      ggt
-      potassuim
-      uree
-      calcuim
-      ldh
-      sgpt
       albumine
+      bilirubineT
+      bilirubineD
+      phosphataseAlcaline
+      sgot
+      sgpt
+      ggt
+      ldh
+      triglyceride
+      cholesterole
+      ammonemie
+      lactate
+      amylase
       lipase
+      crp
       date
     }
   }
@@ -244,33 +257,60 @@ export const CREATE_BILAN_MUTATION = gql`
       $patientId: Int!,
       $nom: String,
       $soduim: String,
-      $crp: String,
+      $potassuim: String,
+      $chlore: String,
+      $uree: String,
+      $creatinine: String,
+      $calcuim: String,
+      $calcuimCorrige: String,
+      $phosphore: String,
       $magnesuim: String,
       $glucose: String,
-      $ggt: String,
-      $potassuim: String,
-      $uree: String,
-      $calcuim: String,
-      $ldh: String,
-      $sgpt: String,
       $albumine: String,
+      $bilirubineT: String,
+      $bilirubineD: String,
+      $phosphataseAlcaline: String,
+      $sgot: String,
+      $sgpt: String,
+      $ggt: String,
+      $ldh: String,
+      $triglyceride: String,
+      $cholesterole: String,
+      $ammonemie: String,
+      $lactate: String,
+      $amylase: String,
       $lipase: String,
+      $crp: String,
+
       $date: String!) {
     createBilan(
       patientId: $patientId,
       nom: $nom,
       soduim: $soduim,
-      crp: $crp,
+      potassuim: $potassuim,
+      chlore: $chlore,
+      uree: $uree,
+      creatinine: $creatinine,
+      calcuim: $calcuim,
+      calcuimCorrige: $calcuimCorrige,
+      phosphore: $phosphore,
       magnesuim: $magnesuim,
       glucose: $glucose,
-      ggt: $ggt,
-      potassuim: $potassuim,
-      uree: $uree,
-      calcuim: $calcuim,
-      ldh: $ldh,
-      sgpt: $sgpt,
       albumine: $albumine,
+      bilirubineT: $bilirubineT,
+      bilirubineD: $bilirubineD,
+      phosphataseAlcaline: $phosphataseAlcaline,
+      sgot: $sgot,
+      sgpt: $sgpt,
+      ggt: $ggt,
+      ldh: $ldh,
+      triglyceride: $triglyceride,
+      cholesterole: $cholesterole,
+      ammonemie: $ammonemie,
+      lactate: $lactate,
+      amylase: $amylase,
       lipase: $lipase,
+      crp: $crp,
       date: $date
     )
   }
