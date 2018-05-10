@@ -4,9 +4,30 @@
       <span fxFlex></span>
       <button mat-raised-button color="primary" (click)="ajouterBilan()"> <mat-icon>add</mat-icon>NEW </button>
     </div>
-      <mat-table #table [dataSource]="dataSource">
 
-        <ng-container matColumnDef="date">
+    
+      <ngx-datatable *ngIf='columns'
+      class="material striped selection-cell cell-selection"
+      [rows]="r"
+      [loadingIndicator]="loadingIndicator"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="50"
+      [scrollbarV]="true"
+      [scrollbarH]="true"
+    >
+    <ngx-datatable-column [frozenLeft]="true" name="date"  prop="date" [width]="250">
+      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"  let-row="row">
+          {{value | date : 'yyyy-MM-dd HH:mm' }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngFor="let col of columns"
+    [name]="col.name"
+    [width]="50"
+  [prop]="col.prop"  ></ngx-datatable-column>
+
+        <!-- <ng-container matColumnDef="date">
           <mat-header-cell *matHeaderCellDef> Date Time</mat-header-cell>
           <mat-cell *matCellDef="let bilan"> {{bilan.date | date: 'yyyy-MM-dd HH:mm' }} </mat-cell>
         </ng-container>
@@ -48,14 +69,12 @@
         </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
+    </ngx-datatable>
   </mat-card-content> 
    <hr> 
   <mat-card-content>
-    <!-- <h4 class="mt-0 mb-1">Courbe</h4> -->
-      <!-- <canvas height="100" baseChart class="chart" [data]="pieChartData" [options]="pieOptions" [colors]="pieChartColors" [labels]="pieChartLabels"
-      [chartType]="pieChartType"></canvas>   -->
+
       <div *ngIf="result" style="width: 600px; height: 400px;">
         <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="result"
           xAxis="true" yAxis="true" roundDomains="true" legend="true" (select)="onSelect($event)">

@@ -18,6 +18,8 @@ import { ChartsModule } from 'ng2-charts';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { UploadFormComponent } from './components/upload-form/upload-form.component';
 import { UploadsComponent } from './components/uploads/uploads.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 
 @NgModule({
   imports: [
@@ -25,6 +27,8 @@ import { UploadsComponent } from './components/uploads/uploads.component';
     SharedModule,
     MatGridListModule,
     ChartsModule,
+    NgxDatatableModule,
+
     NgxChartsModule
   ],
   declarations: [
