@@ -30,6 +30,7 @@ export class BilansComponent implements OnInit, OnChanges {
   r = [];
 
   result: [{}];
+  selected = [];
 
   constructor() { }
 
@@ -115,6 +116,10 @@ export class BilansComponent implements OnInit, OnChanges {
     if (results.length >= 1 && results[0].name) {
        this.results = results;
     }
+  }
+
+   onSelectRow({ selected }) {
+    console.log('Select Event', this.selected[0]);
   }
 }
 

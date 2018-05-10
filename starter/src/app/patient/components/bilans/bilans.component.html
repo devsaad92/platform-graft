@@ -15,6 +15,9 @@
       [rowHeight]="50"
       [scrollbarV]="true"
       [scrollbarH]="true"
+      [selected]="selected"
+      [selectionType]="'single'"
+      (select)='onSelectRow($event)'
     >
     <ngx-datatable-column [frozenLeft]="true" name="date"  prop="date" [width]="250">
       <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"  let-row="row">
