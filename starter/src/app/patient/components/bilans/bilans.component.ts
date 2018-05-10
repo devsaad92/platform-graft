@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angu
 import { MatTableDataSource } from '@angular/material';
 
 import { Bilan } from './../../../shared/models/Bilan';
+import { OBJECT } from 'graphql/language/kinds';
 
 @Component({
   selector: 'app-bilans',
@@ -22,6 +23,13 @@ export class BilansComponent implements OnInit, OnChanges {
   };
 
   results: BilanShapeResult[];
+  done = false;
+  columns = [
+  ];
+
+  r = [];
+
+  result: [{}];
 
   constructor() { }
 
@@ -33,6 +41,21 @@ export class BilansComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.dataSource = new MatTableDataSource(this.bilans);
     this.viewCourbe();
+    // this needs optimisation
+    this.done = false;
+    if (this.bilans.length > 0 ) {
+      const keys = Object.keys(this.bilans[0]);
+      this.r = [];
+
+      this.r =  this.bilans;
+      this.columns = [];
+      for (const i of keys) {
+        if (i !== 'id' && i !== '__typename' && i !== 'date'  ) {
+          this.columns.push({ prop : i});
+        }
+      }
+      this.done = true;
+    }
   }
 
   getTime(dateString) {

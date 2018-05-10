@@ -4,52 +4,29 @@
       <span fxFlex></span>
       <button mat-raised-button color="primary" (click)="ajouterBilan()"> <mat-icon>add</mat-icon>NEW </button>
     </div>
-      <mat-table #table [dataSource]="dataSource">
 
-        <ng-container matColumnDef="date">
-          <mat-header-cell *matHeaderCellDef> Date Time</mat-header-cell>
-          <mat-cell *matCellDef="let bilan"> {{bilan.date | date: 'yyyy-MM-dd HH:mm' }} </mat-cell>
-        </ng-container>
+      <ngx-datatable *ngIf='columns'
+      class="material striped selection-cell cell-selection"
+      [rows]="r"
+      [loadingIndicator]="loadingIndicator"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="50"
+      [scrollbarV]="true"
+      [scrollbarH]="true"
+    >
+    <ngx-datatable-column [frozenLeft]="true" name="date"  prop="date" [width]="250">
+      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"  let-row="row">
+          {{value | date : 'yyyy-MM-dd HH:mm' }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngFor="let col of columns"
+    [name]="col.name"
+    [width]="50"
+    [prop]="col.prop"  ></ngx-datatable-column>
 
-        <ng-container matColumnDef="soduim">
-          <mat-header-cell *matHeaderCellDef> SODUIM </mat-header-cell>
-          <mat-cell *matCellDef="let bilan">
-            {{bilan.soduim }}
-          </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="crp">
-          <mat-header-cell *matHeaderCellDef> CRP </mat-header-cell>
-          <mat-cell *matCellDef="let bilan"> {{ bilan.crp}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="magnesuim">
-          <mat-header-cell *matHeaderCellDef> Magnessuim </mat-header-cell>
-          <mat-cell *matCellDef="let bilan"> {{bilan.magnesuim}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="glucose">
-          <mat-header-cell *matHeaderCellDef> Glucose </mat-header-cell>
-          <mat-cell *matCellDef="let bilan"> {{ bilan.glucose }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="ggt">
-          <mat-header-cell *matHeaderCellDef> GGT </mat-header-cell>
-          <mat-cell *matCellDef="let bilan">
-            {{ bilan.ggt }} 
-          </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="potassuim">
-          <mat-header-cell *matHeaderCellDef> Potassuim </mat-header-cell>
-          <mat-cell *matCellDef="let bilan">
-            {{ bilan.potassuim }}
-          </mat-cell>
-        </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
+    </ngx-datatable>
   </mat-card-content> 
    <hr> 
   <mat-card-content>
