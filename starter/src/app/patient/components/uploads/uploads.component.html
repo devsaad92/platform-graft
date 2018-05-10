@@ -1,3 +1,19 @@
-<p>
-  uploads works!
-</p>
+<mat-card class="shadow-none">
+  <mat-card-content>
+    <div>
+      <span fxFlex></span>
+      <button mat-raised-button color="primary" (click)="uploadFile()">
+        <mat-icon>add</mat-icon>NEW </button>
+    </div>
+    <mat-grid-list cols="3">
+      <mat-grid-tile *ngFor="let image of uploads" rowHeight="4:3">
+        <img src="http://localhost:3000/{{image.file}}" alt="Card image cap" />
+        <mat-grid-tile-footer>
+          <h3 matLine>{{ image.title }}</h3>
+          <span matLine>{{image.description }}</span>
+          <mat-icon>favorite</mat-icon>
+        </mat-grid-tile-footer>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>

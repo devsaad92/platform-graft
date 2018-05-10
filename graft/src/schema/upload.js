@@ -10,12 +10,17 @@ export default `
     patient: Patient
   }
 
+  input File {
+    type: String!,
+    path: String!,
+  }
+
   type Mutation {
     uploadFile(patientId: Int!,
       title: String,
       description: String,
-      file: String!,
+      file: File,
       date: String!
-    ): Upload
+    ): Boolean!
   }
 `;

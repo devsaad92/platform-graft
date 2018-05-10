@@ -39,35 +39,9 @@ export const PATIENT_QUERY = gql`
     getPatient(id: $id) {
       ...patientInfos
       ...bilans
-      ...instructions
-      ...cliniques
       ...traitements
       ...informations
       ...uploads
-    }
-  }
-  fragment instructions on Patient {
-    instructions {
-      id
-      text
-      date
-      medcin {
-        id
-        firstName
-        lastName
-      }
-    }
-  }
-  fragment cliniques on Patient {
-    cliniques {
-      id
-      text
-      date
-      medcin {
-        id
-        firstName
-        lastName
-      }
     }
   }
   fragment informations on Patient {
@@ -307,7 +281,7 @@ export const FILE_UPLOADED_MUTATION = gql`
       $patientId: Int!,
       $title: String,
       $description: String,
-      $file: String!,
+      $file: File,
       $date: String!) {
     uploadFile(
       patientId: $patientId,
@@ -315,9 +289,7 @@ export const FILE_UPLOADED_MUTATION = gql`
       description: $description,
       file: $file,
       date: $date
-    ){
-      id
-    }
+    )
   }
 
 `

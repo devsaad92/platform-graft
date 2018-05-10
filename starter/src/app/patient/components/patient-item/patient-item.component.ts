@@ -26,8 +26,9 @@ export class PatientItemComponent implements OnInit {
   switchInfor = true;
   informations = true;
   instructions: Instruction[];
-  lastInformation : any ;
+  lastInformation: any ;
   cliniques: Clinique[];
+  switchUpload = true;
 
 
   constructor(private patientService: PatientService, private router: Router, private route: ActivatedRoute) { }
@@ -52,10 +53,9 @@ export class PatientItemComponent implements OnInit {
         this.patient = patient.getPatient;
         console.log('pppp', this.patient)
         // todo imporove this
-        if (this.patient['informations']){
-                 this.lastInformation = this.patient['informations'][ this.patient['informations'].length-1]
-                 console.log('last', this.lastInformation)
-        }    
+        if (this.patient['informations']) {
+                 this.lastInformation = this.patient['informations'][ this.patient['informations'].length - 1];
+        }
 
       });
   }
@@ -108,6 +108,14 @@ export class PatientItemComponent implements OnInit {
 
   afficherInforForm() {
     this.informations = false;
+  }
+
+  uploadForm() {
+    this.switchUpload = false;
+  }
+
+  annulerUploadForm() {
+    this.switchUpload = true;
   }
 
   return() {

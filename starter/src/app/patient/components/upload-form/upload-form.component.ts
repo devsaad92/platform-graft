@@ -1,6 +1,7 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { PatientService } from './../../services/patient.service';
 import { Upload } from './../../../shared/models/upload';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-upload-form',
@@ -9,22 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadFormComponent implements OnInit {
   upload: Upload = {};
+  @Output() annulerUploadForm = new EventEmitter();
 
-  constructor(private patientService: PatientService) { }
+  constructor(private patientService: PatientService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.upload.patientId = +this.route.snapshot.params['id'];
   }
 
   onFileSelected(event) {
     this.upload.file = event.target.files[0];
-    this.upload.patientId = 1;
   }
 
   onUpload() {
-    // const fd = new FormData();
-    // fd.append('image', this.upload.file, this.upload.file.name);
     this.patientService.uploadFile(this.upload)
      .subscribe(() => console.log('OK'));
-    // console.log(this.upload);
+
+    // this.router.navigate(['patient/patient-item', this.upload.patientId]);
+  }
+
+  cancelForm() {
+    this.annulerUploadForm.emit();
   }
 }

@@ -30,10 +30,11 @@ export class AddPatientComponent implements OnInit {
     const { id, fname, lname, date, dateGreffe, gender } = this.form.value;
     const patient = new Patient(id, fname, lname, gender, date, dateGreffe);
     this.patientService.createPatient(patient)
-       .subscribe((pat) => console.log(pat));
+      .subscribe(() => this.router.navigate(['patient/patients']));
   }
 
   annulerForm() {
+    this.router.navigate(['patient/patients']);
 
   }
 }

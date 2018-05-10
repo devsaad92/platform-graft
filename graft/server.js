@@ -10,6 +10,7 @@ import nodemailer from 'nodemailer';
 import path from 'path';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
 import jwt from 'jsonwebtoken';
+import formidable from 'formidable';
 
 import models from './src/models';
 import { refreshTokens } from './src/auth';
@@ -66,9 +67,42 @@ const addUser = async (req, res, next) => {
   next();
 };
 
+const uploadDir = 'files';
+
+const fileMiddleware = (req, res, next) => {
+  if (!req.is('multipart/form-data')) {
+    return next();
+  }
+
+  const form = formidable.IncomingForm({
+    uploadDir,
+  });
+
+  form.parse(req, (error, { operations }, files) => {
+    if (error) {
+      console.log(error);
+    }
+
+    const document = JSON.parse(operations);
+
+    if (Object.keys(files).length) {
+      const { file: { type, path: filePath } } = files;
+      // console.log(type);
+      // console.log(path);
+      document.variables.file = {
+        type,
+        path: filePath,
+      };
+    }
+
+    req.body = document;
+    next();
+  });
+};
+
 app.use(addUser);
 
-app.use('/graphql', bodyParser.json(), graphqlExpress(req => ({
+app.use('/graphql', bodyParser.json(), fileMiddleware, graphqlExpress(req => ({
   schema,
   context: {
     models,
@@ -83,6 +117,8 @@ app.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
   subscriptionsEndpoint: `ws://localhost:${PORT}/subscriptions`,
 }));
+
+app.use('/files', express.static('files'));
 
 const server = createServer(app);
 
