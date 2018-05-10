@@ -2,7 +2,8 @@
 <mat-card class="mat-card-top">
   <mat-toolbar class="chat-toolbar"></mat-toolbar>
   <hr>
-  <mat-card-content  #scrollI [scrollTop]="scrollI.scrollHeight"  style="height: 550px;overflow: auto"  [ngStyle]="{'background-color':index === 0 ? '#E3F2FD' : '#fde8a9' }">
+                           <!-- todo a bug in the style -->
+  <mat-card-content style="height: 550px;overflow: auto" [ngStyle]="{'background-color':index === 0 ? '#E3F2FD' : '#fde8a9' }" #scrollI [scrollTop]="scrollI.scrollHeight" >
     <div *ngFor="let msg of messages">
     <div fxLayout="row" fxLayoutAlign="center">
          {{ msg.date | date: 'dd/MM/yyyy' }}

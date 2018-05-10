@@ -16,16 +16,18 @@ export class BilansComponent implements OnInit, OnChanges {
   dataSource: any;
 
   // ngx-chart
-  view: any[] = [600, 400];
+  view: any[] = [800, 400];
 
   colorScheme = {
     domain: ['#3f51b5', '#2ecc71', '#3498db', '#16a085', '#95a5a6']
   };
-  done = false
+
+  results: BilanShapeResult[];
+  done = false;
   columns = [
   ];
 
-  r = []
+  r = [];
 
   result: [{}];
 
@@ -33,27 +35,26 @@ export class BilansComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource(this.bilans);
+    this.viewCourbe();
   }
 
   ngOnChanges() {
     this.dataSource = new MatTableDataSource(this.bilans);
     this.viewCourbe();
     // this needs optimisation
-    this.done = false
-    if(this.bilans.length > 0 ) { 
-      const keys = Object.keys(this.bilans[0])
-      this.r = []
-      
-      this.r =  this.bilans
-      this.columns = []
-      for (let i of keys) {
-        if (i != 'id' && i !='__typename' && i != 'date'  ) { 
-          this.columns.push({ prop : i})
+    this.done = false;
+    if (this.bilans.length > 0 ) {
+      const keys = Object.keys(this.bilans[0]);
+      this.r = [];
 
-          
+      this.r =  this.bilans;
+      this.columns = [];
+      for (const i of keys) {
+        if (i !== 'id' && i !== '__typename' && i !== 'date'  ) {
+          this.columns.push({ prop : i});
         }
       }
-      this.done = true
+      this.done = true;
     }
   }
 
@@ -66,39 +67,61 @@ export class BilansComponent implements OnInit, OnChanges {
   }
 
   onSelect(event) {
-    console.log(`hhhhh ${event}`);
+    switch (event) {
+      case 'Soduim':
+        this.results.splice(0, 1);
+        break;
+      case 'Crp':
+        this.results.splice(1, 1);
+        break;
+      default:
+        break;
+    }
   }
 
   private viewCourbe() {
     if (!this.bilans) {
       return null;
     }
-    const result: [{}] = [{}]; // [{ name: '', series: [{}] }]
-    const soduims: [{}] = [{}]; // [{value: 0, name: ''}];
-    const crps: [{}] = [{}];
+    const results: BilanShapeResult[] = [];
+    const soduims: BilanShape[] = [];
+    const crps: BilanShape[] = [];
+    const glucoses: BilanShape[] = [];
 
     for (const i in this.bilans) {
       if (this.bilans[i]) {
         if (this.bilans[i].soduim) {
-          const soduim = { value: this.bilans[i].soduim, name: this.bilans[i].date };
-          soduims[i] = soduim;
+          soduims.push(new BilanShape(this.bilans[i].soduim, this.bilans[i].date));
         }
         if (this.bilans[i].crp) {
-          const crp = { value: this.bilans[i].crp, name: this.bilans[i].date };
-          crps[i] = crp;
+          crps.push(new BilanShape(this.bilans[i].crp, this.bilans[i].date));
+        }
+        if (this.bilans[i].glucose) {
+          glucoses.push(new BilanShape(this.bilans[i].glucose, this.bilans[i].date));
         }
       }
     }
 
-    if (soduims.length >= 1 && soduims[0]['name']) {
-      result[0] = { name: 'Soduim', series: soduims };
+    if (soduims.length >= 1 && soduims[0].name) {
+        results.push(new BilanShapeResult('Soduim', soduims));
     }
-    if (crps.length >= 1 && soduims[0]['name']) {
-      result[1] = { name: 'Crp', series: crps };
+    if (crps.length >= 1 && crps[0].name) {
+        results.push(new BilanShapeResult('Crp', crps));
+    }
+    if (glucoses.length >= 1 && glucoses[0].name) {
+       results.push(new BilanShapeResult('Glucose', glucoses));
     }
 
-    if (result.length >= 1 && result[0]['name']) {
-      this.result = result;
+    if (results.length >= 1 && results[0].name) {
+       this.results = results;
     }
   }
+}
+
+class BilanShape {
+  constructor (public value: String, public name: String) {}
+}
+
+class BilanShapeResult {
+  constructor(public name: String, public series: BilanShape[]) { }
 }

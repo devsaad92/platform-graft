@@ -5,7 +5,6 @@
       <button mat-raised-button color="primary" (click)="ajouterBilan()"> <mat-icon>add</mat-icon>NEW </button>
     </div>
 
-    
       <ngx-datatable *ngIf='columns'
       class="material striped selection-cell cell-selection"
       [rows]="r"
@@ -25,58 +24,15 @@
     <ngx-datatable-column *ngFor="let col of columns"
     [name]="col.name"
     [width]="50"
-  [prop]="col.prop"  ></ngx-datatable-column>
+    [prop]="col.prop"  ></ngx-datatable-column>
 
-        <!-- <ng-container matColumnDef="date">
-          <mat-header-cell *matHeaderCellDef> Date Time</mat-header-cell>
-          <mat-cell *matCellDef="let bilan"> {{bilan.date | date: 'yyyy-MM-dd HH:mm' }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="soduim">
-          <mat-header-cell *matHeaderCellDef> SODUIM </mat-header-cell>
-          <mat-cell *matCellDef="let bilan">
-            {{bilan.soduim }}
-          </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="crp">
-          <mat-header-cell *matHeaderCellDef> CRP </mat-header-cell>
-          <mat-cell *matCellDef="let bilan"> {{ bilan.crp}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="magnesuim">
-          <mat-header-cell *matHeaderCellDef> Magnessuim </mat-header-cell>
-          <mat-cell *matCellDef="let bilan"> {{bilan.magnesuim}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="glucose">
-          <mat-header-cell *matHeaderCellDef> Glucose </mat-header-cell>
-          <mat-cell *matCellDef="let bilan"> {{ bilan.glucose }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="ggt">
-          <mat-header-cell *matHeaderCellDef> GGT </mat-header-cell>
-          <mat-cell *matCellDef="let bilan">
-            {{ bilan.ggt }} 
-          </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="potassuim">
-          <mat-header-cell *matHeaderCellDef> Potassuim </mat-header-cell>
-          <mat-cell *matCellDef="let bilan">
-            {{ bilan.potassuim }}
-          </mat-cell>
-        </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
     </ngx-datatable>
   </mat-card-content> 
    <hr> 
   <mat-card-content>
-
-      <div *ngIf="result" style="width: 600px; height: 400px;">
-        <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="result"
+    <!-- <h4 class="mt-0 mb-1">Courbe</h4> -->
+      <div *ngIf="results" style="width: 900px; height: 400px;">
+        <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="results"
           xAxis="true" yAxis="true" roundDomains="true" legend="true" (select)="onSelect($event)">
         </ngx-charts-line-chart>
       </div>
