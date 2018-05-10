@@ -10,74 +10,15 @@
           </mat-form-field>
         </div>
       </div>
+     
       <div fxLayout="column">
-        <div fxFlex="33">
+        <div fxFlex="33" *ngFor ="let f of bilanFeilds">
           <mat-form-field style="width:100%">
-            <input matInput placeholder="SODIUM" [(ngModel)]="bilan.soduim" name="soduim">
+            <input matInput [placeholder]="f" [(ngModel)]="bilan[f]" [name]="f">
           </mat-form-field>
-        </div>
-        <div fxFlex="33">
-          <mat-form-field style="width:100%">
-            <input matInput placeholder="CRP" [(ngModel)]="bilan.crp" name="crp">
-          </mat-form-field>
-        </div>
-        <div fxFlex="33">
-          <mat-form-field style="width:100%">
-            <input matInput placeholder="MAGNESIUM" [(ngModel)]="bilan.magnesuim" name="magnesuim">
-          </mat-form-field>
-        </div>
+        </div>      
       </div>
-      <div fxLayout="column">
-        <div fxFlex="33">
-          <mat-form-field style="width:100%">
-            <input matInput placeholder="GLUCOSE" [(ngModel)]="bilan.glucose" name="glucose">
-          </mat-form-field>
-        </div>
-        <div fxFlex="33">
-          <mat-form-field style="width:100%">
-            <input matInput placeholder="GGT" [(ngModel)]="bilan.ggt" name="ggt">
-          </mat-form-field>
-        </div>
-        <div fxFlex="33">
-          <mat-form-field style="width:100%">
-            <input matInput placeholder="POTASSIUM" [(ngModel)]="bilan.potassuim" name="potassuim">
-          </mat-form-field>
-        </div>
-      </div>
-      <div fxLayout="column">
-        <div fxFlex="33">
-          <mat-form-field style="width:100%">
-            <input matInput placeholder="UREE" [(ngModel)]="bilan.uree" name="uree">
-          </mat-form-field>
-        </div>
-        <div fxFlex="33">
-          <mat-form-field style="width:100%">
-            <input matInput placeholder="CALCIUM" [(ngModel)]="bilan.calcuim" name="calcuim">
-          </mat-form-field>
-        </div>
-        <div fxFlex="33">
-          <mat-form-field style="width:100%">
-            <input matInput placeholder="LDH" [(ngModel)]="bilan.ldh" name="ldh">
-          </mat-form-field>
-        </div>
-      </div>
-      <div fxLayout="column">
-        <div fxFlex="33">
-          <mat-form-field style="width:100%">
-            <input matInput placeholder="SGPT" [(ngModel)]="bilan.sgpt" name="sgpt">
-          </mat-form-field>
-        </div>
-        <div fxFlex="33">
-          <mat-form-field style="width:100%">
-            <input matInput placeholder="ALBUMINE" [(ngModel)]="bilan.albumine" name="albumine">
-          </mat-form-field>
-        </div>
-        <div fxFlex="33">
-          <mat-form-field style="width:100%">
-            <input matInput placeholder="LIPASE" [(ngModel)]="bilan.lipase" name="lipase">
-          </mat-form-field>
-        </div>
-      </div>
+ 
       <hr>
     </mat-card-content>
     <mat-card-actions>

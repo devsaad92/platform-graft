@@ -4,17 +4,30 @@ export default `
     id: Int!
     nom: String
     soduim: String
-    crp: String
+    potassuim: String
+    chlore: String
+    uree: String
+    creatinine: String
+    calcuim: String
+    calcuimCorrige: String
+    phosphore: String
     magnesuim: String
     glucose: String
-    ggt: String
-    potassuim: String
-    uree: String
-    calcuim: String
-    ldh: String
-    sgpt: String
     albumine: String
+    bilirubineT: String
+    bilirubineD: String
+    phosphataseAlcaline: String
+    sgot: String
+    sgpt: String
+    ggt: String
+    ldh: String
+    triglyceride: String
+    cholesterole: String
+    ammonemie: String
+    lactate: String
+    amylase: String
     lipase: String
+    crp: String
     date: String!
     medcin: Medcin
     patient: Patient
@@ -31,33 +44,61 @@ export default `
       patientId: Int!,
       nom: String,
       soduim: String,
-      crp: String,
+      potassuim: String,
+      chlore: String,
+      uree: String,
+      creatinine: String,
+      calcuim: String,
+      calcuimCorrige: String,
+      phosphore: String,
       magnesuim: String,
       glucose: String,
-      ggt: String,
-      potassuim: String,
-      uree: String,
-      calcuim: String,
-      ldh: String,
-      sgpt: String,
       albumine: String,
+      bilirubineT: String,
+      bilirubineD: String,
+      phosphataseAlcaline: String,
+      sgot: String,
+      sgpt: String,
+      ggt: String,
+      ldh: String,
+      triglyceride: String,
+      cholesterole: String,
+      ammonemie: String,
+      lactate: String,
+      amylase: String,
       lipase: String,
+      crp: String,
       date: String!
     ): Boolean!
 
-    updateBilan(id: Int!, 
+    updateBilan(id: Int!,
+      nom: String,
       soduim: String,
-      crp: String,
+      potassuim: String,
+      chlore: String,
+      uree: String,
+      creatinine: String,
+      calcuim: String,
+      calcuimCorrige: String,
+      phosphore: String,
       magnesuim: String,
       glucose: String,
-      ggt: String,
-      potassuim: String,
-      uree: String,
-      calcuim: String,
-      ldh: String,
-      sgpt: String,
       albumine: String,
-      lipase: String): Boolean
+      bilirubineT: String,
+      bilirubineD: String,
+      phosphataseAlcaline: String,
+      sgot: String,
+      sgpt: String,
+      ggt: String,
+      ldh: String,
+      triglyceride: String,
+      cholesterole: String,
+      ammonemie: String,
+      lactate: String,
+      amylase: String,
+      lipase: String,
+      crp: String,
+      date: String): Boolean
 
     deleteBilan(id: Int!): Boolean
         

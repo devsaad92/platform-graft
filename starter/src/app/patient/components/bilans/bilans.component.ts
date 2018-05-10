@@ -12,6 +12,7 @@ import { OBJECT } from 'graphql/language/kinds';
 export class BilansComponent implements OnInit, OnChanges {
   @Input() bilans: Bilan[];
   @Output() ajoutBilanForm = new EventEmitter();
+  @Output() updateBilanForm = new EventEmitter();
 
   // ngx-chart
   view: any[] = [800, 400];
@@ -24,6 +25,8 @@ export class BilansComponent implements OnInit, OnChanges {
   done = false;
   columns = [];
   r = [];
+
+  selected = [];
 
   constructor() { }
 
@@ -143,10 +146,15 @@ export class BilansComponent implements OnInit, OnChanges {
        this.results = results;
     }
   }
+
+   onSelectRow({ selected }) {
+    // console.log('Select Event', this.selected[0]);
+    this.updateBilanForm.emit(this.selected[0]);
+  }
 }
 
 class BilanShape {
-  constructor (public value: String, public name: String) {}
+  constructor (public value: String, public name: Date) {}
 }
 
 class BilanShapeResult {

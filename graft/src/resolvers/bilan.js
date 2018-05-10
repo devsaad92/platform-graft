@@ -10,7 +10,6 @@ export default {
           ...args,
           medcinId: user.id,
         });
-        console.log(user);
         return true;
       } catch (err) {
         console.log(err);

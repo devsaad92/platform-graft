@@ -1,3 +1,4 @@
+import { Bilan } from './../../../shared/models/Bilan';
 import { Clinique } from './../../../shared/models/Clinique';
 import { Instruction } from './../../../shared/models/Instruction';
 import { Component, OnInit } from '@angular/core';
@@ -24,6 +25,8 @@ export class PatientItemComponent implements OnInit {
   lastInformation: any ;
   cliniques: Clinique[];
   switchUpload = true;
+  bilan: Bilan; // = {};
+  switchBilanUp = true;
 
 
   constructor(private patientService: PatientService, private router: Router, private route: ActivatedRoute) { }
@@ -83,11 +86,18 @@ export class PatientItemComponent implements OnInit {
   }
 
   ajoutBilanForm() {
+    this.bilan = {};
+    this.bilan.patientId = this.patientId;
     this.switchbilan = false;
   }
 
   annulerForm() {
     this.switchbilan = true;
+    this.switchBilanUp = true;
+  }
+  submitOK() {
+    this.switchbilan = true;
+    this.switchBilanUp = true;
   }
 
   annulerInformationForm() {
@@ -112,5 +122,12 @@ export class PatientItemComponent implements OnInit {
 
   return() {
     this.informations = true;
+  }
+
+  updateBilan(event) {
+    this.bilan = {...event, patientId: this.patientId};
+    // this.bilan.date = new Date(event.date);
+    // console.log(new Date(event.date).toLocaleString());
+    this.switchBilanUp = false;
   }
 }

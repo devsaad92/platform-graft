@@ -4,6 +4,7 @@ export default `
     id: Int!
     title: String
     description: String
+    type: String
     file: String
     date: String
     medcin: Medcin
@@ -19,6 +20,7 @@ export default `
     uploadFile(patientId: Int!,
       title: String,
       description: String,
+      type: String,
       file: File,
       date: String!
     ): Boolean!

@@ -196,25 +196,11 @@ export class PatientService {
   }
 
   createBilan(bilan: Bilan) {
+    const variables = bilan;
+
     return this.apollo.mutate({
       mutation: CREATE_BILAN_MUTATION,
-      variables: {
-        patientId: bilan.patientId,
-        nom: bilan.nom,
-        soduim: bilan.soduim,
-        crp: bilan.crp,
-        magnesuim: bilan.magnesuim,
-        glucose: bilan.glucose,
-        ggt: bilan.ggt,
-        potassuim: bilan.potassuim,
-        uree: bilan.uree,
-        calcuim: bilan.calcuim,
-        ldh: bilan.ldh,
-        sgpt: bilan.sgpt,
-        albumine: bilan.albumine,
-        lipase: bilan.lipase,
-        date: bilan.date
-      },
+      variables ,
       refetchQueries: [{ query: ALL_PATIENTS_QUERY }]
     }).map(response => response.data);
   }
@@ -224,18 +210,33 @@ export class PatientService {
       mutation: UPDATE_BILAN_MUTATION,
       variables: {
         id: bilan.id,
+        nom: bilan.nom,
         soduim: bilan.soduim,
-        crp: bilan.crp,
+        potassuim: bilan.potassuim,
+        chlore: bilan.chlore,
+        uree: bilan.uree,
+        creatinine: bilan.creatinine,
+        calcuim: bilan.calcuim,
+        calcuimCorrige: bilan.calcuimCorrige,
+        phosphore: bilan.phosphore,
         magnesuim: bilan.magnesuim,
         glucose: bilan.glucose,
-        ggt: bilan.ggt,
-        potassuim: bilan.potassuim,
-        uree: bilan.uree,
-        calcuim: bilan.calcuim,
-        ldh: bilan.ldh,
-        sgpt: bilan.sgpt,
         albumine: bilan.albumine,
-        lipase: bilan.lipase
+        bilirubineT: bilan.bilirubineT,
+        bilirubineD: bilan.bilirubineD,
+        phosphataseAlcaline: bilan.phosphataseAlcaline,
+        sgot: bilan.sgot,
+        sgpt: bilan.sgpt,
+        ggt: bilan.ggt,
+        ldh: bilan.ldh,
+        triglyceride: bilan.triglyceride,
+        cholesterole: bilan.cholesterole,
+        ammonemie: bilan.ammonemie,
+        lactate: bilan.lactate,
+        amylase: bilan.amylase,
+        lipase: bilan.lipase,
+        crp: bilan.crp,
+        date: bilan.date
       },
       refetchQueries: [{ query: ALL_PATIENTS_QUERY }]
     }).map(response => response.data);

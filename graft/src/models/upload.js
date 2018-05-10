@@ -2,6 +2,7 @@ export default (sequelize, DataTypes) => {
   const Upload = sequelize.define('upload', {
     title: DataTypes.STRING,
     description: DataTypes.STRING,
+    type: DataTypes.STRING,
     file: DataTypes.STRING,
     date: DataTypes.DATE,
   });
