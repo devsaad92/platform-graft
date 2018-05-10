@@ -43,7 +43,7 @@ export class PatientItemComponent implements OnInit {
     this.patientService.getOne(this.patientId)
       .subscribe(patient => {
         this.patient = patient.getPatient;
-        console.log('pppp', this.patient);
+        // console.log('pppp', this.patient);
         // todo imporove this
         if (this.patient['informations']) {
                  this.lastInformation = this.patient['informations'][ this.patient['informations'].length - 1];

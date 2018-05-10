@@ -5,7 +5,7 @@
       <button mat-raised-button color="primary" (click)="ajouterBilan()"> <mat-icon>add</mat-icon>NEW </button>
     </div>
 
-      <ngx-datatable *ngIf='columns'
+    <ngx-datatable *ngIf='columns'
       class="material striped selection-cell cell-selection"
       [rows]="r"
       [loadingIndicator]="loadingIndicator"
@@ -16,15 +16,16 @@
       [scrollbarV]="true"
       [scrollbarH]="true"
     >
-    <ngx-datatable-column [frozenLeft]="true" name="date"  prop="date" [width]="250">
+    <ngx-datatable-column [frozenLeft]="true" name="Date"  prop="date" [width]="250">
       <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"  let-row="row">
-          {{value | date : 'yyyy-MM-dd HH:mm' }}
+          {{ value | date : 'yyyy-MM-dd HH:mm' }}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column *ngFor="let col of columns"
-    [name]="col.name"
-    [width]="50"
-    [prop]="col.prop"  ></ngx-datatable-column>
+      [name]="col.name"
+      [width]="50"
+      [prop]="col.prop"  >
+    </ngx-datatable-column>
 
     </ngx-datatable>
   </mat-card-content> 

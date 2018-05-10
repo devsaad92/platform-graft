@@ -44,7 +44,21 @@ export default `
       lipase: String,
       date: String!
     ): Boolean!
-    updateBilan(id:Int!, nom: String): Bilan
+
+    updateBilan(id: Int!, 
+      soduim: String,
+      crp: String,
+      magnesuim: String,
+      glucose: String,
+      ggt: String,
+      potassuim: String,
+      uree: String,
+      calcuim: String,
+      ldh: String,
+      sgpt: String,
+      albumine: String,
+      lipase: String): Boolean
+
     deleteBilan(id: Int!): Boolean
         
   }

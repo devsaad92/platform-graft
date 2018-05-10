@@ -12,34 +12,26 @@ import { OBJECT } from 'graphql/language/kinds';
 export class BilansComponent implements OnInit, OnChanges {
   @Input() bilans: Bilan[];
   @Output() ajoutBilanForm = new EventEmitter();
-  displayedColumns = ['date', 'soduim', 'crp', 'magnesuim', 'glucose', 'ggt', 'potassuim'];
-  dataSource: any;
 
   // ngx-chart
   view: any[] = [800, 400];
 
   colorScheme = {
-    domain: ['#3f51b5', '#2ecc71', '#3498db', '#16a085', '#95a5a6']
+    domain: ['#3f51b5', '#2ecc71', '#3498db', '#16a085', '#95a5a6', '#2d3436']
   };
 
   results: BilanShapeResult[];
   done = false;
-  columns = [
-  ];
-
+  columns = [];
   r = [];
-
-  result: [{}];
 
   constructor() { }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.bilans);
     this.viewCourbe();
   }
 
   ngOnChanges() {
-    this.dataSource = new MatTableDataSource(this.bilans);
     this.viewCourbe();
     // this needs optimisation
     this.done = false;
@@ -47,7 +39,7 @@ export class BilansComponent implements OnInit, OnChanges {
       const keys = Object.keys(this.bilans[0]);
       this.r = [];
 
-      this.r =  this.bilans;
+      this.r = this.bilans;
       this.columns = [];
       for (const i of keys) {
         if (i !== 'id' && i !== '__typename' && i !== 'date'  ) {
@@ -87,6 +79,11 @@ export class BilansComponent implements OnInit, OnChanges {
     const soduims: BilanShape[] = [];
     const crps: BilanShape[] = [];
     const glucoses: BilanShape[] = [];
+    const magnesuims: BilanShape[] = [];
+    const ggts: BilanShape[] = [];
+    const potassuims: BilanShape[] = [];
+    const urees: BilanShape[] = [];
+    const calcuims: BilanShape[] = [];
 
     for (const i in this.bilans) {
       if (this.bilans[i]) {
@@ -99,6 +96,21 @@ export class BilansComponent implements OnInit, OnChanges {
         if (this.bilans[i].glucose) {
           glucoses.push(new BilanShape(this.bilans[i].glucose, this.bilans[i].date));
         }
+        if (this.bilans[i].magnesuim) {
+          magnesuims.push(new BilanShape(this.bilans[i].magnesuim, this.bilans[i].date));
+        }
+        if (this.bilans[i].ggt) {
+          ggts.push(new BilanShape(this.bilans[i].ggt, this.bilans[i].date));
+        }
+        if (this.bilans[i].potassuim) {
+          potassuims.push(new BilanShape(this.bilans[i].potassuim, this.bilans[i].date));
+        }
+        if (this.bilans[i].uree) {
+          urees.push(new BilanShape(this.bilans[i].uree, this.bilans[i].date));
+        }
+        if (this.bilans[i].calcuim) {
+          calcuims.push(new BilanShape(this.bilans[i].calcuim, this.bilans[i].date));
+        }
       }
     }
 
@@ -110,6 +122,21 @@ export class BilansComponent implements OnInit, OnChanges {
     }
     if (glucoses.length >= 1 && glucoses[0].name) {
        results.push(new BilanShapeResult('Glucose', glucoses));
+    }
+    if (magnesuims.length >= 1 && magnesuims[0].name) {
+      results.push(new BilanShapeResult('Magnesuim', magnesuims));
+    }
+    if (ggts.length >= 1 && ggts[0].name) {
+      results.push(new BilanShapeResult('GGT', ggts));
+    }
+    if (potassuims.length >= 1 && potassuims[0].name) {
+      results.push(new BilanShapeResult('Potassuim', potassuims));
+    }
+    if (urees.length >= 1 && urees[0].name) {
+      results.push(new BilanShapeResult('Uree', urees));
+    }
+    if (calcuims.length >= 1 && calcuims[0].name) {
+      results.push(new BilanShapeResult('Calcuim', calcuims));
     }
 
     if (results.length >= 1 && results[0].name) {

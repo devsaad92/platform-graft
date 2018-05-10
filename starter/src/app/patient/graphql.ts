@@ -276,6 +276,40 @@ export const CREATE_BILAN_MUTATION = gql`
   }
 `;
 
+export const UPDATE_BILAN_MUTATION = gql`
+
+  mutation updateBilanMutation(
+    $id: Int!,
+    $soduim: String,
+    $crp: String,
+    $magnesuim: String,
+    $glucose: String,
+    $ggt: String,
+    $potassuim: String,
+    $uree: String,
+    $calcuim: String,
+    $ldh: String,
+    $sgpt: String,
+    $albumine: String,
+    $lipase: String) {
+    updateBilan(
+      id: $id
+      soduim: $soduim,
+      crp: $crp,
+      magnesuim: $magnesuim,
+      glucose: $glucose,
+      ggt: $ggt,
+      potassuim: $potassuim,
+      uree: $uree,
+      calcuim: $calcuim,
+      ldh: $ldh,
+      sgpt: $sgpt,
+      albumine: $albumine,
+      lipase: $lipase
+    )
+  }
+`;
+
 export const FILE_UPLOADED_MUTATION = gql`
   mutation uploadFileMutation(
       $patientId: Int!,
@@ -291,6 +325,5 @@ export const FILE_UPLOADED_MUTATION = gql`
       date: $date
     )
   }
-
 `
-  ;
+ ;

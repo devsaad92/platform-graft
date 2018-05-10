@@ -13,6 +13,7 @@ import {
   ALL_PATIENTS_QUERY,
   AllPatientQueryResponse,
   CREATE_BILAN_MUTATION,
+  UPDATE_BILAN_MUTATION,
   CREATE_CLINIQUE_MUTATION,
   CREATE_INSTRUCTION_MUTATION,
   CREATE_MUTATION_INFORMATION,
@@ -213,6 +214,28 @@ export class PatientService {
         albumine: bilan.albumine,
         lipase: bilan.lipase,
         date: bilan.date
+      },
+      refetchQueries: [{ query: ALL_PATIENTS_QUERY }]
+    }).map(response => response.data);
+  }
+
+  updateBilan(bilan: Bilan) {
+    return this.apollo.mutate({
+      mutation: UPDATE_BILAN_MUTATION,
+      variables: {
+        id: bilan.id,
+        soduim: bilan.soduim,
+        crp: bilan.crp,
+        magnesuim: bilan.magnesuim,
+        glucose: bilan.glucose,
+        ggt: bilan.ggt,
+        potassuim: bilan.potassuim,
+        uree: bilan.uree,
+        calcuim: bilan.calcuim,
+        ldh: bilan.ldh,
+        sgpt: bilan.sgpt,
+        albumine: bilan.albumine,
+        lipase: bilan.lipase
       },
       refetchQueries: [{ query: ALL_PATIENTS_QUERY }]
     }).map(response => response.data);

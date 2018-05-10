@@ -17,5 +17,15 @@ export default {
         return false;
       }
     },
+    updateBilan: async (parent, args, { models }) => {
+      try {
+        const { id, ...params } = args;
+        await models.Bilan.update(params, { where: { id } });
+        return true;
+      } catch (error) {
+        console.log(error);
+        return false;
+      }
+    },
   },
 };
