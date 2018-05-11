@@ -36,7 +36,7 @@
 
         <ng-container matColumnDef="dateDeNaissance">
           <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
-          <mat-cell *matCellDef="let patient"> {{ patientService.getDate(patient.dateDeNaissance) }} </mat-cell>
+          <mat-cell *matCellDef="let patient"> {{ patient.dateDeNaissance | age }} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="sexe">
@@ -52,7 +52,7 @@
         <ng-container matColumnDef="postGreffe">
           <mat-header-cell *matHeaderCellDef> Post greffe </mat-header-cell>
           <mat-cell *matCellDef="let patient">
-            <span class="rouge">   {{ patientService.getJour(patient.dateDeGreffe) }} </span>
+            <span class="rouge">   {{ patient.dateDeGreffe | greffe }} </span>
           </mat-cell>
         </ng-container>
 

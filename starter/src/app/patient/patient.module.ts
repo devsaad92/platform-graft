@@ -19,6 +19,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { UploadFormComponent } from './components/upload-form/upload-form.component';
 import { UploadsComponent } from './components/uploads/uploads.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { AgePipe } from './pipes/age.pipe';
+import { GreffePipe } from './pipes/greffe.pipe';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     InformationComponent,
     InformationFormComponent,
     UploadFormComponent,
-    UploadsComponent
+    UploadsComponent,
+    AgePipe,
+    GreffePipe
   ]
 })
 export class PatientModule { }

@@ -1,7 +1,6 @@
-import { PatientService } from './../../services/patient.service';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { Patient } from '../../../shared/models/Patient';
-import { last } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-patient-card',
@@ -16,7 +15,7 @@ export class PatientCardComponent implements OnInit {
   @Output() addInforForm = new EventEmitter();
   @Output() afficherInforForm = new EventEmitter();
 
-  constructor(private patientService: PatientService) { }
+  constructor() { }
 
   ngOnInit() {
   }

@@ -35,27 +35,6 @@ export class PatientService {
 
   constructor(private apollo: Apollo) { }
 
-  getDate(dateString) {
-    const today = +Date.now();
-    const date = +new Date(dateString).getTime();
-    const diff = (today - date) / (30 * 24 * 60 * 60 * 1000);
-    return Math.trunc(diff / 12) + ' Ans  ' + (Math.trunc(diff % 12) + 1) + ' Mois';
-  }
-
-  // getDateTime(dateString) {
-  //   return new Date(dateString);
-  // }
-
-  getJour(dateString) {
-    if (!dateString) {
-      return '';
-    }
-    const today = +Date.now();
-    const date = +new Date(dateString).getTime();
-    const diff = (today - date) / (24 * 60 * 60 * 1000);
-    return Math.trunc(diff) + 'Jrs Aprés greffe';
-  }
-
   getAll() {
     return this.apollo.watchQuery<AllPatientQueryResponse>({
       query: ALL_PATIENTS_QUERY,

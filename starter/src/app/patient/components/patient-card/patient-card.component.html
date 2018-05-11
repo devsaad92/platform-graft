@@ -9,7 +9,7 @@
         <p>
           <b>Sexe: </b>{{patient.sexe}}</p>
         <p>
-          <b>Age: </b>{{ patientService.getDate(patient.dateDeNaissance) }}</p>
+          <b>Age: </b>{{ patient.dateDeNaissance | age }}</p>
         <p>
           <b>Date de la greffe: </b>
           {{patient.dateDeGreffe | date:'yyyy-MM-dd HH:mm'}}
@@ -20,7 +20,7 @@
       <div fxFlex="40">
         <span fxFlex></span>
         <div class="rouge">
-          {{ patientService.getJour(patient.dateDeGreffe) }}
+          {{ patient.dateDeGreffe | greffe }}
         </div>
       </div>
     </div>

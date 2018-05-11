@@ -38,7 +38,7 @@ export class BilansComponent implements OnInit, OnChanges {
     this.viewCourbe();
     // this needs optimisation
     this.done = false;
-    if (this.bilans.length > 0 ) {
+    if (this.bilans) {
       const keys = Object.keys(this.bilans[0]);
       this.r = [];
 
@@ -51,10 +51,6 @@ export class BilansComponent implements OnInit, OnChanges {
       }
       this.done = true;
     }
-  }
-
-  getTime(dateString) {
-    return new Date(dateString).getHours();
   }
 
   ajouterBilan() {

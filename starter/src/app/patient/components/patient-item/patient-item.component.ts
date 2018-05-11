@@ -25,7 +25,7 @@ export class PatientItemComponent implements OnInit {
   lastInformation: any ;
   cliniques: Clinique[];
   switchUpload = true;
-  bilan: Bilan; // = {};
+  bilan: Bilan;
   switchBilanUp = true;
 
 
@@ -55,10 +55,6 @@ export class PatientItemComponent implements OnInit {
       });
   }
 
-  tabChanged(tabChangeEvent: MatTabChangeEvent): void {
-    this.index = tabChangeEvent.index;
-  }
-
   getInstructions() {
     this.patientService.getInstructions(this.patientId)
       .subscribe((instruction) => {
@@ -73,55 +69,10 @@ export class PatientItemComponent implements OnInit {
       });
   }
 
-  updatePatientForm() {
-    this.switch = false;
-  }
-
-  annulerPatientForm() {
-    this.switch = true;
-  }
-
-  updateForm() {
-    this.switch = true;
-  }
-
   ajoutBilanForm() {
     this.bilan = {};
     this.bilan.patientId = this.patientId;
     this.switchbilan = false;
-  }
-
-  annulerForm() {
-    this.switchbilan = true;
-    this.switchBilanUp = true;
-  }
-  submitOK() {
-    this.switchbilan = true;
-    this.switchBilanUp = true;
-  }
-
-  annulerInformationForm() {
-    this.switchInfor = true;
-  }
-
-  addInforForm() {
-    this.switchInfor = false;
-  }
-
-  afficherInforForm() {
-    this.informations = false;
-  }
-
-  uploadForm() {
-    this.switchUpload = false;
-  }
-
-  annulerUploadForm() {
-    this.switchUpload = true;
-  }
-
-  return() {
-    this.informations = true;
   }
 
   updateBilan(event) {
