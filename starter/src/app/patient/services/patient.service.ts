@@ -1,3 +1,4 @@
+import { Hematologie } from './../../shared/models/hematologie';
 import { Upload } from './../../shared/models/upload';
 import { Bilan } from './../../shared/models/Bilan';
 import 'rxjs/add/operator/map';
@@ -25,7 +26,9 @@ import {
   PATIENT_QUERY,
   PatientQueryResponse,
   UPDATE_PATIENT_MUTATION,
-  FILE_UPLOADED_MUTATION
+  FILE_UPLOADED_MUTATION,
+  CREATE_HEMATOLOGIE_MUTATION,
+  UPDATE_HEMATOLOGIE_MUTATION,
 } from './../graphql';
 
 @Injectable()
@@ -221,6 +224,28 @@ export class PatientService {
     }).map(response => response.data);
   }
 
+  // hematologie
+
+  createHematologie(hematologie: Hematologie) {
+    const variables = hematologie;
+
+    return this.apollo.mutate({
+      mutation: CREATE_HEMATOLOGIE_MUTATION,
+      variables,
+      refetchQueries: [{ query: ALL_PATIENTS_QUERY }]
+    }).map(response => response.data);
+  }
+
+  updateHematologie(hematologie: Hematologie) {
+    const variables = hematologie;
+
+    return this.apollo.mutate({
+      mutation: UPDATE_HEMATOLOGIE_MUTATION,
+      variables,
+      refetchQueries: [{ query: ALL_PATIENTS_QUERY }]
+    }).map(response => response.data);
+  }
+
   uploadFile(upload: Upload) {
     return this.apollo.mutate({
       mutation: FILE_UPLOADED_MUTATION,
@@ -228,6 +253,7 @@ export class PatientService {
         patientId: upload.patientId,
         title: upload.title,
         description: upload.description,
+        type: upload.type,
         file: upload.file,
         date: upload.date
       },

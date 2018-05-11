@@ -13,6 +13,7 @@ export default `
     traitements: [Traitement]
     informations: [Information]
     bilans: [Bilan]
+    hematologies: [Hematologie]
     uploads: [Upload]
   }
 

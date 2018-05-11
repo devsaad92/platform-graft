@@ -25,7 +25,6 @@ export class UploadFormComponent implements OnInit {
   onUpload() {
     this.patientService.uploadFile(this.upload)
      .subscribe(() => console.log('OK'));
-
     // this.router.navigate(['patient/patient-item', this.upload.patientId]);
   }
 

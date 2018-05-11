@@ -38,7 +38,7 @@ export class BilansComponent implements OnInit, OnChanges {
     this.viewCourbe();
     // this needs optimisation
     this.done = false;
-    if (this.bilans) {
+    if (this.bilans && this.bilans[0]) {
       const keys = Object.keys(this.bilans[0]);
       this.r = [];
 

@@ -1,3 +1,4 @@
+import { Hematologie } from './../../../shared/models/hematologie';
 import { Bilan } from './../../../shared/models/Bilan';
 import { Clinique } from './../../../shared/models/Clinique';
 import { Instruction } from './../../../shared/models/Instruction';
@@ -18,7 +19,6 @@ export class PatientItemComponent implements OnInit {
   patient: Patient = {};
   index = 0;
   switch = true;
-  switchbilan = true;
   switchInfor = true;
   informations = true;
   instructions: Instruction[];
@@ -26,7 +26,12 @@ export class PatientItemComponent implements OnInit {
   cliniques: Clinique[];
   switchUpload = true;
   bilan: Bilan;
+  switchbilan = true;
   switchBilanUp = true;
+  hematologie: Hematologie;
+  switchHematologie = true;
+  switchHematologieUp = true;
+  indexImg = 0;
 
 
   constructor(private patientService: PatientService, private router: Router, private route: ActivatedRoute) { }
@@ -81,4 +86,20 @@ export class PatientItemComponent implements OnInit {
     // console.log(new Date(event.date).toLocaleString());
     this.switchBilanUp = false;
   }
+
+  ajoutHematologieForm() {
+    this.hematologie = {};
+    this.hematologie.patientId = this.patientId;
+    this.switchHematologie = false;
+  }
+
+  updateHematologie(event) {
+    this.hematologie = { ...event, patientId: this.patientId };
+    this.switchHematologieUp = false;
+  }
+
+  tabChanged(tabChangeEvent: MatTabChangeEvent): void {
+    this.indexImg = tabChangeEvent.index;
+  }
+
 }

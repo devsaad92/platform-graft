@@ -21,6 +21,8 @@ import { UploadsComponent } from './components/uploads/uploads.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { AgePipe } from './pipes/age.pipe';
 import { GreffePipe } from './pipes/greffe.pipe';
+import { HematologiesComponent } from './components/hematologies/hematologies.component';
+import { HematologieFormComponent } from './components/hematologie-form/hematologie-form.component';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { GreffePipe } from './pipes/greffe.pipe';
     UploadFormComponent,
     UploadsComponent,
     AgePipe,
-    GreffePipe
+    GreffePipe,
+    HematologiesComponent,
+    HematologieFormComponent
   ]
 })
 export class PatientModule { }

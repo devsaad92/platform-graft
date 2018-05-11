@@ -23,6 +23,17 @@
             </textarea>
           </mat-form-field>
         </div>
+        <div fxFlex="33">
+          <mat-form-field style="width: 100%">
+          <mat-select [(value)]="selected" placeholder="Category" [(ngModel)]="upload.type" name="type">
+            <mat-option></mat-option>
+            <mat-option value="bacterologie">Bacterologie</mat-option>
+            <mat-option value="virologie">Virologie</mat-option>
+            <mat-option value="parasitologie">Parasitologie</mat-option>
+            <mat-option value="fluidCorporels">Fluid Corporels</mat-option>
+          </mat-select>
+        </mat-form-field>
+        </div>
         <br>
         <div fxFlex="33">
           <div style="width:100%">

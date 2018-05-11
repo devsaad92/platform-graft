@@ -23,7 +23,7 @@
                   <app-chat [messages]="cliniques" [patientId]="patientId" [index]="0"></app-chat>
                 </div>
                 <div fxFlex="35">
-                  <h1>instructions</h1>
+                  <h1>Instructions</h1>
                   <app-chat [messages]="instructions" [patientId]="patientId" [index]="1"></app-chat>
                 </div>
               </div>
@@ -35,21 +35,50 @@
                   <ng-template matTabLabel>Chimie</ng-template>
                   <mat-card-content>
                     <app-bilans *ngIf="switchbilan && switchBilanUp" [bilans]="patient.bilans" (ajoutBilanForm)="ajoutBilanForm($event)" (updateBilanForm)="updateBilan($event)"></app-bilans>
-                    <app-bilan-from *ngIf="!switchbilan || !switchBilanUp" [bilan]="bilan" (annulerForm)="switchbilan=true; switchbilanUp=true" (submitSuccess)="switchbilan=true; switchbilanUp=true"></app-bilan-from>
+                    <app-bilan-from *ngIf="!switchbilan || !switchBilanUp" [bilan]="bilan" (annulerForm)="switchBilanUp=true; switchbilan=true" (submitSuccess)="switchbilan=true; switchBilanUp=true"></app-bilan-from>
                   </mat-card-content>
                 </mat-tab>
                 <mat-tab>
-                  <ng-template matTabLabel>Hémathologie</ng-template>
+                  <ng-template matTabLabel>Hématologie</ng-template>
+                  <mat-card-content>
+                    <app-hematologies *ngIf="switchHematologie && switchHematologieUp" [hematologies]="patient.hematologies" (ajoutHematologieForm)="ajoutHematologieForm($event)" (updateHematologie)="updateHematologie($event)"></app-hematologies>
+                    <app-hematologie-form *ngIf="!switchHematologie || !switchHematologieUp" [hematologie]="hematologie" (annulerForm)="switchHematologieUp=true; switchHematologie=true" (submitSuccess)="switchHematologie=true; switchHematologieUp=true"></app-hematologie-form>
+                  </mat-card-content>
                 </mat-tab>
               </mat-tab-group>
             </mat-tab>
             <mat-tab>
-              <mat-card-content>
                 <ng-template matTabLabel>Photos</ng-template>
-                <app-uploads *ngIf="switchUpload" [uploads]="patient.uploads" (uploadForm)="switchUpload=false"></app-uploads>
-
-                <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true"></app-upload-form>
-              </mat-card-content>
+                <mat-tab-group (selectedTabChange)="tabChanged($event)">
+                  <mat-tab>
+                    <ng-template matTabLabel>Bacterologie</ng-template>
+                    <mat-card-content>
+                      <app-uploads *ngIf="switchUpload" [uploads]="patient.uploads" [index]="indexImg" (uploadForm)="switchUpload=false"></app-uploads>
+                      <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true"></app-upload-form>
+                    </mat-card-content>
+                  </mat-tab>
+                  <mat-tab>
+                    <ng-template matTabLabel>Virologie</ng-template>
+                    <mat-card-content>
+                      <app-uploads *ngIf="switchUpload" [uploads]="patient.uploads" [index]="indexImg" (uploadForm)="switchUpload=false"></app-uploads>
+                      <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true"></app-upload-form>
+                    </mat-card-content>
+                  </mat-tab>
+                  <mat-tab>
+                    <ng-template matTabLabel>Parasitologie</ng-template>
+                    <mat-card-content>
+                      <app-uploads *ngIf="switchUpload" [uploads]="patient.uploads" [index]="indexImg" (uploadForm)="switchUpload=false"></app-uploads>
+                      <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true"></app-upload-form>
+                    </mat-card-content>
+                  </mat-tab>
+                  <mat-tab>
+                    <ng-template matTabLabel>Fluid Corporels</ng-template>
+                    <mat-card-content>
+                      <app-uploads *ngIf="switchUpload" [uploads]="patient.uploads" [index]="indexImg" (uploadForm)="switchUpload=false"></app-uploads>
+                      <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true"></app-upload-form>
+                    </mat-card-content>
+                  </mat-tab>
+                </mat-tab-group>
             </mat-tab>
           </mat-tab-group>
         </mat-card>

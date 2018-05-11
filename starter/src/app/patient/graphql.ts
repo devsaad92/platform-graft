@@ -42,6 +42,7 @@ export const PATIENT_QUERY = gql`
       ...traitements
       ...informations
       ...uploads
+      ...hematologies
     }
   }
   fragment informations on Patient {
@@ -67,6 +68,7 @@ export const PATIENT_QUERY = gql`
       id
       title
       description
+      type
       file
       date
     }
@@ -102,6 +104,33 @@ export const PATIENT_QUERY = gql`
       date
     }
   }
+  fragment hematologies on Patient {
+    hematologies {
+      id
+      gb
+      lymphocyte
+      monocytes
+      neutrophiles
+      eosinophiles
+      gr
+      hb
+      ht
+      plaquette
+      vgm
+      ccmh
+      retic
+      tp
+      tca
+      inr
+      fibrinogene
+      facteurV
+      antiTIII
+      facteurXa
+      dDimeres
+      date
+    }
+  }
+
   ${patientFragments.patient}
 `;
 
@@ -378,17 +407,123 @@ export const UPDATE_BILAN_MUTATION = gql`
   }
 `;
 
+// Hematologie
+
+export const CREATE_HEMATOLOGIE_MUTATION = gql`
+  mutation createHematologieMutation(
+      $patientId: Int!,
+      $gb: String,
+      $lymphocyte: String,
+      $monocytes: String,
+      $neutrophiles: String,
+      $eosinophiles: String,
+      $gr: String,
+      $hb: String,
+      $ht: String,
+      $plaquette: String,
+      $vgm: String,
+      $ccmh: String,
+      $retic: String,
+      $tp: String,
+      $tca: String,
+      $inr: String,
+      $fibrinogene: String,
+      $facteurV: String,
+      $antiTIII: String,
+      $facteurXa: String,
+      $dDimeres: String,
+      $date: String!) {
+    createHematologie(
+      patientId: $patientId,
+      gb: $gb,
+      lymphocyte: $lymphocyte,
+      monocytes: $monocytes,
+      neutrophiles: $neutrophiles,
+      eosinophiles: $eosinophiles,
+      gr: $gr,
+      hb: $hb,
+      ht: $ht,
+      plaquette: $plaquette,
+      vgm: $vgm,
+      ccmh: $ccmh,
+      retic: $retic,
+      tp: $tp,
+      tca: $tca,
+      inr: $inr,
+      fibrinogene: $fibrinogene,
+      facteurV: $facteurV,
+      antiTIII: $antiTIII,
+      facteurXa: $facteurXa,
+      dDimeres: $dDimeres,
+      date: $date
+    )
+  }
+`;
+
+export const UPDATE_HEMATOLOGIE_MUTATION = gql`
+  mutation updateHematologieMutation(
+      $id: Int!,
+      $gb: String,
+      $lymphocyte: String,
+      $monocytes: String,
+      $neutrophiles: String,
+      $eosinophiles: String,
+      $gr: String,
+      $hb: String,
+      $ht: String,
+      $plaquette: String,
+      $vgm: String,
+      $ccmh: String,
+      $retic: String,
+      $tp: String,
+      $tca: String,
+      $inr: String,
+      $fibrinogene: String,
+      $facteurV: String,
+      $antiTIII: String,
+      $facteurXa: String,
+      $dDimeres: String,
+      $date: String) {
+    updateHematologie(
+      id: $id
+      gb: $gb,
+      lymphocyte: $lymphocyte,
+      monocytes: $monocytes,
+      neutrophiles: $neutrophiles,
+      eosinophiles: $eosinophiles,
+      gr: $gr,
+      hb: $hb,
+      ht: $ht,
+      plaquette: $plaquette,
+      vgm: $vgm,
+      ccmh: $ccmh,
+      retic: $retic,
+      tp: $tp,
+      tca: $tca,
+      inr: $inr,
+      fibrinogene: $fibrinogene,
+      facteurV: $facteurV,
+      antiTIII: $antiTIII,
+      facteurXa: $facteurXa,
+      dDimeres: $dDimeres,
+      date: $date
+    )
+  }
+`;
+
 export const FILE_UPLOADED_MUTATION = gql`
   mutation uploadFileMutation(
       $patientId: Int!,
       $title: String,
       $description: String,
+      $type: String,
       $file: File,
       $date: String!) {
     uploadFile(
       patientId: $patientId,
       title: $title,
       description: $description,
+      type: $type,
       file: $file,
       date: $date
     )

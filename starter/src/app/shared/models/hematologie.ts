@@ -1,0 +1,27 @@
+export class Hematologie {
+    constructor(
+        public id?: number,
+        public patientId?: number,
+        public gb?: String,
+        public lymphocyte?: String,
+        public monocytes?: String,
+        public neutrophiles?: String,
+        public eosinophiles?: String,
+        public gr?: String,
+        public hb?: String,
+        public ht?: String,
+        public plaquette?: String,
+        public vgm?: String,
+        public ccmh?: String,
+        public retic?: String,
+        public tp?: String,
+        public tca?: String,
+        public inr?: String,
+        public fibrinogene?: String,
+        public facteurV?: String,
+        public antiTIII?: String,
+        public facteurXa?: String,
+        public dDimeres?: String,
+        public date?: Date,
+    ) { }
+}

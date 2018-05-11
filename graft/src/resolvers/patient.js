@@ -22,6 +22,8 @@ export default {
       models.Information.findAll({ where: { patientId: id } }),
     uploads: ({ id }, args, { models }) =>
       models.Upload.findAll({ where: { patientId: id } }),
+    hematologies: ({ id }, args, { models }) =>
+      models.Hematologie.findAll({ where: { patientId: id } }),
     // medcins: ({ id }, args, { models }) => models.Medcin.findAll({ where: { patientId: id } }),
   },
 };
