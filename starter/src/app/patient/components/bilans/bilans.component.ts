@@ -84,34 +84,32 @@ export class BilansComponent implements OnInit, OnChanges {
     const urees: BilanShape[] = [];
     const calcuims: BilanShape[] = [];
 
-    for (const i in this.bilans) {
-      if (this.bilans[i]) {
-        if (this.bilans[i].soduim) {
-          soduims.push(new BilanShape(this.bilans[i].soduim, this.bilans[i].date));
-        }
-        if (this.bilans[i].crp) {
-          crps.push(new BilanShape(this.bilans[i].crp, this.bilans[i].date));
-        }
-        if (this.bilans[i].glucose) {
-          glucoses.push(new BilanShape(this.bilans[i].glucose, this.bilans[i].date));
-        }
-        if (this.bilans[i].magnesuim) {
-          magnesuims.push(new BilanShape(this.bilans[i].magnesuim, this.bilans[i].date));
-        }
-        if (this.bilans[i].ggt) {
-          ggts.push(new BilanShape(this.bilans[i].ggt, this.bilans[i].date));
-        }
-        if (this.bilans[i].potassuim) {
-          potassuims.push(new BilanShape(this.bilans[i].potassuim, this.bilans[i].date));
-        }
-        if (this.bilans[i].uree) {
-          urees.push(new BilanShape(this.bilans[i].uree, this.bilans[i].date));
-        }
-        if (this.bilans[i].calcuim) {
-          calcuims.push(new BilanShape(this.bilans[i].calcuim, this.bilans[i].date));
-        }
+    this.bilans.forEach(bilan => {
+      if (bilan.soduim) {
+        soduims.push(new BilanShape(bilan.soduim, bilan.date));
       }
-    }
+      if (bilan.crp) {
+        crps.push(new BilanShape(bilan.crp, bilan.date));
+      }
+      if (bilan.glucose) {
+        glucoses.push(new BilanShape(bilan.glucose, bilan.date));
+      }
+      if (bilan.magnesuim) {
+        magnesuims.push(new BilanShape(bilan.magnesuim, bilan.date));
+      }
+      if (bilan.ggt) {
+        ggts.push(new BilanShape(bilan.ggt, bilan.date));
+      }
+      if (bilan.potassuim) {
+        potassuims.push(new BilanShape(bilan.potassuim, bilan.date));
+      }
+      if (bilan.uree) {
+        urees.push(new BilanShape(bilan.uree, bilan.date));
+      }
+      if (bilan.calcuim) {
+        calcuims.push(new BilanShape(bilan.calcuim, bilan.date));
+      }
+    });
 
     if (soduims.length >= 1 && soduims[0].name) {
         results.push(new BilanShapeResult('Soduim', soduims));

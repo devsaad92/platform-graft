@@ -9,7 +9,7 @@ import { Upload } from '../../../shared/models/upload';
 export class UploadsComponent implements OnInit, OnChanges {
   @Output() uploadForm = new EventEmitter();
   @Input() uploads: Upload[];
-  @Input() index;
+  @Input() index = 0;
   corporels: Upload[];
   bacterologie: Upload[];
   virologie: Upload[];

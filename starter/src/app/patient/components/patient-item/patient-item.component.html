@@ -60,22 +60,19 @@
                   <mat-tab>
                     <ng-template matTabLabel>Virologie</ng-template>
                     <mat-card-content>
-                      <app-uploads *ngIf="switchUpload" [uploads]="patient.uploads" [index]="indexImg" (uploadForm)="switchUpload=false"></app-uploads>
-                      <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true"></app-upload-form>
+                      <app-uploads [uploads]="patient.uploads" [index]="indexImg"></app-uploads>
                     </mat-card-content>
                   </mat-tab>
                   <mat-tab>
                     <ng-template matTabLabel>Parasitologie</ng-template>
                     <mat-card-content>
-                      <app-uploads *ngIf="switchUpload" [uploads]="patient.uploads" [index]="indexImg" (uploadForm)="switchUpload=false"></app-uploads>
-                      <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true"></app-upload-form>
+                      <app-uploads [uploads]="patient.uploads" [index]="indexImg"></app-uploads>
                     </mat-card-content>
                   </mat-tab>
                   <mat-tab>
                     <ng-template matTabLabel>Fluid Corporels</ng-template>
                     <mat-card-content>
-                      <app-uploads *ngIf="switchUpload" [uploads]="patient.uploads" [index]="indexImg" (uploadForm)="switchUpload=false"></app-uploads>
-                      <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true"></app-upload-form>
+                      <app-uploads [uploads]="patient.uploads" [index]="indexImg"></app-uploads>
                     </mat-card-content>
                   </mat-tab>
                 </mat-tab-group>
