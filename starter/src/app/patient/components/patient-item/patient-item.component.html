@@ -49,30 +49,30 @@
             </mat-tab>
             <mat-tab>
                 <ng-template matTabLabel>Photos</ng-template>
-                <mat-tab-group (selectedTabChange)="tabChanged($event)">
+                <mat-tab-group>
                   <mat-tab>
                     <ng-template matTabLabel>Bacterologie</ng-template>
                     <mat-card-content>
-                      <app-uploads *ngIf="switchUpload" [uploads]="patient.uploads" [index]="indexImg" (uploadForm)="switchUpload=false"></app-uploads>
+                      <app-uploads *ngIf="switchUpload" [uploads]="bacterologie" [index]="0" (uploadForm)="switchUpload=false"></app-uploads>
                       <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true" (submitSuccess)="switchUpload=true"></app-upload-form>
                     </mat-card-content>
                   </mat-tab>
                   <mat-tab>
                     <ng-template matTabLabel>Virologie</ng-template>
                     <mat-card-content>
-                      <app-uploads [uploads]="patient.uploads" [index]="indexImg"></app-uploads>
+                      <app-uploads [uploads]="virologie" [index]="1"></app-uploads>
                     </mat-card-content>
                   </mat-tab>
                   <mat-tab>
                     <ng-template matTabLabel>Parasitologie</ng-template>
                     <mat-card-content>
-                      <app-uploads [uploads]="patient.uploads" [index]="indexImg"></app-uploads>
+                      <app-uploads [uploads]="parasitologie" [index]="2"></app-uploads>
                     </mat-card-content>
                   </mat-tab>
                   <mat-tab>
                     <ng-template matTabLabel>Fluid Corporels</ng-template>
                     <mat-card-content>
-                      <app-uploads [uploads]="patient.uploads" [index]="indexImg"></app-uploads>
+                      <app-uploads [uploads]="corporels" [index]="3"></app-uploads>
                     </mat-card-content>
                   </mat-tab>
                 </mat-tab-group>
