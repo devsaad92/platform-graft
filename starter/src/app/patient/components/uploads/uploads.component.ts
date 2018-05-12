@@ -7,13 +7,14 @@ import { Upload } from '../../../shared/models/upload';
   styleUrls: ['./uploads.component.scss']
 })
 export class UploadsComponent implements OnInit, OnChanges {
+  @Output() uploadForm = new EventEmitter();
   @Input() uploads: Upload[];
   @Input() index;
-  // corporels: Upload[] = [];
-  // bacterologie: Upload[] = [];
-  // virologie: Upload[] = [];
-  // parasitologie: Upload[] = [];
-  @Output() uploadForm = new EventEmitter();
+  corporels: Upload[];
+  bacterologie: Upload[];
+  virologie: Upload[];
+  parasitologie: Upload[];
+  uploads$: Upload[];
 
   constructor() { }
 
@@ -25,43 +26,29 @@ export class UploadsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    const  corporels: Upload[] = [];
-    const bacterologie: Upload[] = [];
-    const virologie: Upload[] = [];
-    const parasitologie: Upload[] = [];
+    this.uploads$ = [];
+    this.bacterologie = [];
+    this.virologie = [];
+    this.corporels = [];
+    this.parasitologie = [];
     if (this.uploads && this.uploads[0]) {
       this.uploads.map(image => {
-        if (image.type === 'bacterologie') {
-          bacterologie.push(image);
-        } else if (image.type === 'virologie') {
-          virologie.push(image);
-        } else if (image.type === 'fluidCorporels') {
-          corporels.push(image);
+        if (image.type === 'bacterologie' && this.index === 0) {
+          this.bacterologie.push(image);
+          this.uploads$ = this.bacterologie;
+        } else if (image.type === 'virologie' && this.index === 1) {
+          this.virologie.push(image);
+          console.log(('viiirrr'));
+          this.uploads$ = this.virologie;
+        } else if (image.type === 'fluidCorporels' && this.index === 3) {
+          this.corporels.push(image);
+          this.uploads$ = this.corporels;
         } else {
-          parasitologie.push(image);
+          this.parasitologie.push(image);
+          this.uploads$ = this.parasitologie;
         }
       });
     }
-    if (this.index === 0) {
-      this.uploads = bacterologie;
-    } else if (this.index === 1) {
-      this.uploads = virologie;
-    } else if (this.index === 2) {
-      this.uploads = parasitologie;
-    } else {
-      this.uploads = corporels;
-    }
   }
 
-  changeFile() {
-    // if (this.index === 0) {
-    //   this.uploads = this.bacterologie;
-    // } else if (this.index === 1) {
-    //   this.uploads = this.virologie;
-    // } else if (this.index === 2) {
-    //   this.uploads = this.parasitologie;
-    // } else {
-    //   this.uploads = this.corporels;
-    // }
-  }
 }

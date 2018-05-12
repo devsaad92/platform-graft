@@ -7,7 +7,7 @@
       <app-edit-patient *ngIf="!switch" [patient]="patient" [patientId]="patientId" (annulerPatientForm)="switch=true"
         (updateForm)="switch=true">
       </app-edit-patient>
-      <app-information-form *ngIf="!switchInfor" (annulerInformationForm)="switchInfor=true"></app-information-form>
+      <app-information-form *ngIf="!switchInfor" (annulerInformationForm)="switchInfor=true" (submitSuccess)="switchInfor=true"></app-information-form>
       <app-information *ngIf="!informations" [informations]="patient.informations" (return)="informations=true">
       </app-information>
     </div>
@@ -54,7 +54,7 @@
                     <ng-template matTabLabel>Bacterologie</ng-template>
                     <mat-card-content>
                       <app-uploads *ngIf="switchUpload" [uploads]="patient.uploads" [index]="indexImg" (uploadForm)="switchUpload=false"></app-uploads>
-                      <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true"></app-upload-form>
+                      <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true" (submitSuccess)="switchUpload=true"></app-upload-form>
                     </mat-card-content>
                   </mat-tab>
                   <mat-tab>

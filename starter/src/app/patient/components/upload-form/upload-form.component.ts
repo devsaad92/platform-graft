@@ -11,6 +11,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class UploadFormComponent implements OnInit {
   upload: Upload = {};
   @Output() annulerUploadForm = new EventEmitter();
+  @Output() submitSuccess = new EventEmitter();
 
   constructor(private patientService: PatientService, private route: ActivatedRoute, private router: Router) { }
 
@@ -24,8 +25,7 @@ export class UploadFormComponent implements OnInit {
 
   onUpload() {
     this.patientService.uploadFile(this.upload)
-     .subscribe(() => console.log('OK'));
-    // this.router.navigate(['patient/patient-item', this.upload.patientId]);
+     .subscribe(() => this.submitSuccess.emit());
   }
 
   cancelForm() {
