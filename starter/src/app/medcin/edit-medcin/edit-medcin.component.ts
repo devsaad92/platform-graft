@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { CustomValidators } from 'ng2-validation';
 
 import { Medcin } from '../../shared/models/Medcin';
@@ -14,11 +13,13 @@ import { MedcinService } from './../../shared/services/medcin.service';
 export class EditMedcinComponent implements OnInit {
   public form: FormGroup;
   loading: Boolean;
-  id: number;
-  medcin: Medcin = {};
+ // @Input() id: number;
+  @Input() medcin: Medcin = {};
+  @Output() annulerMedcinForm = new EventEmitter();
+  @Output() updateForm = new EventEmitter();
 
 
-  constructor(private fb: FormBuilder, private medcinService: MedcinService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private medcinService: MedcinService) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -29,30 +30,24 @@ export class EditMedcinComponent implements OnInit {
       specialty: [this.medcin.specialty, Validators.compose([Validators.required])],
       gender: [this.medcin.sexe, Validators.required]
     });
-
-    this.getMedcin();
   }
 
-  getMedcin() {
-    this.id = this.route.snapshot.params['id'];
-    this.medcinService.getOne(this.id)
-      .subscribe(medcin => {
-        this.medcin = medcin.medcinQuery;
-      });
+  annulerForm() {
+    this.annulerMedcinForm.emit();
   }
 
   onSubmit() {
     const { fname, lname, date, specialty, gender, email, password } = this.form.value;
-    const medcin = new Medcin(this.id, fname, lname, gender, date, specialty, email, password);
+    const medcin = new Medcin(this.medcin.id, fname, lname, gender, date, specialty, email, password);
     this.medcinService.updateMedcin(medcin)
-      .subscribe(() => this.router.navigate(['medcin/medcins']));
+      .subscribe(() => this.updateForm.emit());
   }
 
   deleteMedcin() {
-    this.medcinService.delete(this.id)
-      .subscribe(() => {
-        this.router.navigate(['medcin/medcins']);
-      });
+    // this.medcinService.delete(this.medcin.id)
+    //   .subscribe(() => {
+    //     this.router.navigate(['medcin/medcins']);
+    //   });
   }
 
 }
