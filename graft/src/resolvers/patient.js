@@ -2,6 +2,12 @@ export default {
 
   Query: {
     allPatients: (parent, args, { models }) => models.Patient.findAll(),
+    // models.sequelize.query('select * from patients join members on id = patient_id
+    // where medcin_id = ?', {
+    //   replacements: [user.id],
+    //   model: models.Patient,
+    // }),
+    // models.Patient.findAll({include:[{model:models.Medcin,where:{id:user.id},},],},{raw: true},),
     getPatient: (parent, args, { models }) => models.Patient.findOne({ where: args }),
   },
   Mutation: {
@@ -10,6 +16,8 @@ export default {
       const { id, ...params } = args;
       return models.Patient.update(params, { where: { id } });
     },
+    addMedcinPatient: (parent, { patientId }, { models, user }) =>
+      models.Member.create({ medcinId: user.id, patientId }),
   },
   Patient: {
     bilans: ({ id }, args, { models }) => models.Bilan.findAll({ where: { patientId: id } }),

@@ -37,10 +37,11 @@ export class AddMedcinComponent implements OnInit {
   createMedcin() {
     const { id, fname, lname, date, specialty, gender, email, password } = this.form.value;
     const medcin = new Medcin(id, fname, lname, gender, date, specialty, email, password);
-    this.medcinService.createMedcin(medcin)
+    this.medcinService.signupMedcin(medcin)
       .subscribe(() => this.router.navigate(['medcin/medcins']));
 
-    /* this.apollo.mutate({
+    /*
+    this.apollo.mutate({
         mutation: CREATE_MEDCIN_MUTATION,
       variables: {
         firstName: this.form.controls['fname'].value,
