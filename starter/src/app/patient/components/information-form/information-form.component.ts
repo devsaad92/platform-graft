@@ -9,6 +9,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class InformationFormComponent implements OnInit {
   @Output() annulerInformationForm = new EventEmitter();
+  @Output() submitSuccess = new EventEmitter();
   information: Information = {};
 
   constructor(private patientService: PatientService, private route: ActivatedRoute) { }
@@ -19,7 +20,7 @@ export class InformationFormComponent implements OnInit {
     this.information.patientId = +this.route.snapshot.params['id'];
 
     this.patientService.createInformation(this.information)
-      .subscribe();
+      .subscribe(() => this.submitSuccess.emit());
   }
 
   cancelForm() {

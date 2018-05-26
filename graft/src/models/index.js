@@ -19,6 +19,7 @@ const models = {
   Information: sequelize.import('./information'),
   Upload: sequelize.import('./upload'),
   Hematologie: sequelize.import('./hematologie'),
+  Member: sequelize.import('./member'),
 };
 
 Object.keys(models).forEach((modelName) => {

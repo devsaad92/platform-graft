@@ -2,7 +2,7 @@
  <h4 *ngIf="loading">Loading...</h4> 
 
 <mat-card>
-    <mat-card-title>MEDCINS</mat-card-title>
+    <mat-card-title>MEDECINS</mat-card-title>
     <mat-card-content>
 
       <div class="example-container mat-elevation-z8">
@@ -44,7 +44,7 @@
           <ng-container matColumnDef="lastName">
             <mat-header-cell *matHeaderCellDef> </mat-header-cell>
             <mat-cell *matCellDef="let medcin">
-              <a mat-raised-button color="primary" [routerLink]="['/medcin/editMedcin/'+medcin.id]" href="">Edit </a>
+              <a mat-raised-button color="primary" [routerLink]="['/medcin/user-profile/'+medcin.id]" href="">Voir Profile </a>
             </mat-cell>
           </ng-container>
 

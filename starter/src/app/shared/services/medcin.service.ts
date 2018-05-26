@@ -8,6 +8,7 @@ import {
   ALL_MEDCINS_QUERY,
   AllMedcinQueryResponse,
   CREATE_MEDCIN_MUTATION,
+  SIGNUP_MEDCIN_MUTATION,
   DELETE_MEDCIN_MUTATION,
   FORGET_PASSWORD_MUTATION,
   MEDCIN_QUERY,
@@ -37,7 +38,6 @@ export class MedcinService {
         id
       }
     }).valueChanges.map(response => response.data);
-    //  .catch(this.handleError);
   }
 
 
@@ -73,8 +73,16 @@ export class MedcinService {
         email: medcin.email,
         password: medcin.password
       },
-      refetchQueries: [{ query: ALL_MEDCINS_QUERY}]
     }).map(response => response.data);
+  }
+
+  signupMedcin(medcin: Medcin) {
+    const variables = medcin;
+    return this.apollo.mutate({
+      mutation: SIGNUP_MEDCIN_MUTATION,
+      variables,
+      refetchQueries: [{ query: ALL_MEDCINS_QUERY }]
+      }).map(response => response.data);
   }
 
   updateMedcin(medcin: Medcin) {

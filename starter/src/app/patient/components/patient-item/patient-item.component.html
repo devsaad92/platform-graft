@@ -7,7 +7,7 @@
       <app-edit-patient *ngIf="!switch" [patient]="patient" [patientId]="patientId" (annulerPatientForm)="switch=true"
         (updateForm)="switch=true">
       </app-edit-patient>
-      <app-information-form *ngIf="!switchInfor" (annulerInformationForm)="switchInfor=true"></app-information-form>
+      <app-information-form *ngIf="!switchInfor" (annulerInformationForm)="switchInfor=true" (submitSuccess)="switchInfor=true"></app-information-form>
       <app-information *ngIf="!informations" [informations]="patient.informations" (return)="informations=true">
       </app-information>
     </div>
@@ -49,33 +49,30 @@
             </mat-tab>
             <mat-tab>
                 <ng-template matTabLabel>Photos</ng-template>
-                <mat-tab-group (selectedTabChange)="tabChanged($event)">
+                <mat-tab-group>
                   <mat-tab>
                     <ng-template matTabLabel>Bacterologie</ng-template>
                     <mat-card-content>
-                      <app-uploads *ngIf="switchUpload" [uploads]="patient.uploads" [index]="indexImg" (uploadForm)="switchUpload=false"></app-uploads>
-                      <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true"></app-upload-form>
+                      <app-uploads *ngIf="switchUpload" [uploads]="bacterologie" [index]="0" (uploadForm)="switchUpload=false"></app-uploads>
+                      <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true" (submitSuccess)="switchUpload=true"></app-upload-form>
                     </mat-card-content>
                   </mat-tab>
                   <mat-tab>
                     <ng-template matTabLabel>Virologie</ng-template>
                     <mat-card-content>
-                      <app-uploads *ngIf="switchUpload" [uploads]="patient.uploads" [index]="indexImg" (uploadForm)="switchUpload=false"></app-uploads>
-                      <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true"></app-upload-form>
+                      <app-uploads [uploads]="virologie" [index]="1"></app-uploads>
                     </mat-card-content>
                   </mat-tab>
                   <mat-tab>
                     <ng-template matTabLabel>Parasitologie</ng-template>
                     <mat-card-content>
-                      <app-uploads *ngIf="switchUpload" [uploads]="patient.uploads" [index]="indexImg" (uploadForm)="switchUpload=false"></app-uploads>
-                      <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true"></app-upload-form>
+                      <app-uploads [uploads]="parasitologie" [index]="2"></app-uploads>
                     </mat-card-content>
                   </mat-tab>
                   <mat-tab>
                     <ng-template matTabLabel>Fluid Corporels</ng-template>
                     <mat-card-content>
-                      <app-uploads *ngIf="switchUpload" [uploads]="patient.uploads" [index]="indexImg" (uploadForm)="switchUpload=false"></app-uploads>
-                      <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true"></app-upload-form>
+                      <app-uploads [uploads]="corporels" [index]="3"></app-uploads>
                     </mat-card-content>
                   </mat-tab>
                 </mat-tab-group>

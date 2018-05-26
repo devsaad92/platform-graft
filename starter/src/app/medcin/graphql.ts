@@ -48,7 +48,6 @@ export interface MedcinQueryResponse {
 // mutation create Medcin
 
 export const CREATE_MEDCIN_MUTATION = gql`
-
   mutation createMedcinMutation($firstName: String!, $lastName: String!, $dateDeNaissance: String, $sexe: String, $specialty: String!,
   $email: String!, $password: String!) {
     createMedcin(
@@ -83,6 +82,25 @@ export interface CreateMedcinMutationResponse {
     refreshToken: string
   };
 }
+
+// signUp added by admin
+
+export const SIGNUP_MEDCIN_MUTATION = gql`
+  mutation createMedcinMutation($firstName: String!, $lastName: String!, $dateDeNaissance: String, $sexe: String, $specialty: String!,
+  $email: String!, $password: String!) {
+    createMedcin(
+      firstName: $firstName,
+      lastName: $lastName,
+      dateDeNaissance: $dateDeNaissance,
+      sexe: $sexe,
+      specialty: $specialty,
+      email: $email,
+      password: $password
+    ) {
+      id
+    }
+  }
+`;
 
 // mutation login
 
@@ -127,11 +145,6 @@ export const UPDATE_MEDCIN_MUTATION = gql`
   }
 `;
 
-/* export interface UpdateMedcinMutationResponse {
-  medcin: Medcin;
-  loading: boolean;
-}
- */
 // mutation delete of medcin
 
 
@@ -146,10 +159,6 @@ export const DELETE_MEDCIN_MUTATION = gql`
   }
 `;
 
-/* export interface DeleteMedcinMutationResponse {
-  // medcin: Medcin;
-   loading: boolean;
-} */
 
 export const FORGET_PASSWORD_MUTATION = gql`
 

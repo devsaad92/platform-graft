@@ -12,10 +12,10 @@ export default (sequelize, DataTypes) => {
   Medcin.associate = (models) => {
     // N:M
     Medcin.belongsToMany(models.Patient, {
-      through: 'patient_medcin',
+      through: models.Member,
       foreignKey: {
-        name: 'patientId',
-        field: 'patient_id',
+        name: 'medcinId',
+        field: 'medcin_id',
       },
     });
   };

@@ -1,13 +1,13 @@
-import { Hematologie } from './../../../shared/models/hematologie';
-import { Bilan } from './../../../shared/models/Bilan';
-import { Clinique } from './../../../shared/models/Clinique';
-import { Instruction } from './../../../shared/models/Instruction';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { Bilan } from './../../../shared/models/Bilan';
+import { Clinique } from './../../../shared/models/Clinique';
+import { Hematologie } from './../../../shared/models/hematologie';
+import { Instruction } from './../../../shared/models/Instruction';
 import { Patient } from './../../../shared/models/Patient';
+import { Upload } from './../../../shared/models/upload';
 import { PatientService } from './../../services/patient.service';
-import { MatTabChangeEvent } from '@angular/material';
 
 @Component({
   selector: 'app-patient-item',
@@ -31,7 +31,10 @@ export class PatientItemComponent implements OnInit {
   hematologie: Hematologie;
   switchHematologie = true;
   switchHematologieUp = true;
-  indexImg = 0;
+  corporels: Upload[];
+  bacterologie: Upload[];
+  virologie: Upload[];
+  parasitologie: Upload[];
 
 
   constructor(private patientService: PatientService, private router: Router, private route: ActivatedRoute) { }
@@ -54,9 +57,19 @@ export class PatientItemComponent implements OnInit {
         // console.log('pppp', this.patient);
         // todo imporove this
         if (this.patient['informations']) {
-                 this.lastInformation = this.patient['informations'][ this.patient['informations'].length - 1];
+          this.lastInformation = this.patient['informations'][ this.patient['informations'].length - 1];
         }
-
+        if (this.patient['uploads']) {
+          this.bacterologie = []; this.corporels = []; this.virologie = []; this.parasitologie = [];
+          this.patient['uploads'].map(image => {
+            switch (image.type) {
+              case 'bacterologie': this.bacterologie.push(image); break;
+              case 'virologie': this.virologie.push(image); break;
+              case 'parasitologie': this.parasitologie.push(image); break;
+              default: this.corporels.push(image); break;
+            }
+            });
+          }
       });
   }
 
@@ -96,10 +109,6 @@ export class PatientItemComponent implements OnInit {
   updateHematologie(event) {
     this.hematologie = { ...event, patientId: this.patientId };
     this.switchHematologieUp = false;
-  }
-
-  tabChanged(tabChangeEvent: MatTabChangeEvent): void {
-    this.indexImg = tabChangeEvent.index;
   }
 
 }

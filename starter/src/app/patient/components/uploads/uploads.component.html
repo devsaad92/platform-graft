@@ -1,6 +1,6 @@
 <mat-card class="shadow-none">
   <mat-card-content>
-    <div>
+    <div *ngIf="index==0">
       <span fxFlex></span>
       <button mat-raised-button color="primary" (click)="uploadFile()">
         <mat-icon>add</mat-icon>NEW </button>

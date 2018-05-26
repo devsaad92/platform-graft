@@ -38,6 +38,8 @@ export default `
       dateDeNaissance: String,
       sexe: String,
       dateDeGreffe: String): Int
+
+    addMedcinPatient(patientId: Int!): Boolean
   }
 
 `;

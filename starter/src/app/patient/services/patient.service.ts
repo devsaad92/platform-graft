@@ -173,7 +173,7 @@ export class PatientService {
         SaO2: information.SaO2,
         date: information.date,
       },
-      refetchQueries: [{ query: ALL_PATIENTS_QUERY }]
+      refetchQueries: [{ query: PATIENT_QUERY, variables: { id: information.patientId } }]
     }).map(response => response.data);
   }
 
@@ -182,45 +182,18 @@ export class PatientService {
 
     return this.apollo.mutate({
       mutation: CREATE_BILAN_MUTATION,
-      variables ,
-      refetchQueries: [{ query: ALL_PATIENTS_QUERY }]
+      variables,
+      refetchQueries: [{ query: PATIENT_QUERY, variables: { id: bilan.patientId } }]
     }).map(response => response.data);
   }
 
   updateBilan(bilan: Bilan) {
+    const variables = bilan;
+
     return this.apollo.mutate({
       mutation: UPDATE_BILAN_MUTATION,
-      variables: {
-        id: bilan.id,
-        nom: bilan.nom,
-        soduim: bilan.soduim,
-        potassuim: bilan.potassuim,
-        chlore: bilan.chlore,
-        uree: bilan.uree,
-        creatinine: bilan.creatinine,
-        calcuim: bilan.calcuim,
-        calcuimCorrige: bilan.calcuimCorrige,
-        phosphore: bilan.phosphore,
-        magnesuim: bilan.magnesuim,
-        glucose: bilan.glucose,
-        albumine: bilan.albumine,
-        bilirubineT: bilan.bilirubineT,
-        bilirubineD: bilan.bilirubineD,
-        phosphataseAlcaline: bilan.phosphataseAlcaline,
-        sgot: bilan.sgot,
-        sgpt: bilan.sgpt,
-        ggt: bilan.ggt,
-        ldh: bilan.ldh,
-        triglyceride: bilan.triglyceride,
-        cholesterole: bilan.cholesterole,
-        ammonemie: bilan.ammonemie,
-        lactate: bilan.lactate,
-        amylase: bilan.amylase,
-        lipase: bilan.lipase,
-        crp: bilan.crp,
-        date: bilan.date
-      },
-      refetchQueries: [{ query: ALL_PATIENTS_QUERY }]
+      variables,
+      refetchQueries: [{ query: PATIENT_QUERY, variables: { id: bilan.patientId } }]
     }).map(response => response.data);
   }
 
@@ -232,7 +205,7 @@ export class PatientService {
     return this.apollo.mutate({
       mutation: CREATE_HEMATOLOGIE_MUTATION,
       variables,
-      refetchQueries: [{ query: ALL_PATIENTS_QUERY }]
+      refetchQueries: [{ query: PATIENT_QUERY, variables: { id: hematologie.patientId } }]
     }).map(response => response.data);
   }
 
@@ -242,7 +215,7 @@ export class PatientService {
     return this.apollo.mutate({
       mutation: UPDATE_HEMATOLOGIE_MUTATION,
       variables,
-      refetchQueries: [{ query: ALL_PATIENTS_QUERY }]
+      refetchQueries: [{ query: PATIENT_QUERY, variables: { id: hematologie.patientId } }]
     }).map(response => response.data);
   }
 
@@ -257,7 +230,7 @@ export class PatientService {
         file: upload.file,
         date: upload.date
       },
-      refetchQueries: [{ query: ALL_PATIENTS_QUERY }]
+      refetchQueries: [{ query: PATIENT_QUERY, variables: { id: upload.patientId } }]
     }).map(res => res.data);
   }
 }
