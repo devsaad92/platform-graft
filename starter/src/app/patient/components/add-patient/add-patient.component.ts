@@ -25,7 +25,6 @@ export class AddPatientComponent implements OnInit {
     });
   }
 
-  
   createPatient() {
     const { id, fname, lname, date, dateGreffe, gender } = this.form.value;
     const patient = new Patient(id, fname, lname, gender, date, dateGreffe);

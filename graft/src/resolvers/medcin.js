@@ -37,4 +37,11 @@ export default {
     resetPassword: async (parent, { userId, newPassword }, { models }) =>
       tryResetPassword(userId, newPassword, models),
   },
+  Medcin: {
+    patients: ({ id }, args, { models }) =>
+      models.sequelize.query('select * from patients join members on id = patient_id where medcin_id = ?', {
+        replacements: [id],
+        model: models.Patient,
+      }),
+  },
 };

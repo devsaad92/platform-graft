@@ -70,12 +70,12 @@ export class MenuComponent implements OnInit {
   addMenuItem() {
     this.menuService.add({
       state: 'medcin',
-      name: 'MEDCIN',
+      name: 'MEDECIN',
       type: 'sub',
       icon: 'person',
       children: [
-        { state: 'medcins', name: 'All Medcins' },
-        { state: 'addMedcin', name: 'Ajouter Medcin' }
+        { state: 'medcins', name: 'All Medecins' },
+        { state: 'addMedcin', name: 'Ajouter Medecin' }
       ]
     });
   }

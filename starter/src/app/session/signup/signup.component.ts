@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
     const {id, fname, lname, email, password, date, gender, specialty} = this.form.value;
     const medcin = new Medcin(id, fname, lname, gender, date, specialty, email, password);
     this.medcinService.createMedcin(medcin)
-      .subscribe((user) => {
+      .subscribe(user => {
         const token = user.login.token;
         const refreshToken = user.login.refreshToken;
         this.authService.saveUserData(token, refreshToken);

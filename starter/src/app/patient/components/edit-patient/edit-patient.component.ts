@@ -1,14 +1,13 @@
-import { Patient } from './../../../shared/models/Patient';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
-import { Router } from '@angular/router';
+
+import { Patient } from './../../../shared/models/Patient';
 import { PatientService } from './../../services/patient.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-edit-patient',
-  templateUrl: './edit-patient.component.html',
-  // styleUrls: ['./edit-patient.component.scss']
+  templateUrl: './edit-patient.component.html'
 })
 export class EditPatientComponent implements OnInit {
   public form: FormGroup;
@@ -18,7 +17,7 @@ export class EditPatientComponent implements OnInit {
   @Output() annulerPatientForm = new EventEmitter();
   @Output() updateForm = new EventEmitter();
 
-  constructor(private fb: FormBuilder, private patientService: PatientService, private router: Router) { }
+  constructor(private fb: FormBuilder, private patientService: PatientService) { }
 
   ngOnInit() {
     const dateGreffe = this.getDateDeGreffe(this.patient.dateDeGreffe);

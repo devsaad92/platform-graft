@@ -36,7 +36,8 @@ export class MedcinsComponent implements OnInit {
       });
   }
 
- /*    const allMEdcinQuery = this.apollo.watchQuery<AllMedcinQueryResponse>({
+ /*
+    const allMEdcinQuery = this.apollo.watchQuery<AllMedcinQueryResponse>({
       query: ALL_MEDCINS_QUERY
     });
 
@@ -64,7 +65,8 @@ export class MedcinsComponent implements OnInit {
     });
 
     this.subscriptions = [...this.subscriptions, querySubscription];
-  } */
+  }
+  */
 
 }
 
