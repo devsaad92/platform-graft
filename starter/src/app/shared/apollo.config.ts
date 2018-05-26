@@ -8,6 +8,7 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { setContext } from 'apollo-link-context';
 import { getMainDefinition } from 'apollo-utilities';
 import createFileLink from './createFileLink';
+import {environment} from '../../environments/environment.prod'
 
 
 @NgModule({
@@ -29,7 +30,7 @@ export class GraphQLModule {
 
     constructor(apollo: Apollo, httpLink: HttpLink) {
         // Create an http link:
-        const uri = 'http://localhost:3000/graphql';
+        const uri = 'http://'+ environment.baseURL +':3000/graphql';
         const http = createFileLink({uri}); // httpLink.create({ uri });
 
         const middlewareLink = setContext((_, { headers }) => {
@@ -71,7 +72,7 @@ export class GraphQLModule {
 
         // Create a WebSocket link:
         const ws = new WebSocketLink({
-            uri: `ws://localhost:3000/subscriptions`,
+            uri: 'ws://' + environment.baseURL +':3000/subscriptions',
             options: {
                 reconnect: true
             }
