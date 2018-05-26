@@ -19,6 +19,7 @@ export class MedcinProfileComponent implements OnInit {
   medcin: Medcin = {};
   id: number;
   switch = true;
+  public selected : any;
   displayedColumns = ['id', 'firstName', 'lastName'];
   dataSource: any;
   patients: Patient[];

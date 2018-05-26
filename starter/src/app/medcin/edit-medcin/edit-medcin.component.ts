@@ -14,7 +14,6 @@ export class EditMedcinComponent implements OnInit {
   public form: FormGroup;
   loading: Boolean;
   id: number;
-  medcin: Medcin = {};
   public selected : any;
  // @Input() id: number;
   @Input() medcin: Medcin = {};
