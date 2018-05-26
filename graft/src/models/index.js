@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 
-const sequelize = new Sequelize('greffe', 'postgres', '1234', {
+const sequelize = new Sequelize('greffe', 'oem', 'alpha', {
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: Sequelize.Op,

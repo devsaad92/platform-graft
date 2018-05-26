@@ -16,6 +16,7 @@ export class EditMedcinComponent implements OnInit {
   loading: Boolean;
   id: number;
   medcin: Medcin = {};
+  public selected : any;
 
 
   constructor(private fb: FormBuilder, private medcinService: MedcinService, private router: Router, private route: ActivatedRoute) { }
