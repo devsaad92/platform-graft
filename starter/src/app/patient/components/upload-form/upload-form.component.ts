@@ -10,6 +10,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class UploadFormComponent implements OnInit {
   upload: Upload = {};
+  public selected : any;
+
   @Output() annulerUploadForm = new EventEmitter();
   @Output() submitSuccess = new EventEmitter();
 
