@@ -5,7 +5,7 @@ COPY package.json /app/
 RUN npm install
 COPY ./ /app/
 ARG env=prod
-RUN npm run build -- --prod --aot --environment $env
+RUN npm run build -- --prod  --no-aot  --environment $env
 
 
 FROM  nginx
