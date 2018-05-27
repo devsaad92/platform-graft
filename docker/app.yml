@@ -1,0 +1,19 @@
+version: '2'
+services:
+    greff-backend:
+        image: greff-backend
+        container_name: 'greff-backend'
+        ports:
+            - 3000:3000
+        depends_on:
+            - "postgresdb"
+    postgresdb:
+        container_name: 'greff-db'
+        extends:
+            file: postgresql.yml
+            service: postgresql
+    greff-frontend:
+        image: greff-frontend
+        container_name: 'greff-frontend'
+        ports:
+            - 90:80
