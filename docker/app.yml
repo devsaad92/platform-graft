@@ -16,4 +16,6 @@ services:
         image: greff-frontend
         container_name: 'greff-frontend'
         ports:
-            - 90:80
+            - 80:80
+volumes:
+    greffdata:

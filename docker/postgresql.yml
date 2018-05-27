@@ -2,11 +2,14 @@ version: '2'
 services:
     postgresql:
         image: postgres:9.6.5
-        # volumes:
-        #     - ~/volumes/econnect/postgresql/:/var/lib/postgresql/data/
+        volumes:
+            - greffdata:/var/lib/postgresql/data
         environment:
             - POSTGRES_USER=oem
             - POSTGRES_PASSWORD=alpha
             - POSTGRES_DB=greffe
         ports:
             - 5432:5432
+volumes:
+    greffdata:
+        driver: local
