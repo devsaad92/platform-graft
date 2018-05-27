@@ -17,7 +17,7 @@ import { refreshTokens } from './src/auth';
 
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './src/schema')));
 const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './src/resolvers')));
-
+const url = 'localhost'
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
@@ -115,7 +115,7 @@ app.use('/graphql', bodyParser.json(), fileMiddleware, graphqlExpress(req => ({
 
 app.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
-  subscriptionsEndpoint: `ws://localhost:${PORT}/subscriptions`,
+  subscriptionsEndpoint: `ws://${url}:${PORT}/subscriptions`,
 }));
 
 app.use('/files', express.static('files'));
@@ -123,8 +123,8 @@ app.use('/files', express.static('files'));
 const server = createServer(app);
 
 models.sequelize.sync().then(() =>
-  server.listen(PORT, () => {
-    console.log(`Apollo Server is now running on http://localhost:${PORT}`);
+  server.listen(PORT, url, () => {
+    console.log(`Apollo Server is now running on http://${url}:${PORT}`);
     // eslint-disable-next-line
     new SubscriptionServer(
       {
