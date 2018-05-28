@@ -1,11 +1,12 @@
 <mat-card class="shadow-none">
-  <h2>Liste des Informations:</h2>
   <mat-card-content>
-    <div>
+    <mat-toolbar style="margin-top: -16px">
+      Tableau des Informations:
       <span fxFlex></span>
-      <button mat-raised-button color="primary" (click)="retourner()">
-        <mat-icon>keyboard_return</mat-icon>RETOUR </button>
-    </div>
+      <button mat-raised-button (click)="retourner()">
+        <mat-icon>keyboard_return</mat-icon>RETOUR 
+      </button>
+    </mat-toolbar>
     <mat-table #table [dataSource]="dataSource">
 
       <ng-container matColumnDef="date">

@@ -1,10 +1,11 @@
 <mat-card class="shadow-none">
   <mat-card-content>
-    <div>
+    <mat-toolbar style="margin-top: -18px">
+      <span>Tableau des Hématologies:</span>
       <span fxFlex></span>
-      <button mat-raised-button color="primary" (click)="ajouterHematologie()">
+      <button mat-raised-button (click)="ajouterHematologie()">
         <mat-icon>add</mat-icon>NEW </button>
-    </div>
+    </mat-toolbar>
     
     <ngx-datatable *ngIf='columns' class="material striped selection-cell cell-selection" [rows]="r" [loadingIndicator]="loadingIndicator"
       [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true"

@@ -1,10 +1,12 @@
 <mat-card class="shadow-none">
   <mat-card-content>
-    <div *ngIf="index==0">
+    <mat-toolbar *ngIf="index==0" style="margin-top: -22px">
+      <span>Tableau des Images:</span>
       <span fxFlex></span>
-      <button mat-raised-button color="primary" (click)="uploadFile()">
-        <mat-icon>add</mat-icon>NEW </button>
-    </div>
+      <button mat-raised-button (click)="uploadFile()">
+        <mat-icon>add</mat-icon>NEW 
+      </button>
+    </mat-toolbar>
     <mat-grid-list cols="3">
       <mat-grid-tile *ngFor="let image of uploads" rowHeight="4:3">
         <img src="http://localhost:3000/{{image.file}}" alt="Card image cap" />

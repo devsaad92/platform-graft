@@ -1,9 +1,10 @@
 <mat-card class="shadow-none">
   <mat-card-content>
-    <div>
+    <mat-toolbar style="margin-top: -18px">
+      <span>Tableau de BioChimie:</span>
       <span fxFlex></span>
-      <button mat-raised-button color="primary" (click)="ajouterBilan()"> <mat-icon>add</mat-icon>NEW </button>
-    </div>
+      <button mat-raised-button (click)="ajouterBilan()"> <mat-icon>add</mat-icon>NEW </button>
+    </mat-toolbar>
 
     <ngx-datatable *ngIf='columns'
       class="material striped selection-cell cell-selection"
@@ -33,12 +34,12 @@
   </mat-card-content> 
    <hr> 
   <mat-card-content>
-    <!-- <h4 class="mt-0 mb-1">Courbe</h4> -->
-      <div *ngIf="results" style="width: 900px; height: 400px;">
-        <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="results"
-          xAxis="true" yAxis="true" roundDomains="true" legend="true" (select)="onSelect($event)">
-        </ngx-charts-line-chart>
-      </div>
+    <h4 class="mt-0 mb-1">Courbe</h4>
+    <mat-card-content *ngIf="results" style="width: 900px; height: 400px;">
+      <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="results"
+        xAxis="true" yAxis="true" roundDomains="true" legend="true" (select)="onSelect($event)">
+      </ngx-charts-line-chart>
+    </mat-card-content>
       <br><br>
   </mat-card-content>
 </mat-card>
