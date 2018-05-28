@@ -9,7 +9,7 @@ export interface ChildrenItems {
   state: string;
   name: string;
   type?: string;
-  icon: string;
+  icon?: string;
 }
 
 export interface Menu {

@@ -57,18 +57,18 @@ export class MenuComponent implements OnInit {
     this.addMenuItem2();
   }
 
-  // addMenuItem1(): void {
-  //   this.menuService.add({
-  //     state: 'menu',
-  //     name: 'MENU',
-  //     type: 'sub',
-  //     icon: 'trending_flat',
-  //     children: [
-  //       {state: 'menu', name: 'MENU'},
-  //       {state: 'timeline', name: 'MENU'}
-  //     ]
-  //   });
-  // }
+  addMenuItem1(): void {
+    this.menuService.add({
+      state: 'menu',
+      name: 'MENU',
+      type: 'sub',
+      icon: 'trending_flat',
+      children: [
+        {state: 'menu', name: 'MENU'},
+        {state: 'timeline', name: 'MENU'}
+      ]
+    });
+  }
 
   addMenuHome() {
     this.menuService.add(
