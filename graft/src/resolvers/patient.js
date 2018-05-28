@@ -1,12 +1,11 @@
 export default {
 
   Query: {
-    allPatients: (parent, args, { models }) => models.Patient.findAll(),
-    // models.sequelize.query('select * from patients join members on id = patient_id
-    // where medcin_id = ?', {
-    //   replacements: [user.id],
-    //   model: models.Patient,
-    // }),
+    allPatients: (parent, args, { models, user }) =>
+      models.sequelize.query('select * from patients join members on id = patient_id where medcin_id = ?', {
+        replacements: [user.id],
+        model: models.Patient,
+      }),
     // models.Patient.findAll({include:[{model:models.Medcin,where:{id:user.id},},],},{raw: true},),
     getPatient: (parent, args, { models }) => models.Patient.findOne({ where: args }),
   },

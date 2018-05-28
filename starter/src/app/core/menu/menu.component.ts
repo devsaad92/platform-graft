@@ -35,7 +35,9 @@ import { TranslateService } from '@ngx-translate/core';
         </a>
         <mat-nav-list class="sub-menu" *ngIf="menuitem.type === 'sub'">
           <mat-list-item *ngFor="let childitem of menuitem.children" routerLinkActive="open">
-            <a [routerLink]="['/', menuitem.state, childitem.state ]" class="relative">{{ childitem.name | translate }}</a>
+            <a [routerLink]="['/', menuitem.state, childitem.state ]" class="relative">
+             <mat-icon>{{ childitem.icon }}</mat-icon>
+             {{ childitem.name | translate }}</a>
           </mat-list-item>
         </mat-nav-list>
       </mat-list-item>
@@ -50,21 +52,37 @@ export class MenuComponent implements OnInit {
     public translate: TranslateService) { }
 
   ngOnInit() {
-      this.addMenuItem();
-      this.addMenuItem2();
+    this.addMenuHome();
+    this.addMenuItem();
+    this.addMenuItem2();
   }
 
-  addMenuItem1(): void {
-    this.menuService.add({
-      state: 'menu',
-      name: 'MENU',
-      type: 'sub',
-      icon: 'trending_flat',
-      children: [
-        {state: 'menu', name: 'MENU'},
-        {state: 'timeline', name: 'MENU'}
-      ]
-    });
+  // addMenuItem1(): void {
+  //   this.menuService.add({
+  //     state: 'menu',
+  //     name: 'MENU',
+  //     type: 'sub',
+  //     icon: 'trending_flat',
+  //     children: [
+  //       {state: 'menu', name: 'MENU'},
+  //       {state: 'timeline', name: 'MENU'}
+  //     ]
+  //   });
+  // }
+
+  addMenuHome() {
+    this.menuService.add(
+      {
+        state: '/',
+        name: 'HOME',
+        type: 'link',
+        icon: 'explore',
+        // badge: [{
+        //   type: 'extLink',
+        //   value: 'aaaaaaaaaa'
+        // }]
+      },
+    );
   }
 
   addMenuItem() {
@@ -72,10 +90,10 @@ export class MenuComponent implements OnInit {
       state: 'medcin',
       name: 'MEDECIN',
       type: 'sub',
-      icon: 'person',
+      icon: 'person_outline',
       children: [
-        { state: 'medcins', name: 'All Medecins' },
-        { state: 'addMedcin', name: 'Ajouter Medecin' }
+        { state: 'medcins', name: 'All Medecins', icon: 'list' },
+        { state: 'addMedcin', name: 'Add Medecin', icon: 'add' }
       ]
     });
   }
@@ -85,10 +103,10 @@ export class MenuComponent implements OnInit {
       state: 'patient',
       name: 'PATIENT',
       type: 'sub',
-      icon: 'person',
+      icon: 'person_outline',
       children: [
-        { state: 'patients', name: 'All Patients' },
-        { state: 'add-patient', name: 'Ajouter Patient' }
+        { state: 'patients', name: 'All Patients', icon: 'list' },
+        { state: 'add-patient', name: 'Add Patient', icon: 'add' }
       ]
     });
   }

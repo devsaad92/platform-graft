@@ -12,11 +12,11 @@ import { SubscriptionServer } from 'subscriptions-transport-ws';
 import jwt from 'jsonwebtoken';
 import formidable from 'formidable';
 
-import models from './src/models';
-import { refreshTokens } from './src/auth';
+import models from './models';
+import { refreshTokens } from './auth';
 
-const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './src/schema')));
-const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './src/resolvers')));
+const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schema')));
+const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers')));
 
 const schema = makeExecutableSchema({
   typeDefs,
@@ -67,7 +67,7 @@ const addUser = async (req, res, next) => {
   next();
 };
 
-const uploadDir = 'files';
+const uploadDir = 'src/files';
 
 const fileMiddleware = (req, res, next) => {
   if (!req.is('multipart/form-data')) {
@@ -118,7 +118,7 @@ app.use('/graphiql', graphiqlExpress({
   subscriptionsEndpoint: `ws://localhost:${PORT}/subscriptions`,
 }));
 
-app.use('/files', express.static('files'));
+app.use('/src/files', express.static('src/files'));
 
 const server = createServer(app);
 

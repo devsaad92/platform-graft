@@ -9,6 +9,7 @@ export interface ChildrenItems {
   state: string;
   name: string;
   type?: string;
+  icon: string;
 }
 
 export interface Menu {
@@ -20,32 +21,34 @@ export interface Menu {
   children?: ChildrenItems[];
 }
 
-const MENUITEMS = [
-  {
-    state: '/',
-    name: 'HOME',
-    type: 'link',
-    icon: 'explore',
-    /* badge: [{
-      type: 'extLink',
-      value: 'aaaaaaaaaa'
-    }] */
-  },
-  /* {
-    state: 'http://primer.nyasha.me/docs',
-    name: 'DOCS',
-    type: 'extTabLink',
-    icon: 'local_library'
-  }, */
-];
+// const MENUITEMS = [
+//   // {
+//   //   state: '/',
+//   //   name: 'HOME',
+//   //   type: 'link',
+//   //   icon: 'explore',
+//   //   /* badge: [{
+//   //     type: 'extLink',
+//   //     value: 'aaaaaaaaaa'
+//   //   }] */
+//   // },
+//   /* {
+//     state: 'http://primer.nyasha.me/docs',
+//     name: 'DOCS',
+//     type: 'extTabLink',
+//     icon: 'local_library'
+//   }, */
+// ];
 
 @Injectable()
 export class MenuService {
+  MENUITEMS = [];
+
   getAll(): Menu[] {
-    return MENUITEMS;
+    return this.MENUITEMS;
   }
 
   add(menu: Menu) {
-    MENUITEMS.push(menu);
+    this.MENUITEMS.push(menu);
   }
 }

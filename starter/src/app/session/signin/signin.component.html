@@ -6,13 +6,13 @@
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div *ngIf="!validLogin" class="alert alert-danger">Invalid username and/or password.</div>
             <div class="text-xs-center pb-1">
-              <img src="assets/images/logo-dark.svg" alt=""/>
+              <!-- <img src="assets/images/logo-dark.svg" alt=""/> -->
               <p class="mat-text-muted">Sign in with your app id to continue.</p>
             </div>
             <div fxLayout="column" fxLayoutAlign="space-around">
               <div class="pb-1">
                 <mat-form-field style="width: 100%">
-                  <input matInput placeholder="Username" [formControl]="form.controls['uname']">
+                  <input matInput placeholder="Email address" [formControl]="form.controls['uname']">
                 </mat-form-field>
                 <small *ngIf="form.controls['uname'].hasError('required') && form.controls['uname'].touched" class="mat-text-warn">Username is required.</small>
               </div>
