@@ -21,24 +21,6 @@ export interface Menu {
   children?: ChildrenItems[];
 }
 
-// const MENUITEMS = [
-//   // {
-//   //   state: '/',
-//   //   name: 'HOME',
-//   //   type: 'link',
-//   //   icon: 'explore',
-//   //   /* badge: [{
-//   //     type: 'extLink',
-//   //     value: 'aaaaaaaaaa'
-//   //   }] */
-//   // },
-//   /* {
-//     state: 'http://primer.nyasha.me/docs',
-//     name: 'DOCS',
-//     type: 'extTabLink',
-//     icon: 'local_library'
-//   }, */
-// ];
 
 @Injectable()
 export class MenuService {

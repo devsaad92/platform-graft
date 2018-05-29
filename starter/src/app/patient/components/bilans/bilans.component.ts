@@ -30,7 +30,7 @@ export class BilansComponent implements OnInit, OnChanges {
   constructor(private courbeService: CourbeService) { }
 
   ngOnInit() {
-    this.showChart();
+
   }
 
   ngOnChanges() {

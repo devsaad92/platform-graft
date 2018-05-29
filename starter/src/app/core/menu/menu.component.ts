@@ -74,7 +74,7 @@ export class MenuComponent implements OnInit {
     this.menuService.add(
       {
         state: '/',
-        name: 'HOME',
+        name: 'Accueil',
         type: 'link',
         icon: 'explore',
         // badge: [{
@@ -105,7 +105,7 @@ export class MenuComponent implements OnInit {
       type: 'sub',
       icon: 'person_outline',
       children: [
-        { state: 'patients', name: 'All Patients', icon: 'list' },
+        { state: 'patients', name: 'Liste Patients', icon: 'list' },
         { state: 'add-patient', name: 'Add Patient', icon: 'add' }
       ]
     });

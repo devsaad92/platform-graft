@@ -13,6 +13,8 @@ import { MedcinService } from './../../shared/services/medcin.service';
 export class EditMedcinComponent implements OnInit {
   public form: FormGroup;
   loading: Boolean;
+  id: number;
+  public selected : any;
  // @Input() id: number;
   @Input() medcin: Medcin = {};
   @Output() annulerMedcinForm = new EventEmitter();

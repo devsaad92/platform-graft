@@ -41,29 +41,32 @@
                   <app-hematologies *ngIf="switchHematologie && switchHematologieUp" [hematologies]="patient.hematologies" (ajoutHematologieForm)="ajoutHematologieForm($event)" (updateHematologie)="updateHematologie($event)"></app-hematologies>
                   <app-hematologie-form *ngIf="!switchHematologie || !switchHematologieUp" [hematologie]="hematologie" (annulerForm)="switchHematologieUp=true; switchHematologie=true" (submitSuccess)="switchHematologie=true; switchHematologieUp=true"></app-hematologie-form>
                 </mat-tab>
-              </mat-tab-group>
-            </mat-tab>
-            <mat-tab>
-                <ng-template matTabLabel>Photos</ng-template>
-                <mat-tab-group>
-                  <mat-tab>
-                    <ng-template matTabLabel>Bacterologie</ng-template>
+                <mat-tab>
+                  <ng-template matTabLabel>Bacterologie</ng-template>
+                  <mat-card-content>
                     <app-uploads *ngIf="switchUpload" [uploads]="bacterologie" [index]="0" (uploadForm)="switchUpload=false"></app-uploads>
                     <app-upload-form *ngIf="!switchUpload" (annulerUploadForm)="switchUpload=true" (submitSuccess)="switchUpload=true"></app-upload-form>
-                  </mat-tab>
-                  <mat-tab>
-                    <ng-template matTabLabel>Virologie</ng-template>
+                  </mat-card-content>
+                </mat-tab>
+                <mat-tab>
+                  <ng-template matTabLabel>Virologie</ng-template>
+                  <mat-card-content>
                     <app-uploads [uploads]="virologie" [index]="1"></app-uploads>
-                  </mat-tab>
-                  <mat-tab>
-                    <ng-template matTabLabel>Parasitologie</ng-template>
+                  </mat-card-content>
+                </mat-tab>
+                <mat-tab>
+                  <ng-template matTabLabel>Parasitologie</ng-template>
+                  <mat-card-content>
                     <app-uploads [uploads]="parasitologie" [index]="2"></app-uploads>
-                  </mat-tab>
-                  <mat-tab>
-                    <ng-template matTabLabel>Fluid Corporels</ng-template>
+                  </mat-card-content>
+                </mat-tab>
+                <mat-tab>
+                  <ng-template matTabLabel>Fluid Corporels</ng-template>
+                  <mat-card-content>
                     <app-uploads [uploads]="corporels" [index]="3"></app-uploads>
-                  </mat-tab>
-                </mat-tab-group>
+                  </mat-card-content>
+                </mat-tab>
+              </mat-tab-group>
             </mat-tab>
           </mat-tab-group>
         </mat-card>
