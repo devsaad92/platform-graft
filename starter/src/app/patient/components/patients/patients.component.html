@@ -3,15 +3,15 @@
   <mat-card-title> PATIENTS
     <br>
       <mat-form-field>
-          <mat-select placeholder="Filter pations" [(ngModel)]="Currentpations" (ngModelChange)="pationViewManager(Currentpations)">
+          <mat-select placeholder="Filter patients" [(ngModel)]="Currentpations" (ngModelChange)="pationViewManager(Currentpations)">
             <mat-option  [value]="1">
-              all pation
+              Tous les patients
             </mat-option>
             <mat-option  [value]="2">
-              waited
+              En attente
             </mat-option>
             <mat-option  [value]="3">
-              greffed
+              Greffee
             </mat-option>
           </mat-select>
         </mat-form-field>

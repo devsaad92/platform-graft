@@ -13,7 +13,7 @@ export class GreffePipe implements PipeTransform {
     const today = +Date.now();
     const date = +new Date(value).getTime();
     const diff = (today - date) / (24 * 60 * 60 * 1000);
-    return Math.trunc(diff) + 'Jrs Aprés greffe';
+    return  ' J+' + Math.trunc(diff) + ' Post greffe ';
   }
 
 }

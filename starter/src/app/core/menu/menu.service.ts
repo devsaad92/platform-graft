@@ -23,7 +23,7 @@ export interface Menu {
 const MENUITEMS = [
   {
     state: '/',
-    name: 'HOME',
+    name: 'Accueil',
     type: 'link',
     icon: 'explore',
     /* badge: [{
