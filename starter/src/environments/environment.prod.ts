@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseURL: 'localhost'
+  baseURL: 'greff.cinq-e.com'
 };

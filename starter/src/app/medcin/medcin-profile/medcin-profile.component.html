@@ -55,20 +55,8 @@
     <div fxFlex.gt-sm="60" fxFlex="100">
       <div fxLayout="column">
         <mat-card>
-          <mat-selection-list>
-            <h3 mat-subheader>Permissions</h3>
-      
-            <mat-list-option value="1">Create</mat-list-option>
-            <mat-list-option selected value="1">Read</mat-list-option>
-            <mat-list-option value="1">Update</mat-list-option>
-            <mat-list-option value="1">Delete</mat-list-option>
-          </mat-selection-list>
-        </mat-card>
-        <hr>
-        <br>
-        <mat-card>
-          <mat-card-header> <h3>Mes Patients</h3> </mat-card-header>
-          <mat-card-content>
+          <mat-card-header> Ses Patients </mat-card-header>
+          <!-- <mat-card-content>
             <div fxLayout="row">
               <div fxFlex="25"></div>
               <div fxFlex="45">
@@ -85,8 +73,8 @@
                 <button mat-raised-button color="primary" (click)="addPatientMember()"><mat-icon>add</mat-icon>Add</button>
               </div>
             </div>
-          </mat-card-content>
-          <br>
+          </mat-card-content> -->
+
           <mat-card-content>
             <mat-table #table [dataSource]="dataSource">
 

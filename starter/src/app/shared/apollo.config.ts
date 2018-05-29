@@ -8,7 +8,7 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { setContext } from 'apollo-link-context';
 import { getMainDefinition } from 'apollo-utilities';
 import createFileLink from './createFileLink';
-import {environment} from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 
 
 @NgModule({

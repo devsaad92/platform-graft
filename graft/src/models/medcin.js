@@ -18,6 +18,13 @@ export default (sequelize, DataTypes) => {
         field: 'medcin_id',
       },
     });
+
+    Medcin.belongsTo(models.Role, {
+      foreignKey: {
+        name: 'roleId',
+        field: 'role_id',
+      },
+    });
   };
 
   return Medcin;

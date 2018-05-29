@@ -122,7 +122,7 @@ app.use('/src/files', express.static('src/files'));
 
 const server = createServer(app);
 
-models.sequelize.sync().then(() =>
+models.sequelize.sync({}).then(() =>
   server.listen(PORT, url, () => {
     console.log(`Apollo Server is now running on http://${url}:${PORT}`);
     // eslint-disable-next-line
