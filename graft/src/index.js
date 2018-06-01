@@ -69,6 +69,7 @@ const addUser = async (req, res, next) => {
 
 const uploadDir = 'src/files';
 
+// eslint-disable-next-line
 const fileMiddleware = (req, res, next) => {
   if (!req.is('multipart/form-data')) {
     return next();
@@ -87,8 +88,6 @@ const fileMiddleware = (req, res, next) => {
 
     if (Object.keys(files).length) {
       const { file: { type, path: filePath } } = files;
-      // console.log(type);
-      // console.log(path);
       document.variables.file = {
         type,
         path: filePath,
