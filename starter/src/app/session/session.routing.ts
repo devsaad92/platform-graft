@@ -1,3 +1,4 @@
+import { ResetGuardService } from './../shared/services/reset-guard.service';
 import { Routes } from '@angular/router';
 
 import { ErrorComponent } from './error/error.component';
@@ -32,7 +33,7 @@ export const SessionRoutes: Routes = [
       }, {
         path: 'reset/:token',
         component: ResetComponent,
-        // canActivate: [ResetGuardService],
+        canActivate: [ResetGuardService],
       }]
   }
 ];

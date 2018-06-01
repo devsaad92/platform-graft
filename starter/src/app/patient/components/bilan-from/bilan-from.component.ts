@@ -10,8 +10,7 @@ import { PatientService } from './../../services/patient.service';
 export class BilanFromComponent implements OnInit {
   @Output() annulerForm = new EventEmitter();
   @Output() submitSuccess = new EventEmitter();
-  @Input()
-  bilan: Bilan;
+  @Input() bilan: Bilan;
   bilanFeilds = [
         'soduim',
          'potassuim',
