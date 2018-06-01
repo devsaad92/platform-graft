@@ -1,4 +1,4 @@
-import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
+import { graphqlExpress } from 'apollo-server-express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
@@ -112,10 +112,11 @@ app.use('/graphql', bodyParser.json(), fileMiddleware, graphqlExpress(req => ({
   },
 })));
 
-app.use('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql',
-  subscriptionsEndpoint: `ws://${url}:${PORT}/subscriptions`,
-}));
+// dev only
+// app.use('/graphiql', graphiqlExpress({
+//   endpointURL: '/graphql',
+//   subscriptionsEndpoint: `ws://${url}:${PORT}/subscriptions`,
+// }));
 
 app.use('/src/files', express.static('src/files'));
 

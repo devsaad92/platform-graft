@@ -92,8 +92,8 @@ export class MenuComponent implements OnInit {
       type: 'sub',
       icon: 'person_outline',
       children: [
-        { state: 'medcins', name: 'All Medecins', icon: 'list' },
-        { state: 'addMedcin', name: 'Add Medecin', icon: 'add' }
+        { state: 'medcins', name: 'Liste Medecins', icon: 'list' },
+        { state: 'addMedcin', name: 'Ajouter Medecin', icon: 'add' }
       ]
     });
   }
@@ -106,7 +106,7 @@ export class MenuComponent implements OnInit {
       icon: 'person_outline',
       children: [
         { state: 'patients', name: 'Liste Patients', icon: 'list' },
-        { state: 'add-patient', name: 'Add Patient', icon: 'add' }
+        { state: 'add-patient', name: 'Ajouter Patient', icon: 'add' }
       ]
     });
   }
