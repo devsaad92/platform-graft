@@ -1,0 +1,18 @@
+{
+    "name": "platform-graft",
+    "version": "1.0.5",
+    "description": "Graft of children patients",
+    "repository": "https://github.com/devsaad92/platform-graft",
+    "author": "saadnanagi <saadnanagi@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "concurrently": "^3.5.1",
+        "lerna": "^2.11.0"
+    },
+    "scripts": {
+        "start": "concurrently \"npm run server\" \"npm run client\"",
+        "client": "(cd packages/client && npm start)",
+        "server": "(cd packages/server && npm start)",
+        "postinstall": "lerna bootstrap"
+    }
+}

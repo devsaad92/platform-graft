@@ -1,0 +1,91 @@
+
+
+<div class="wrapper">
+  <div fxLayout="row" fxLayoutWrap="wrap">
+    <div fxFlex.gt-sm="40" fxFlex="100">
+      <mat-card *ngIf="switch">
+        <mat-card-content>
+          <div fxLayout="row">
+            <div fxFlex="55">
+              <h1 class="ma-0"> {{ medcin.firstName}}
+                <b> {{ medcin.lastName }} </b>
+              </h1>
+              <small> {{ medcin.email }} </small>
+              <br><br>
+              <p>
+                <b>Sexe: </b>{{medcin.sexe}}
+              </p>
+              <p>
+                <b>Date de la Naissance: </b>
+                {{medcin.dateDeNaissance | date:'yyyy-MM-dd HH:mm'}}
+              </p>
+              <p class="mt-xs mb-xs"> <b>Spécialité: </b> {{ medcin.specialty}} </p>
+              <button mat-raised-button color="primary" (click)="updateMedcin()">Modifier</button>
+            </div>
+          </div>
+        </mat-card-content>
+        <hr>
+        <mat-card-content>
+          <div fxLayout="row" class="text-xs-center">
+            <div fxFlex="33">
+              <h1 class="ma-0">
+                <b>{{ patients?.length }}</b>
+              </h1>
+              <small>Patients</small>
+            </div>
+            <div fxFlex="33">
+              <h1 class="ma-0">
+                <b>10</b>
+              </h1>
+              <small>Bilans</small>
+            </div>
+            <div fxFlex="33">
+              <h1 class="ma-0">
+                <b>17</b>
+              </h1>
+              <small>Uploads</small>
+            </div>
+          </div>
+        </mat-card-content>
+        <hr>
+      </mat-card>
+      <app-edit-medcin *ngIf="!switch" [medcin]="medcin" (annulerMedcinForm)="switch=true" (updateForm)="switch=true"></app-edit-medcin>
+
+    </div>
+    <div fxFlex.gt-sm="60" fxFlex="100">
+      <div fxLayout="column">
+        <mat-card>
+          <mat-card-header> Ses Patients </mat-card-header>
+          <mat-card-content>
+            <mat-table #table [dataSource]="dataSource">
+
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+              <mat-cell *matCellDef="let patient"> {{patient.id}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="firstName">
+              <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
+                <mat-cell *matCellDef="let patient">
+                  {{patient.firstName}}          
+                </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="lastName">
+              <mat-header-cell *matHeaderCellDef> Prénom </mat-header-cell>
+                <mat-cell *matCellDef="let patient">
+                  {{patient.lastName }}             
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+

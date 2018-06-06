@@ -1,0 +1,54 @@
+<div class="wrapper">
+  <div fxLayout="row" fxLayoutWrap="wrap">
+    <div fxFlex.gt-sm="40" fxFlex="100">
+      <mat-card>
+        <mat-card-content>
+          <div fxLayout="column">
+            <mat-form-field style="width: 100%">
+              <mat-select [(value)]="selected" placeholder="Medecin">
+                <mat-option></mat-option>
+                <mat-option value="1">aaa bbbb</mat-option>
+                <mat-option value="2">ccc dddd</mat-option>
+                <mat-option value="3">eee fff</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="addPatientMember()">
+              <mat-icon>add</mat-icon>Ajouter
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div fxFlex.gt-sm="60" fxFlex="100">
+      <mat-card>
+        <!-- <mat-card-content>
+          <mat-table #table [dataSource]="dataSource">
+
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+              <mat-cell *matCellDef="let patient"> {{medcin.id}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="firstName">
+              <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
+              <mat-cell *matCellDef="let medcin">
+                {{medcin.firstName}}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="lastName">
+              <mat-header-cell *matHeaderCellDef> Prénom </mat-header-cell>
+              <mat-cell *matCellDef="let medcin">
+                {{medcin.lastName }}
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </mat-card-content> -->
+      </mat-card>
+    </div>
+  </div>
+</div>
+

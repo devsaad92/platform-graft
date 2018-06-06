@@ -1,0 +1,47 @@
+<div class="wrapper">
+  <mat-card>
+  <div fxLayout="row" fxLayoutWrap="wrap">
+    <div fxFlex.gt-sm="40" fxFlex="100">
+      <!-- <mat-card> -->
+        <mat-card-content>
+          <div fxLayout="column">
+            <mat-form-field style="width:100%">
+              <input matInput [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" placeholder="Date Time" [(ngModel)]="traitement.date" name="date">
+              <owl-date-time #dt1></owl-date-time>
+            </mat-form-field>
+            <mat-form-field style="width:100%">
+              <textarea matInput placeholder="Description" rows="3" [(ngModel)]="traitement.text" name="text"></textarea>
+            </mat-form-field>
+            <button mat-raised-button color="primary" (click)="addPatientTraitement()"><mat-icon>add</mat-icon>Ajouter</button>
+          </div>
+        </mat-card-content>
+      <!-- </mat-card> -->
+    </div>
+    <div fxFlex.gt-sm="60" fxFlex="100">
+      <!-- <mat-card> -->
+        <mat-card-content>
+          <mat-table #table [dataSource]="dataSource">
+            <ng-container matColumnDef="date">
+              <mat-header-cell *matHeaderCellDef> Date Time </mat-header-cell>
+              <mat-cell *matCellDef="let traitement">
+                {{traitement.date}}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="text">
+              <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+              <mat-cell *matCellDef="let traitement">
+                {{traitement.text }}
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </mat-card-content>
+      <!-- </mat-card> -->
+    </div>
+  </div>
+  </mat-card>
+</div>
+
