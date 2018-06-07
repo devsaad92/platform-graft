@@ -1,3 +1,4 @@
+import { Member } from './../../shared/models/Member';
 import { Traitement } from './../../shared/models/Traitement';
 import { Hematologie } from './../../shared/models/hematologie';
 import { Upload } from './../../shared/models/upload';
@@ -30,7 +31,8 @@ import {
   FILE_UPLOADED_MUTATION,
   CREATE_HEMATOLOGIE_MUTATION,
   UPDATE_HEMATOLOGIE_MUTATION,
-  CREATE_MUTATION_TRAITEMENT
+  CREATE_MUTATION_TRAITEMENT,
+  CREATE_MUTATION_addMedcinPatient
 } from './../graphql';
 
 @Injectable()
@@ -247,4 +249,16 @@ export class PatientService {
       refetchQueries: [{ query: PATIENT_QUERY, variables: { id: taritement.patientId } }]
     }).map(response => response.data);
   }
+
+  addMedcinPatient(member: Member) {
+    return this.apollo.mutate({
+      mutation: CREATE_MUTATION_addMedcinPatient,
+      variables: {
+        medcinId: member.medcinId,
+        patientId: member.patientId
+      },
+      refetchQueries: [{ query: PATIENT_QUERY, variables: { id: member.patientId } }]
+    }).map(response => response.data);
+  }
+
 }

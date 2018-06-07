@@ -16,8 +16,8 @@ export default {
       const { id, ...params } = args;
       return models.Patient.update(params, { where: { id } });
     },
-    addMedcinPatient: (parent, { patientId }, { models, user }) =>
-      models.Member.create({ medcinId: user.id, patientId }),
+    addMedcinPatient: (parent, { medcinId, patientId }, { models }) =>
+      models.Member.create({ medcinId, patientId }),
   },
   Patient: {
     bilans: ({ id }, args, { models }) => models.Bilan.findAll({ where: { patientId: id } }),
@@ -38,7 +38,7 @@ export default {
         model: models.Medcin,
       }),
     medcins: ({ id }, args, { models }) =>
-      models.sequelize.query('select * from medcins join members on id != medcin_id where patient_id = ?', {
+      models.sequelize.query('select * from medcins where id not in (select medcin_id from members where patient_id = ?)', {
         replacements: [id],
         model: models.Medcin,
       }),

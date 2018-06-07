@@ -8,6 +8,7 @@ export default `
     dateDeNaissance: String       
     specialty: String!
     email: String!
+    roleId: Int
     patients: [Patient]
   }
 

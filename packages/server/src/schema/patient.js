@@ -40,7 +40,7 @@ export default `
       sexe: String,
       dateDeGreffe: String): Int
 
-    addMedcinPatient(patientId: Int!, medcinId: Int!): Boolean
+    addMedcinPatient(medcinId: Int!, patientId: Int!): Boolean
   }
 
 `;

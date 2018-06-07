@@ -561,3 +561,16 @@ export const CREATE_MUTATION_TRAITEMENT = gql`
   }
 `;
 
+export const CREATE_MUTATION_addMedcinPatient = gql`
+  mutation addMedcinPatient(
+    $medcinId: Int!,
+    $patientId: Int!,
+    ) {
+    addMedcinPatient(
+      medcinId: $medcinId,
+      patientId: $patientId
+    )
+  }
+`;
+
+

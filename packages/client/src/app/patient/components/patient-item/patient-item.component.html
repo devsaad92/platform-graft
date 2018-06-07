@@ -74,7 +74,7 @@
             </mat-tab>
             <mat-tab>
               <ng-template matTabLabel>Medecins</ng-template>
-              <app-membres [medcins]="patient.medcins" [members]="patient.members"></app-membres>
+              <app-membres [medcins]="patient.medcins" [members]="patient.members" [patientId]="patientId"></app-membres>
             </mat-tab>
           </mat-tab-group>
         </mat-card>
