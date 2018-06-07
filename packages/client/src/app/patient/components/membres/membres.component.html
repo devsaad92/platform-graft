@@ -43,7 +43,7 @@
               </mat-cell>
             </ng-container>
 
-            <!-- <ng-container matColumnDef="admin">
+            <ng-container matColumnDef="admin">
               <mat-header-cell *matHeaderCellDef> Admin </mat-header-cell>
               <mat-cell *matCellDef="let medcin">
                 {{ medcin.admin }}
@@ -53,9 +53,9 @@
             <ng-container matColumnDef="isAuthorize">
               <mat-header-cell *matHeaderCellDef> Authorized </mat-header-cell>
               <mat-cell *matCellDef="let medcin">
-                {{medcin.isAuthorize }}
+                {{ medcin.isAuthorize }}
               </mat-cell>
-            </ng-container> -->
+            </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

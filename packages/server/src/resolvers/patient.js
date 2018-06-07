@@ -36,6 +36,7 @@ export default {
       models.sequelize.query('select * from medcins join members on id = medcin_id where patient_id = ?', {
         replacements: [id],
         model: models.Medcin,
+        raw: true,
       }),
     medcins: ({ id }, args, { models }) =>
       models.sequelize.query('select * from medcins where id not in (select medcin_id from members where patient_id = ?)', {

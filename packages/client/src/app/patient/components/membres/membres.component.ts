@@ -13,7 +13,7 @@ export class MembresComponent implements OnChanges {
   @Input() members: Medcin[];
   @Input() patientId;
   medcinId: number;
-  displayedColumns = ['id', 'firstName', 'lastName']; // 'admin', 'isAuthorize'];
+  displayedColumns = ['id', 'firstName', 'lastName', 'admin', 'isAuthorize'];
   dataSource: any;
   selected = '0';
 
@@ -21,7 +21,6 @@ export class MembresComponent implements OnChanges {
 
   ngOnChanges() {
     this.dataSource = new MatTableDataSource(this.members);
-    console.log(this.medcins);
   }
 
   addPatientMember() {

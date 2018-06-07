@@ -9,6 +9,8 @@ export default `
     specialty: String!
     email: String!
     roleId: Int
+    admin: Boolean!
+    isAuthorize: Boolean!
     patients: [Patient]
   }
 
