@@ -32,6 +32,15 @@ export default {
       models.Upload.findAll({ where: { patientId: id } }),
     hematologies: ({ id }, args, { models }) =>
       models.Hematologie.findAll({ where: { patientId: id } }),
-    // medcins: ({ id }, args, { models }) => models.Medcin.findAll({ where: { patientId: id } }),
+    members: ({ id }, args, { models }) =>
+      models.sequelize.query('select * from medcins join members on id = medcin_id where patient_id = ?', {
+        replacements: [id],
+        model: models.Medcin,
+      }),
+    medcins: ({ id }, args, { models }) =>
+      models.sequelize.query('select * from medcins join members on id != medcin_id where patient_id = ?', {
+        replacements: [id],
+        model: models.Medcin,
+      }),
   },
 };

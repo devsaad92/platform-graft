@@ -8,6 +8,7 @@ export default `
     dateDeNaissance: String!    
     dateDeGreffe: String
     medcins: [Medcin]
+    members: [Medcin]
     cliniques: [Clinique]
     instructions: [Instruction]
     traitements: [Traitement]
@@ -39,7 +40,7 @@ export default `
       sexe: String,
       dateDeGreffe: String): Int
 
-    addMedcinPatient(patientId: Int!): Boolean
+    addMedcinPatient(patientId: Int!, medcinId: Int!): Boolean
   }
 
 `;

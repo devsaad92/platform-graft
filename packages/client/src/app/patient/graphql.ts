@@ -43,6 +43,8 @@ export const PATIENT_QUERY = gql`
       ...informations
       ...uploads
       ...hematologies
+      ...medcins
+      ...members
     }
   }
   fragment informations on Patient {
@@ -128,6 +130,20 @@ export const PATIENT_QUERY = gql`
       facteurXa
       dDimeres
       date
+    }
+  }
+  fragment medcins on Patient {
+    medcins {
+      id
+      firstName
+      lastName
+    }
+  }
+  fragment members on Patient {
+    members {
+      id
+      firstName
+      lastName
     }
   }
 
