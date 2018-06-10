@@ -6,10 +6,12 @@ import { tokenNotExpired, JwtHelper } from 'angular2-jwt';
 @Injectable()
 export class AuthService {
   currentUser: any;
+  jwt: JwtHelper;
   private _isAuthenticated = new BehaviorSubject(false);
 
 
   constructor() {
+    this.jwt = new JwtHelper();
     this.autoLogin();
   }
 
@@ -27,8 +29,7 @@ export class AuthService {
 
   getToken(token: string) {
     try {
-    const jwt = new JwtHelper();
-    return jwt.decodeToken(token);
+    return this.jwt.decodeToken(token);
     } catch (e) {
       console.log(e);
       return null;
@@ -36,8 +37,7 @@ export class AuthService {
   }
 
   setUserToken(token?: string) {
-    const jwt = new JwtHelper();
-    this.currentUser = jwt.decodeToken(token);
+    this.currentUser = this.jwt.decodeToken(token);
 
     this._isAuthenticated.next(true);
   }
@@ -50,18 +50,22 @@ export class AuthService {
     this._isAuthenticated.next(false);
   }
 
-  loggedIn() {
-    return tokenNotExpired();
-    // const jwt = new JwtHelper();
-    // return jwt.getTokenExpirationDate(token);
-  }
-
   autoLogin() {
     const token = localStorage.getItem('token');
-
-    if (token) {
-      this.setUserToken(token);
+    const refreshToken = localStorage.getItem('refreshToken');
+    try {
+      this.jwt.decodeToken(token);
+      const { exp } = this.jwt.decodeToken(refreshToken);
+      if (Date.now() / 1000 > exp) {
+        this._isAuthenticated.next(false);
+        return false;
+      }
+    } catch (error) {
+      this._isAuthenticated.next(false);
+      return false;
     }
+
+    this.setUserToken(token);
   }
 
 }

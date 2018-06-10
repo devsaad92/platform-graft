@@ -30,7 +30,6 @@ import { AuthService } from './shared/services/auth.service';
 import { MedcinService } from './shared/services/medcin.service';
 import { ResetGuardService } from './shared/services/reset-guard.service';
 import { SharedModule } from './shared/shared.module';
-import { CourbeService } from './patient/services/courbe.service';
 
 
 
@@ -89,7 +88,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ResetGuardService,
     MedcinService,
     PatientService,
-    CourbeService
    // { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent]

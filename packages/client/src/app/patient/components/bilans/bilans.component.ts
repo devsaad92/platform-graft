@@ -6,7 +6,8 @@ import { CourbeService } from './../../services/courbe.service';
 @Component({
   selector: 'app-bilans',
   templateUrl: './bilans.component.html',
-  styleUrls: ['./bilans.component.scss']
+  styleUrls: ['./bilans.component.scss'],
+  providers: [CourbeService]
 })
 export class BilansComponent implements OnInit, OnChanges {
   @Input() bilans: Bilan[];
