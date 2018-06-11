@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Upload } from '../../../shared/models/upload';
-import {environment} from '../../../../environments/environment.prod'
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-uploads',
@@ -9,7 +9,7 @@ import {environment} from '../../../../environments/environment.prod'
   styleUrls: ['./uploads.component.scss']
 })
 export class UploadsComponent {
-  public url =environment.baseURL
+  public url = environment.baseURL;
   @Output() uploadForm = new EventEmitter();
   @Input() uploads: Upload[];
   @Input() index = 0;

@@ -34,8 +34,8 @@ export default {
       tryLogin(email, password, models, SECRET, SECRET2),
     forgetPassword: async (parent, { email }, { transporter, models, SECRET }) =>
       tryForgetPassword(email, transporter, models, SECRET),
-    resetPassword: async (parent, { userId, newPassword }, { models }) =>
-      tryResetPassword(userId, newPassword, models),
+    resetPassword: async (parent, { email, newPassword }, { models }) =>
+      tryResetPassword(email, newPassword, models),
   },
   Medcin: {
     patients: ({ id }, args, { models }) =>

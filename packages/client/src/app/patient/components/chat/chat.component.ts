@@ -22,7 +22,7 @@ export class ChatComponent implements OnInit {
   constructor(private patientService: PatientService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.userId = this.authService.currentUser.user.id;
+    this.userId = this.authService.currentUser.id;
   }
 
   createClinique() {

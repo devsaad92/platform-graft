@@ -110,11 +110,11 @@ export class MedcinService {
     });
   }
 
-  resetPassword(id: number, newpass: string) {
+  resetPassword(email: string, newpass: string) {
     return this.apollo.mutate({
       mutation: RESET_PASSWORD_MUTATION,
       variables: {
-        userId: id,
+        email,
         newPassword: newpass
       }
     });

@@ -30,7 +30,7 @@ export default `
     deleteMedcin(id:Int!): Medcin
     login(email: String!, password: String!): userToken!
     forgetPassword(email: String!): Medcin
-    resetPassword(userId: Int!, newPassword: String!): Boolean
+    resetPassword(email: String!, newPassword: String!): Boolean
   }
 
   type Subscription {

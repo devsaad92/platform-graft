@@ -73,9 +73,8 @@
                 <mat-form-field style="width: 100%">
                   <mat-select [(value)]="selected" placeholder="Spécialité" [formControl]="form.controls['specialty']">
                     <mat-option></mat-option>
-                    <mat-option value="chirigien">Chirigien</mat-option>
-                    <mat-option value="pediatrie">Pediatrie</mat-option>
-                    <mat-option value="radiology">Radiology</mat-option>
+                    <mat-option value="doctor">Doctor</mat-option>
+                    <mat-option value="nurse">Nurse</mat-option>
                   </mat-select>
                 </mat-form-field>
                 <small *ngIf="form.controls['specialty'].hasError('required') && form.controls['specialty'].touched" class="mat-text-warn">You must include a specialty.</small>

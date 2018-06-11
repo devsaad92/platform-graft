@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';
 export const createTokens = async (user, secret, secret2) => {
   const createToken = jwt.sign(
     {
-      user: _.pick(user, ['id', 'firstName', 'lastName', 'email']),
+      user: _.pick(user, ['id', 'email', 'roleId']),
     },
     secret,
     {
@@ -15,11 +15,11 @@ export const createTokens = async (user, secret, secret2) => {
 
   const createRefreshToken = jwt.sign(
     {
-      user: _.pick(user, ['id', 'firstName', 'lastName', 'email']),
+      user: _.pick(user, ['id', 'email', 'roleId']),
     },
     secret2,
     {
-      expiresIn: '3h',
+      expiresIn: '7d',
     },
   );
 
@@ -57,7 +57,7 @@ export const refreshTokens = async (token, refreshToken, models, SECRET, SECRET2
   return {
     token: newToken,
     refreshToken: newRefreshToken,
-    user: _.pick(user, ['id', 'firstName', 'lastName', 'email']),
+    user: _.pick(user, ['id', 'email', 'roleId']),
   };
 };
 
@@ -92,30 +92,30 @@ export const tryForgetPassword = async (email, transporter, models, SECRET) => {
   if (!user) throw new Error(`Could not find user with email: ${email}`);
 
   try {
-    const emailToken = jwt.sign({ user: _.pick(user, 'id') }, SECRET, { expiresIn: '1h' });
+    const emailToken = jwt.sign({ user: _.pick(user, 'email') }, SECRET, { expiresIn: '1d' });
 
     const url = `http://localhost:4200/session/reset/${emailToken}`;
 
     await transporter.sendMail({
       to: email,
-      subject: 'Confirm Email',
-      html: `Please click this email to confirm your email: <a href='${url}'>${url}</a>`,
+      subject: 'Reset Password',
+      html: `Please click this link to reset your password: <a href='${url}'>${url}</a>`,
     });
   } catch (e) {
-    // console.log(e);
     throw new Error(`Could not: ${e}`);
   }
 
   return user;
 };
 
-export const tryResetPassword = async (userId, newPassword, models) => {
+export const tryResetPassword = async (email, newPassword, models) => {
+  const user = await models.Medcin.findOne({ where: { email } });
+  if (!user) throw new Error(`Could not find user with email: ${email}`);
   try {
     const hashedPassword = await bcrypt.hash(newPassword, 12);
-    await models.Medcin.update({ password: hashedPassword }, { where: { id: userId } });
+    await models.Medcin.update({ password: hashedPassword }, { where: { email } });
     return true;
   } catch (e) {
-    // throw new Error(`Could not: ${e}`);
     return false;
   }
 };

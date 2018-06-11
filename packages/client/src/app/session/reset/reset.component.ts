@@ -15,7 +15,7 @@ const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
 })
 export class ResetComponent implements OnInit {
   public form: FormGroup;
-  userId: number;
+  userEmail: string;
 
   constructor(
       private fb: FormBuilder,
@@ -32,14 +32,17 @@ export class ResetComponent implements OnInit {
 
     const tokenReset = this.route.snapshot.params['token'];
     localStorage.setItem('RESET-TOKEN', tokenReset);
-    const token = this.authService.getToken(tokenReset);
-    if (!token) { return null; }
-    this.userId = token.user.id;
+    const user = this.authService.getToken(tokenReset);
+    if (!user) { return null; }
+    this.userEmail = user.email;
 
   }
 
   onSubmit() {
-    this.medcinService.resetPassword(this.userId, this.form.value.password)
+    if (!this.userEmail) {
+      return ;
+    }
+    this.medcinService.resetPassword(this.userEmail, this.form.value.password)
       .subscribe(() => {
         this.router.navigate( ['/session/signin'] );
       }, (error) => {
