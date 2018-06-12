@@ -21,7 +21,7 @@
               </p>
               <p class="mt-xs mb-xs"> <b>Spécialité: </b> {{ medcin.specialty}} </p>
               <p class="mt-xs mb-xs" *ngIf="medcin.roleId === 1"> <b>Role: </b> Administarteur</p>
-              <p class="mt-xs mb-xs" *ngIf="medcin.roleId !== 1"> <b>Role: </b> {{ medcin.roleId == 2 ? 'Assistant' : 'No role' }} </p>
+              <p class="mt-xs mb-xs" *ngIf="medcin.roleId !== 1"> <b>Role: </b> {{ medcin.roleId ? 'Assistant' : 'No role' }} </p>
               <button mat-raised-button color="primary" (click)="updateMedcin()">Modifier</button>
             </div>
           </div>

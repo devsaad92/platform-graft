@@ -95,7 +95,8 @@ export class MedcinService {
         dateDeNaissance: medcin.dateDeNaissance,
         sexe: medcin.sexe,
         specialty: medcin.specialty,
-        email: medcin.email
+        email: medcin.email,
+        roleId: medcin.roleId
       },
       refetchQueries: [{ query: ALL_MEDCINS_QUERY }]
     });

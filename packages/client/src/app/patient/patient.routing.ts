@@ -16,10 +16,6 @@ export const PatientRoutes: Routes = [
             component: PatientsComponent
         },
         {
-            path: '',
-            component: PatientsComponent
-        },
-        {
             path: 'patient-item/:id',
             component: PatientItemComponent
         },

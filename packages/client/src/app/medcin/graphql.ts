@@ -137,8 +137,8 @@ export interface SigninUserMutationResponse {
 
 export const UPDATE_MEDCIN_MUTATION = gql`
 
-  mutation updateMedcinMutation($id: Int!, $firstName: String!, $lastName: String!, $dateDeNaissance: String, $sexe: String,
-   $specialty: String!, $email: String!) {
+  mutation updateMedcinMutation($id: Int!, $firstName: String, $lastName: String, $dateDeNaissance: String, $sexe: String,
+   $specialty: String, $email: String, $roleId: Int) {
     updateMedcin(
       id: $id
       firstName: $firstName,
@@ -146,7 +146,8 @@ export const UPDATE_MEDCIN_MUTATION = gql`
       dateDeNaissance: $dateDeNaissance,
       sexe: $sexe,
       specialty: $specialty,
-      email: $email
+      email: $email,
+      roleId: $roleId
     )
   }
 `;
