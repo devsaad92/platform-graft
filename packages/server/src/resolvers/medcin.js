@@ -49,5 +49,9 @@ export default {
         replacements: [id],
         model: models.Patient,
       }),
+    role: async ({ id }, args, { models }) => {
+      const medcin = await models.Medcin.findOne({ where: id });
+      return models.Role.findOne({ where: { id: medcin.roleId } });
+    },
   },
 };

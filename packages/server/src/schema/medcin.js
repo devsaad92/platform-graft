@@ -12,6 +12,11 @@ export default `
     admin: Boolean!
     isAuthorize: Boolean!
     patients: [Patient]
+    role: Role
+  }
+
+  type Role {
+    name: String
   }
 
   type Query {

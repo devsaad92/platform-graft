@@ -41,6 +41,9 @@ export const MEDCIN_QUERY = gql`
         firstName
         lastName
       }
+      role {
+      name
+      }
     }
   }
 `;
