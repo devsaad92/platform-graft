@@ -1,3 +1,4 @@
+import { AuthService } from './../../shared/services/auth.service';
 import { Component, NgZone, ViewChild, Output, EventEmitter, OnInit } from '@angular/core';
 import { MenuService } from './menu.service';
 
@@ -48,12 +49,15 @@ export class MenuComponent implements OnInit {
   currentLang = 'en';
 
   constructor(
+    private authService: AuthService,
     public menuService: MenuService,
     public translate: TranslateService) { }
 
   ngOnInit() {
     this.addMenuHome();
-    this.addMenuItem();
+    if (this.authService.currentUser.roleId === 1) {
+      this.addMenuItem();
+    }
     this.addMenuItem2();
   }
 

@@ -9,5 +9,6 @@ export class Medcin {
     public specialty?: string,
     public email?: string,
     public password?: string,
+    public roleId?: number,
   ) {}
 }

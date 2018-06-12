@@ -55,14 +55,26 @@
       <div fxLayout="row" class="row justify-content-center" fxLayoutWrap="wrap">
         <div class="mb-1 col-8">
           <mat-form-field style="width: 100%">
-            <mat-select [(value)]="selected" placeholder="Spécialité" [formControl]="form.controls['specialty']">
+            <mat-select [(value)]="medcin.specialty" placeholder="Spécialité" [formControl]="form.controls['specialty']">
               <mat-option> </mat-option>
-              <mat-option value="chirigien">Chirigien</mat-option>
-              <mat-option value="pediatrie">Pediatrie</mat-option>
-              <mat-option value="radiology">Radiology</mat-option>
+              <mat-option value="doctor">Doctor</mat-option>
+              <mat-option value="nurse">Nurse</mat-option>
             </mat-select>
           </mat-form-field>
           <small *ngIf="form.controls['specialty'].hasError('required') && form.controls['specialty'].touched" class="mat-text-warn">You must include a specialty.</small>
+        </div>
+        <div class="col-2"></div>
+      </div>
+
+       <div fxLayout="row" class="row justify-content-center" fxLayoutWrap="wrap">
+        <div class="mb-1 col-8">
+          <mat-form-field style="width: 100%">
+            <mat-select [(value)]="medcin.roleId" placeholder="Role" [formControl]="form.controls['roleId']">
+              <mat-option></mat-option>
+              <mat-option value="1">Admin</mat-option>
+              <mat-option value="2">Assistant</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
         <div class="col-2"></div>
       </div>

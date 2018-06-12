@@ -16,8 +16,7 @@ import { MedcinService } from './../../shared/services/medcin.service';
 })
 export class AddMedcinComponent implements OnInit {
   public form: FormGroup;
-  // medcin: Medcin;
-  selected = 'chirigein';
+  selected = '';
 
 
   constructor(private fb: FormBuilder, private medcinService: MedcinService, private router: Router) { }

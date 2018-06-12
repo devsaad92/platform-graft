@@ -26,7 +26,7 @@
       <mat-icon>settings</mat-icon>
       Settings
     </button> -->
-    <button [routerLink]="['/medcin/user-profile/'+1]" mat-menu-item>
+    <button [routerLink]="['/medcin/user-profile/'+authService.currentUser.id]" mat-menu-item>
       <mat-icon>account_box</mat-icon>
       Profile
     </button>

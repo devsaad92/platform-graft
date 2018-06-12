@@ -14,7 +14,6 @@ import { MedcinService } from './../../shared/services/medcin.service';
   styleUrls: ['./medcin-profile.component.scss']
 })
 export class MedcinProfileComponent implements OnInit {
-  public form: FormGroup;
   medcin: Medcin = {};
   id: number;
   switch = true;
@@ -22,17 +21,9 @@ export class MedcinProfileComponent implements OnInit {
   dataSource: any;
   patients: Patient[];
 
-  constructor(private fb: FormBuilder, private medcinService: MedcinService, private route: ActivatedRoute) { }
+  constructor(private medcinService: MedcinService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.form = this.fb.group({
-      fname: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(10)])],
-      lname: [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(10)])],
-      date: [null, Validators.compose([Validators.required, CustomValidators.date])],
-      specialty: [null, Validators.compose([Validators.required])],
-      gender: [null, Validators.required]
-    });
-
     this.getMedcin();
   }
 

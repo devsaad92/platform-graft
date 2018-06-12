@@ -1,17 +1,27 @@
+import { requiresAuth, requiresAdminOrAssist } from '../permissions';
+
 export default {
 
   Query: {
-    allPatients: (parent, args, { models }) => models.Patient.findAll({}),
-    // models.sequelize.query('select * from patients join members on id = patient_id
-    // where medcin_id = ?', {
-    //   replacements: [user.id],
-    //   model: models.Patient,
-    // }),
+    allPatients: requiresAuth.createResolver((parent, args, { models, user }) => {
+      if (!user.roleId || user.roleId !== 1) {
+        return models.sequelize.query('select * from patients join members on id = patient_id where medcin_id = ?', {
+          replacements: [user.id],
+          model: models.Patient,
+        });
+      }
+      return models.Patient.findAll({});
+    }),
     // models.Patient.findAll({include:[{model:models.Medcin,where:{id:user.id},},],},{raw: true},),
-    getPatient: (parent, args, { models }) => models.Patient.findOne({ where: args }),
+    getPatient: requiresAuth.createResolver((parent, args, { models }) =>
+      models.Patient.findOne({ where: args })),
   },
   Mutation: {
-    createPatient: (parent, args, { models }) => models.Patient.create(args),
+    createPatient: requiresAdminOrAssist.createResolver(async (parent, args, { models, user }) => {
+      const patient = await models.Patient.create(args);
+      await models.Member.create({ medcinId: user.id, patientId: patient.id, admin: true });
+      return patient;
+    }),
     updatePatient: async (parent, args, { models }) => {
       const { id, ...params } = args;
       return models.Patient.update(params, { where: { id } });

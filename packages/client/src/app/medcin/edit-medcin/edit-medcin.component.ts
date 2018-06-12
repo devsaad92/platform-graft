@@ -13,9 +13,6 @@ import { MedcinService } from './../../shared/services/medcin.service';
 export class EditMedcinComponent implements OnInit {
   public form: FormGroup;
   loading: Boolean;
-  id: number;
-  public selected : any;
- // @Input() id: number;
   @Input() medcin: Medcin = {};
   @Output() annulerMedcinForm = new EventEmitter();
   @Output() updateForm = new EventEmitter();
@@ -30,7 +27,8 @@ export class EditMedcinComponent implements OnInit {
       email: [this.medcin.email, Validators.compose([Validators.required, CustomValidators.email])],
       date: [new Date(this.medcin.dateDeNaissance), Validators.compose([CustomValidators.date])],
       specialty: [this.medcin.specialty, Validators.compose([Validators.required])],
-      gender: [this.medcin.sexe, Validators.required]
+      gender: [this.medcin.sexe, Validators.required],
+      roleId: [this.medcin.roleId]
     });
   }
 
@@ -39,8 +37,8 @@ export class EditMedcinComponent implements OnInit {
   }
 
   onSubmit() {
-    const { fname, lname, date, specialty, gender, email, password } = this.form.value;
-    const medcin = new Medcin(this.medcin.id, fname, lname, gender, date, specialty, email, password);
+    const { fname, lname, date, specialty, gender, email, password, roleId } = this.form.value;
+    const medcin = new Medcin(this.medcin.id, fname, lname, gender, date, specialty, email, password, roleId);
     this.medcinService.updateMedcin(medcin)
       .subscribe(() => this.updateForm.emit());
   }

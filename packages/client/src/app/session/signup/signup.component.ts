@@ -18,7 +18,7 @@ const confirmPassword1 = new FormControl('', CustomValidators.equalTo(password1)
 export class SignupComponent implements OnInit {
 
   public form: FormGroup;
-  public selected : any;
+  public selected: any;
 
   constructor(private fb: FormBuilder, private medcinService: MedcinService, private authService: AuthService, private router: Router) {}
 

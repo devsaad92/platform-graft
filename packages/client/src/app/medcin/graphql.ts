@@ -35,6 +35,7 @@ export const MEDCIN_QUERY = gql`
       sexe
       specialty
       email
+      roleId
       patients{
         id
         firstName

@@ -19,7 +19,13 @@ export const requiresAuth = createResolver((parent, args, { user }) => {
 
 
 export const requiresAdmin = requiresAuth.createResolver((parent, args, { user }) => {
-  if (!user.isAdmin) {
+  if (!user.roleId || user.roleId !== 1) {
+    throw new Error('Requires admin access');
+  }
+});
+
+export const requiresAdminOrAssist = requiresAuth.createResolver((parent, args, { user }) => {
+  if (!user.roleId) {
     throw new Error('Requires admin access');
   }
 });
