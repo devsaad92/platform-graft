@@ -41,6 +41,7 @@ export default `
       dateDeGreffe: String): Int
 
     addMedcinPatient(medcinId: Int!, patientId: Int!): Boolean
+    updateMember(medcinId: Int!, patientId: Int!, admin: Boolean!): Boolean
   }
 
 `;

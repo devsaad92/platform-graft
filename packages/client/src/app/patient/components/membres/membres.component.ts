@@ -14,6 +14,8 @@ export class MembresComponent {
   @Input() patientId;
   medcinId: number;
   selected = '0';
+  selecte = [];
+  member: Member;
 
   constructor(private patientService: PatientService) {}
 
@@ -21,4 +23,22 @@ export class MembresComponent {
     const member = new Member(this.medcinId, this.patientId);
     this.patientService.addMedcinPatient(member).subscribe(() => this.selected = '0');
   }
-}
+
+  onSelectRow() {
+    const { id, admin } = this.selecte[0];
+    this.member = { medcinId: id, patientId: this.patientId, isAdmin: admin };
+  }
+
+  setMemberAdmin() {
+    if (this.member && this.member.isAdmin) {
+      this.member.isAdmin = false;
+      this.patientService.updateMember(this.member).subscribe();
+      return;
+    } if (this.member && !this.member.isAdmin) {
+      this.member.isAdmin = true;
+      this.patientService.updateMember(this.member).subscribe();
+      return;
+    }
+  }
+
+ }

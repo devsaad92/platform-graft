@@ -588,4 +588,18 @@ export const CREATE_MUTATION_addMedcinPatient = gql`
   }
 `;
 
+export const UPDATE_MUTATION_MEMBER = gql`
+  mutation  upadeMutationMember(
+    $medcinId: Int!,
+    $patientId: Int!,
+    $admin: Boolean!
+    ) {
+    updateMember(
+      medcinId: $medcinId,
+      patientId: $patientId,
+      admin: $admin
+    )
+  }
+`;
+
 

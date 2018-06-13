@@ -28,6 +28,10 @@ export default {
     },
     addMedcinPatient: (parent, { medcinId, patientId }, { models }) =>
       models.Member.create({ medcinId, patientId }),
+    updateMember: (parent, args, { models }) => {
+      const { medcinId, patientId, ...params } = args;
+      return models.Member.update(params, { where: { medcinId, patientId } });
+    },
   },
   Patient: {
     bilans: ({ id }, args, { models }) => models.Bilan.findAll({ where: { patientId: id } }),

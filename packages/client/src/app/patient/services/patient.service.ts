@@ -33,7 +33,8 @@ import {
   UPDATE_HEMATOLOGIE_MUTATION,
   CREATE_MUTATION_TRAITEMENT,
   UPDATE_MUTATION_TRAITEMENT,
-  CREATE_MUTATION_addMedcinPatient
+  CREATE_MUTATION_addMedcinPatient,
+  UPDATE_MUTATION_MEMBER
 } from './../graphql';
 
 @Injectable()
@@ -269,6 +270,18 @@ export class PatientService {
       variables: {
         medcinId: member.medcinId,
         patientId: member.patientId
+      },
+      refetchQueries: [{ query: PATIENT_QUERY, variables: { id: member.patientId } }]
+    }).map(response => response.data);
+  }
+
+  updateMember(member: Member) {
+    return this.apollo.mutate({
+      mutation: UPDATE_MUTATION_MEMBER,
+      variables: {
+        medcinId: member.medcinId,
+        patientId: member.patientId,
+        admin: member.isAdmin
       },
       refetchQueries: [{ query: PATIENT_QUERY, variables: { id: member.patientId } }]
     }).map(response => response.data);

@@ -25,10 +25,18 @@
           class="material" [rows]="members"
           [columnMode]="'force'" [headerHeight]="50"
           [footerHeight]="50" [rowHeight]="50"
-          [scrollbarV]="true" [limit]="6">
+          [scrollbarV]="true" [limit]="6"
+          [selected]="selecte"
+          [selectionType]="'single'"
+          (select)="onSelectRow($event)">
           <ngx-datatable-column [width]="150" name="Nom" prop="firstName" [resizeable]="false"></ngx-datatable-column>
           <ngx-datatable-column [width]="150" name="Prénom" prop="lastName" [resizeable]="false"></ngx-datatable-column>
-          <ngx-datatable-column [width]="150" name="Admin" prop="admin" [resizeable]="false"></ngx-datatable-column>
+          <ngx-datatable-column [width]="150" name="Admin" prop="admin" [resizeable]="false">
+            <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+              <button *ngIf="!value" mat-raised-button color="warn" (click)="setMemberAdmin()">Approve</button>
+              <button *ngIf="value" mat-raised-button color="primary" (click)="setMemberAdmin()">Un-approve</button>
+            </ng-template>
+          </ngx-datatable-column>
           <ngx-datatable-column [width]="150" name="Authorized" prop="isAuthorize" [resizeable]="false"></ngx-datatable-column>
         </ngx-datatable>
       </div>
