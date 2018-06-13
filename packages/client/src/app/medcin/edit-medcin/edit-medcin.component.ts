@@ -1,3 +1,4 @@
+import { AuthService } from './../../shared/services/auth.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
@@ -18,7 +19,7 @@ export class EditMedcinComponent implements OnInit {
   @Output() updateForm = new EventEmitter();
 
 
-  constructor(private fb: FormBuilder, private medcinService: MedcinService) { }
+  constructor(private fb: FormBuilder, private medcinService: MedcinService, private authService: AuthService) { }
 
   ngOnInit() {
     this.form = this.fb.group({

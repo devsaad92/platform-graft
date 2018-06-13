@@ -3,19 +3,21 @@
     <div fxLayout="row" fxLayoutWrap="wrap">
       <div fxFlex.gt-sm="40" fxFlex="100">
         <mat-card-content>
+          <form #f="ngForm">
           <div fxLayout="column">
             <mat-form-field style="width: 100%">
-              <mat-select [(value)]="selected" placeholder="Medecin" [(ngModel)]="medcinId">
+              <mat-select [(value)]="selected" placeholder="Medecin" [(ngModel)]="medcinId" name="medcinId" required>
                 <mat-option></mat-option>
                 <mat-option *ngFor="let medcin of medcins" [value]="medcin.id">
                   {{medcin.firstName }}   {{medcin.lastName}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
-            <button [disabled]="false" mat-raised-button color="primary" (click)="addPatientMember()">
+            <button mat-raised-button [disabled]="!f.valid" color="primary" (click)="addPatientMember()">
               <mat-icon>add</mat-icon>Ajouter
             </button>
           </div>
+          </form>
         </mat-card-content>
       </div>
       <div fxFlex.gt-sm="60" fxFlex="100">

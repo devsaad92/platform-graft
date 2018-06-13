@@ -94,9 +94,9 @@ export class PatientItemComponent implements OnInit {
   }
 
   updateBilan(event) {
-    this.bilan = {...event, patientId: this.patientId};
-    // this.bilan.date = new Date(event.date);
-    // console.log(new Date(event.date).toLocaleString());
+    const { date } = event;
+    const dt = new Date(date);
+    this.bilan = {...event, date: dt, patientId: this.patientId};
     this.switchBilanUp = false;
   }
 
@@ -107,7 +107,9 @@ export class PatientItemComponent implements OnInit {
   }
 
   updateHematologie(event) {
-    this.hematologie = { ...event, patientId: this.patientId };
+    const { date } = event;
+    const dt = new Date(date);
+    this.hematologie = { ...event, date: dt, patientId: this.patientId };
     this.switchHematologieUp = false;
   }
 

@@ -563,6 +563,19 @@ export const CREATE_MUTATION_TRAITEMENT = gql`
   }
 `;
 
+export const UPDATE_MUTATION_TRAITEMENT = gql`
+  mutation updateTraitementMutation(
+      $id: Int!,
+      $text: String,
+      $date: String) {
+    updateTraitement(
+      id: $id,
+      text: $text,
+      date: $date
+    )
+  }
+`;
+
 export const CREATE_MUTATION_addMedcinPatient = gql`
   mutation addMedcinPatient(
     $medcinId: Int!,

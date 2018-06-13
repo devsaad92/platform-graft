@@ -11,13 +11,23 @@ export class TraitementsComponent {
   @Input() traitements: Traitement[];
   @Input() patientId;
   traitement: Traitement = {};
-
+  selected = [];
 
   constructor(private patientService: PatientService) { }
 
   addPatientTraitement() {
     this.traitement.patientId = this.patientId;
-    this.patientService.createTraitement(this.traitement).
-      subscribe(() => this.traitement = {});
+    if (this.traitement.id) {
+      this.patientService.updateTraitement(this.traitement).subscribe(() => this.traitement = {});
+    } else {
+      this.patientService.createTraitement(this.traitement).
+        subscribe(() => this.traitement = {});
+    }
+  }
+
+  onSelectRow() {
+    const { id, date, text } = this.selected[0];
+    const dt = new Date(date);
+    this.traitement = { text, date: dt, id };
   }
 }

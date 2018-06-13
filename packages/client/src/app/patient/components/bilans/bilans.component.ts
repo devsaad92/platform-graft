@@ -71,8 +71,7 @@ export class BilansComponent implements OnChanges {
     this.results = this.courbeService.getAll();
   }
 
-  onSelectRow({ selected }) {
-    // console.log('Select Event', this.selected[0]);
+  onSelectRow() {
     this.updateBilanForm.emit(this.selected[0]);
   }
 }

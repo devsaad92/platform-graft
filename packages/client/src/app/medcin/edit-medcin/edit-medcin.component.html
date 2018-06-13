@@ -66,13 +66,14 @@
         <div class="col-2"></div>
       </div>
 
-       <div fxLayout="row" class="row justify-content-center" fxLayoutWrap="wrap">
+       <div *ngIf="authService.currentUser.roleId === 1" fxLayout="row" class="row justify-content-center" fxLayoutWrap="wrap">
         <div class="mb-1 col-8">
           <mat-form-field style="width: 100%">
             <mat-select [(value)]="medcin.roleId" placeholder="Role" [formControl]="form.controls['roleId']">
               <mat-option></mat-option>
               <mat-option value="1">Admin</mat-option>
               <mat-option value="2">Assistant</mat-option>
+              <mat-option value="3">Subscriber</mat-option>
             </mat-select>
           </mat-form-field>
         </div>

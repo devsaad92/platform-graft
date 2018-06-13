@@ -14,5 +14,7 @@ export default `
       text: String!,
       date: String!
     ): Traitement
+
+    updateTraitement(id: Int!, text: String, date: String): Boolean
   }
 `;
