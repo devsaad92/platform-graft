@@ -56,16 +56,16 @@
     <div fxFlex.gt-sm="60" fxFlex="100">
       <div fxLayout="column">
         <mat-card>
-          <mat-card-header> Ses Patients </mat-card-header>
-
+          <mat-card-title> Ses Patients </mat-card-title>
+        
           <ngx-datatable *ngIf='patients'
             class="material" [rows]="patients"
             [columnMode]="'force'" [headerHeight]="50"
             [footerHeight]="50" [rowHeight]="50"
             [scrollbarV]="true" [limit]="6">
-            <ngx-datatable-column [width]="150" name="No." prop="id" [resizeable]="false"></ngx-datatable-column>
-            <ngx-datatable-column [width]="150" name="Nom" prop="firstName" [resizeable]="false"></ngx-datatable-column>
-            <ngx-datatable-column [width]="150" name="Prénom" prop="lastName" [resizeable]="false"></ngx-datatable-column>
+            <ngx-datatable-column [width]="100" name="No." prop="id" [resizeable]="false"></ngx-datatable-column>
+            <ngx-datatable-column [width]="100" name="Nom" prop="firstName" [resizeable]="false"></ngx-datatable-column>
+            <ngx-datatable-column [width]="100" name="Prénom" prop="lastName" [resizeable]="false"></ngx-datatable-column>
           </ngx-datatable>
         <hr>
         </mat-card>
