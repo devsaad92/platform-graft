@@ -1,21 +1,18 @@
 <mat-card class="shadow-none">
-  <mat-card-content>
-    <mat-toolbar *ngIf="index==0" style="margin-top: -22px">
-      <span>Tableau des Images:</span>
-      <span fxFlex></span>
-      <button mat-raised-button (click)="uploadFile()">
-        <mat-icon>add</mat-icon>NEW 
-      </button>
-    </mat-toolbar>
-    <mat-grid-list cols="3">
-      <mat-grid-tile *ngFor="let image of uploads" rowHeight="4:3">
-        <img src="http://{{url}}:3000/{{image.file}}" alt="Card image cap" />
-        <mat-grid-tile-footer>
-          <h3 matLine>{{ image.title }}</h3>
-          <span matLine>{{image.description }}</span>
-          <!-- <mat-icon>favorite</mat-icon> -->
-        </mat-grid-tile-footer>
-      </mat-grid-tile>
-    </mat-grid-list>
-  </mat-card-content>
+  <mat-toolbar *ngIf="index==0" style="margin-top: -8px">
+    <span>Tableau des Images:</span>
+    <span fxFlex></span>
+    <button mat-raised-button (click)="uploadFile()">
+      <mat-icon>add</mat-icon>NEW 
+    </button>
+  </mat-toolbar>
+  <mat-grid-list cols="3">
+    <mat-grid-tile *ngFor="let image of uploads" rowHeight="4:3">
+      <img src="http://{{url}}:3000/{{image.file}}" alt="Card image cap" />
+      <mat-grid-tile-footer>
+        <h3 matLine>{{ image.title }}</h3>
+        <span matLine>{{image.description }}</span>
+      </mat-grid-tile-footer>
+    </mat-grid-tile>
+  </mat-grid-list>
 </mat-card>

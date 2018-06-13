@@ -1,27 +1,21 @@
+import { Component, Input } from '@angular/core';
+
+import { Medcin } from './../../../shared/models/Medcin';
 import { Member } from './../../../shared/models/Member';
 import { PatientService } from './../../services/patient.service';
-import { MatTableDataSource } from '@angular/material';
-import { Medcin } from './../../../shared/models/Medcin';
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-membres',
   templateUrl: './membres.component.html'
 })
-export class MembresComponent implements OnChanges {
+export class MembresComponent {
   @Input() medcins: Medcin[];
   @Input() members: Medcin[];
   @Input() patientId;
   medcinId: number;
-  displayedColumns = ['id', 'firstName', 'lastName', 'admin', 'isAuthorize'];
-  dataSource: any;
   selected = '0';
 
-  constructor(private patientService: PatientService) { }
-
-  ngOnChanges() {
-    this.dataSource = new MatTableDataSource(this.members);
-  }
+  constructor(private patientService: PatientService) {}
 
   addPatientMember() {
     const member = new Member(this.medcinId, this.patientId);

@@ -1,28 +1,28 @@
 <mat-card class="shadow-none">
-  <mat-card-content>
-    <mat-toolbar style="margin-top: -16px">
-      Tableau des Informations:
-      <span fxFlex></span>
-      <button mat-raised-button (click)="retourner()">
-        <mat-icon>keyboard_backspace</mat-icon>RETOUR 
-      </button>
-    </mat-toolbar>
-    <ngx-datatable *ngIf='informations'
-      class="material" [rows]="informations"
-      [columnMode]="'force'" [headerHeight]="50"
-      [footerHeight]="50" [rowHeight]="50"
-      [limit]="4">
-      <ngx-datatable-column [width]="100" name="Date Time" prop="date" [resizeable]="false"> 
-        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-          {{ value | date: 'yyyy-MM-dd HH:mm' }}
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column [width]="50" prop="Temp" [resizeable]="false"></ngx-datatable-column>
-      <ngx-datatable-column [width]="50" name="FC" prop="FC" [resizeable]="false"></ngx-datatable-column>
-      <ngx-datatable-column [width]="50" name="FR" prop="FR" [resizeable]="false"></ngx-datatable-column>
-      <ngx-datatable-column [width]="50" name="PA" prop="PA" [resizeable]="false"></ngx-datatable-column>
-      <ngx-datatable-column [width]="50" name="SaO2" prop="SaO2" [resizeable]="false"></ngx-datatable-column>
-    </ngx-datatable>    
-  </mat-card-content>
+  <mat-toolbar style="margin-top: -8px">
+    Tableau des Informations:
+    <span fxFlex></span>
+    <button mat-raised-button (click)="retourner()">
+      <mat-icon>keyboard_backspace</mat-icon>RETOUR 
+    </button>
+  </mat-toolbar>
+
+  <ngx-datatable *ngIf='informations'
+    class="material" [rows]="informations"
+    [columnMode]="'force'" [headerHeight]="50"
+    [footerHeight]="50" [rowHeight]="50"
+    [limit]="4">
+    <ngx-datatable-column [width]="100" name="Date Time" prop="date" [resizeable]="false"> 
+      <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+        {{ value | date: 'yyyy-MM-dd HH:mm' }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column [width]="50" prop="Temp" [resizeable]="false"></ngx-datatable-column>
+    <ngx-datatable-column [width]="50" name="FC" prop="FC" [resizeable]="false"></ngx-datatable-column>
+    <ngx-datatable-column [width]="50" name="FR" prop="FR" [resizeable]="false"></ngx-datatable-column>
+    <ngx-datatable-column [width]="50" name="PA" prop="PA" [resizeable]="false"></ngx-datatable-column>
+    <ngx-datatable-column [width]="50" name="SaO2" prop="SaO2" [resizeable]="false"></ngx-datatable-column>
+  </ngx-datatable>    
+  
   <hr>
 </mat-card>

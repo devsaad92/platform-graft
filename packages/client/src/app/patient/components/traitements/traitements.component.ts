@@ -1,25 +1,19 @@
-import { PatientService } from './../../services/patient.service';
-import { MatTableDataSource } from '@angular/material';
+import { Component, Input } from '@angular/core';
+
 import { Traitement } from './../../../shared/models/Traitement';
-import { Component, Input, OnChanges } from '@angular/core';
+import { PatientService } from './../../services/patient.service';
 
 @Component({
   selector: 'app-traitements',
   templateUrl: './traitements.component.html'
 })
-export class TraitementsComponent implements OnChanges {
+export class TraitementsComponent {
   @Input() traitements: Traitement[];
   @Input() patientId;
-  displayedColumns = ['date', 'text'];
-  dataSource: any;
   traitement: Traitement = {};
 
 
   constructor(private patientService: PatientService) { }
-
-  ngOnChanges() {
-    this.dataSource = new MatTableDataSource(this.traitements);
-  }
 
   addPatientTraitement() {
     this.traitement.patientId = this.patientId;

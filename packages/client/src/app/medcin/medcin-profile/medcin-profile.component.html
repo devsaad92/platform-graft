@@ -57,32 +57,17 @@
       <div fxLayout="column">
         <mat-card>
           <mat-card-header> Ses Patients </mat-card-header>
-          <mat-card-content>
-            <mat-table #table [dataSource]="dataSource">
 
-            <ng-container matColumnDef="id">
-              <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-              <mat-cell *matCellDef="let patient"> {{patient.id}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="firstName">
-              <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
-                <mat-cell *matCellDef="let patient">
-                  {{patient.firstName}}          
-                </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="lastName">
-              <mat-header-cell *matHeaderCellDef> Prénom </mat-header-cell>
-                <mat-cell *matCellDef="let patient">
-                  {{patient.lastName }}             
-                </mat-cell>
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
-          </mat-card-content>
+          <ngx-datatable *ngIf='patients'
+            class="material" [rows]="patients"
+            [columnMode]="'force'" [headerHeight]="50"
+            [footerHeight]="50" [rowHeight]="50"
+            [scrollbarV]="true" [limit]="6">
+            <ngx-datatable-column [width]="150" name="No." prop="id" [resizeable]="false"></ngx-datatable-column>
+            <ngx-datatable-column [width]="150" name="Nom" prop="firstName" [resizeable]="false"></ngx-datatable-column>
+            <ngx-datatable-column [width]="150" name="Prénom" prop="lastName" [resizeable]="false"></ngx-datatable-column>
+          </ngx-datatable>
+        <hr>
         </mat-card>
       </div>
     </div>

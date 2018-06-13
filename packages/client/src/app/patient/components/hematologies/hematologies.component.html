@@ -1,23 +1,22 @@
 <mat-card class="shadow-none">
-  <mat-card-content>
-    <mat-toolbar style="margin-top: -18px">
-      <span>Tableau des Hématologies:</span>
-      <span fxFlex></span>
-      <button mat-raised-button (click)="ajouterHematologie()">
-        <mat-icon>add</mat-icon>NEW </button>
-    </mat-toolbar>
+  <mat-toolbar style="margin-top: -8px">
+    <span>Tableau des Hématologies:</span>
+    <span fxFlex></span>
+    <button mat-raised-button (click)="ajouterHematologie()">
+      <mat-icon>add</mat-icon>NEW </button>
+  </mat-toolbar>
     
-    <ngx-datatable *ngIf='columns' class="material striped selection-cell cell-selection" [rows]="r" [loadingIndicator]="loadingIndicator"
-      [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true"
-      [selected]="selected" [selectionType]="'single'" (select)='onSelectRow($event)'>
-      <ngx-datatable-column [frozenLeft]="true" name="Date" prop="date" [width]="250">
-        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-          {{ value | date : 'yyyy-MM-dd HH:mm' }}
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column *ngFor="let col of columns" [width]="100" [prop]="col.prop"></ngx-datatable-column>
+  <ngx-datatable *ngIf='columns' class="material striped selection-cell cell-selection" [rows]="r" [loadingIndicator]="loadingIndicator"
+    [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true"
+    [selected]="selected" [selectionType]="'single'" (select)='onSelectRow($event)'>
+    <ngx-datatable-column [frozenLeft]="true" name="Date" prop="date" [width]="250">
+      <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+        {{ value | date : 'yyyy-MM-dd HH:mm' }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column *ngFor="let col of columns" [width]="100" [prop]="col.prop"></ngx-datatable-column>
 
-    </ngx-datatable>
-  </mat-card-content>
+  </ngx-datatable>
+
   <hr>
 </mat-card>

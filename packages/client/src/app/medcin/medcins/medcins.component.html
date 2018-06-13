@@ -2,36 +2,34 @@
  <h4 *ngIf="loading">Loading...</h4> 
 
 <mat-card>
-    <mat-card-title>MEDECINS</mat-card-title>
-    <mat-card-content>
-      <ngx-datatable *ngIf='allMedcins' class="material" 
-        [rows]="allMedcins" [loadingIndicator]="true"
-        [columnMode]="'force'" [headerHeight]="50"
-        [footerHeight]="50" [rowHeight]="50"
-        [scrollbarV]="true" [limit]="8">
-        <ngx-datatable-column name="No" prop="id" [width]="30" [resizeable]="false">
-          <ng-template let-row="row">
-            {{ row.id }}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column [width]="50" name="Nom" prop="firstName" [resizeable]="false"></ngx-datatable-column>
-        <ngx-datatable-column [width]="50" name="Prénom" prop="lastName" [resizeable]="false"></ngx-datatable-column>
-        <ngx-datatable-column [width]="100" name="Date De Naissance" prop="dateDeNaissance" [resizeable]="false"> 
-          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-            {{ value | date: 'yyyy-MM-dd HH:mm' }}
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column [width]="30" name="Sexe" prop="sexe" [resizeable]="false"></ngx-datatable-column>
-        <ngx-datatable-column [width]="50" name="Spécialité" prop="specialty" [resizeable]="false"></ngx-datatable-column>
-        <ngx-datatable-column [width]="100" name="Email" prop="email" [resizeable]="false"></ngx-datatable-column>
-        <ngx-datatable-column [width]="120" name="Action" prop="id" [resizeable]="false">
-          <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-              <a mat-raised-button color="primary" [routerLink]="['/medcin/user-profile/'+value]" href="">Voir Profile </a>
-          </ng-template>
-        </ngx-datatable-column>
-      </ngx-datatable>
-    </mat-card-content>
-    <hr>
-    <mat-card-footer></mat-card-footer>
+  <mat-card-title>MEDECINS</mat-card-title>
+    <ngx-datatable *ngIf='allMedcins' class="material" 
+      [rows]="allMedcins" [loadingIndicator]="true"
+      [columnMode]="'force'" [headerHeight]="50"
+      [footerHeight]="50" [rowHeight]="50"
+      [scrollbarV]="true" [limit]="8">
+      <ngx-datatable-column name="No" prop="id" [width]="30" [resizeable]="false">
+        <ng-template let-row="row">
+          {{ row.id }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [width]="50" name="Nom" prop="firstName" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="50" name="Prénom" prop="lastName" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="100" name="Date De Naissance" prop="dateDeNaissance" [resizeable]="false"> 
+        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+          {{ value | date: 'yyyy-MM-dd HH:mm' }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [width]="30" name="Sexe" prop="sexe" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="50" name="Spécialité" prop="specialty" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="100" name="Email" prop="email" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="120" name="Action" prop="id" [resizeable]="false">
+        <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+            <a mat-raised-button color="primary" [routerLink]="['/medcin/user-profile/'+value]" href="">Voir Profile </a>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  <hr>
+  <mat-card-footer></mat-card-footer>
 </mat-card>
 
