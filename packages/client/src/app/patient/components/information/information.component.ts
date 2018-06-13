@@ -1,22 +1,17 @@
-import { MatTableDataSource } from '@angular/material';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
 import { Information } from './../../../shared/models/Information';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-information',
   templateUrl: './information.component.html'
 })
-export class InformationComponent implements OnInit {
+export class InformationComponent {
   @Input() informations: Information[];
   @Output() return = new EventEmitter();
-  displayedColumns = ['date', 'Temp', 'FC', 'FR', 'PA', 'SaO2'];
-  dataSource: any;
+
 
   constructor() { }
-
-  ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.informations);
-  }
 
   retourner() {
     this.return.emit();

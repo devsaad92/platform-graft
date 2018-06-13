@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
-import { Subscription } from 'rxjs/Subscription';
 
 import { Medcin } from '../../shared/models/Medcin';
 import { MedcinService } from './../../shared/services/medcin.service';
@@ -12,12 +10,8 @@ import { MedcinService } from './../../shared/services/medcin.service';
   styleUrls: ['./medcins.component.scss']
 })
 export class MedcinsComponent implements OnInit {
-  allMedcins: Medcin[] = [];
+  allMedcins: Medcin[];
   loading: Boolean = true;
-  displayedColumns = ['id', 'firstName', 'dateDeNaissance', 'sexe', 'specialty', 'email', 'lastName'];
-  dataSource: any;
-
-  subscriptions: Subscription[] = [];
 
   constructor(private medcinService: MedcinService) {  }
 
@@ -30,9 +24,6 @@ export class MedcinsComponent implements OnInit {
       .subscribe(medcins => {
         this.allMedcins = medcins.allMedcins;
         this.loading = medcins.loading;
-        this.dataSource = new MatTableDataSource(this.allMedcins);
-
-       // console.log(this.authService.currentUser.user);
       });
   }
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 
 import { Bilan } from './../../../shared/models/Bilan';
 import { CourbeService } from './../../services/courbe.service';
@@ -9,7 +9,7 @@ import { CourbeService } from './../../services/courbe.service';
   styleUrls: ['./bilans.component.scss'],
   providers: [CourbeService]
 })
-export class BilansComponent implements OnInit, OnChanges {
+export class BilansComponent implements OnChanges {
   @Input() bilans: Bilan[];
   @Output() ajoutBilanForm = new EventEmitter();
   @Output() updateBilanForm = new EventEmitter();
@@ -25,14 +25,9 @@ export class BilansComponent implements OnInit, OnChanges {
   done = false;
   columns = [];
   r = [];
-
   selected = [];
 
-  constructor(private courbeService: CourbeService) { }
-
-  ngOnInit() {
-
-  }
+  constructor(private courbeService: CourbeService) {}
 
   ngOnChanges() {
     this.showChart();

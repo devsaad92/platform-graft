@@ -1,7 +1,7 @@
-import { PatientService } from './../../services/patient.service';
-import { Patient } from './../../../shared/models/Patient';
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+
+import { Patient } from './../../../shared/models/Patient';
+import { PatientService } from './../../services/patient.service';
 
 @Component({
   selector: 'app-patients',
@@ -11,8 +11,7 @@ import { MatTableDataSource } from '@angular/material';
 export class PatientsComponent implements OnInit {
   allPatients: Patient[] = [];
   loading: Boolean ;
-  displayedColumns = ['id', 'firstName', 'dateDeNaissance', 'sexe', 'dateDeGreffe', 'postGreffe', 'action'];
-  dataSource: any;
+  dataSource: Patient[];
   greffedPations: Patient[] = [] ;
   waitPation: Patient[] = [] ;
   Currentpations: any;
@@ -34,22 +33,18 @@ export class PatientsComponent implements OnInit {
             this.greffedPations.push(pation);
           }
         });
-        console.log(this.waitPation);
-        console.log(this.greffedPations);
-
-        this.dataSource = new MatTableDataSource(this.allPatients);
+        this.dataSource = this.allPatients;
       });
   }
 
   pationViewManager(filter: any) {
-    // this will manage witch pation will be dispalyer "allpation or waited pation or greffed pation"
-    console.log('filterd : ', filter);
+    // this will manage witch patient will be dispalyed "all patients or waited patients or greffed patients"
     if ( filter ===  1) {
-      this.dataSource = new MatTableDataSource(this.allPatients);
+      this.dataSource = this.allPatients;
     } else if ( filter === 3 ) {
-      this.dataSource = new MatTableDataSource(this.greffedPations);
+      this.dataSource = this.greffedPations;
     } else {
-      this.dataSource = new MatTableDataSource(this.waitPation);
+      this.dataSource = this.waitPation;
     }
   }
 }

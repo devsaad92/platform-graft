@@ -11,66 +11,42 @@
               En attente
             </mat-option>
             <mat-option  [value]="3">
-              Greffee
+              Greffée
             </mat-option>
           </mat-select>
         </mat-form-field>
   </mat-card-title>
   <mat-card-content>
-
-    <div class="example-container mat-elevation-z8">
-
-      <mat-table #table [dataSource]="dataSource">
-
-        <ng-container matColumnDef="id">
-          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-          <mat-cell *matCellDef="let patient"> {{patient.id}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="firstName">
-          <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
-          <mat-cell *matCellDef="let patient">
-            {{patient.firstName}} {{patient.lastName }}
-          </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="dateDeNaissance">
-          <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
-          <mat-cell *matCellDef="let patient"> {{ patient.dateDeNaissance | age }} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="sexe">
-          <mat-header-cell *matHeaderCellDef> Genre </mat-header-cell>
-          <mat-cell *matCellDef="let patient"> {{patient.sexe}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="dateDeGreffe">
-          <mat-header-cell *matHeaderCellDef> Date de greffe </mat-header-cell>
-          <mat-cell *matCellDef="let patient"> {{ patient.dateDeGreffe | date: 'yyyy-MM-dd HH:mm'}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="postGreffe">
-          <mat-header-cell *matHeaderCellDef> Post greffe </mat-header-cell>
-          <mat-cell *matCellDef="let patient">
-            <span class="rouge">   {{ patient.dateDeGreffe | greffe }} </span>
-          </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="action">
-          <mat-header-cell *matHeaderCellDef> </mat-header-cell>
-          <mat-cell *matCellDef="let patient">
-            <a mat-raised-button color="primary" [routerLink]="['/patient/patient-item/'+patient.id]">Voir </a>
-          </mat-cell>
-        </ng-container>
-
-
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-
-    </div>
-
-
+    <ngx-datatable *ngIf='dataSource' class="material" 
+      [rows]="dataSource" [loadingIndicator]="true"
+      [columnMode]="'force'" [headerHeight]="50"
+      [footerHeight]="50" [rowHeight]="50"
+      [scrollbarV]="true" [limit]="8">
+      <ngx-datatable-column [width]="50" name="No" prop="id" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="50" name="Nom" prop="firstName" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="50" name="Prénom" prop="lastName" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="100" name="Date De Naissance" prop="dateDeNaissance" [resizeable]="false"> 
+        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+          {{ value | age }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [width]="50" name="Sexe" prop="sexe" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="100" name="Date De Greffe" prop="dateDeGreffe" [resizeable]="false"> 
+        <ng-template ngx-datatable-cell-template  let-value="value" let-row="row">
+          {{ value | date: 'yyyy-MM-dd HH:mm' }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column class="rouge" [width]="100" name="Post Greffe" prop="dateDeGreffe" [resizeable]="false"> 
+        <ng-template ngx-datatable-cell-template  let-value="value" let-row="row">
+          <span class="rouge">{{ value | greffe }} </span>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [width]="120" name="Action" prop="id" [resizeable]="false">
+        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+          <a mat-raised-button color="primary" [routerLink]="['/patient/patient-item/'+value]" href="">Voir </a>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
   </mat-card-content>
   <hr>
   <mat-card-footer></mat-card-footer>

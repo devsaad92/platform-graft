@@ -4,48 +4,25 @@
       Tableau des Informations:
       <span fxFlex></span>
       <button mat-raised-button (click)="retourner()">
-        <mat-icon>keyboard_return</mat-icon>RETOUR 
+        <mat-icon>keyboard_backspace</mat-icon>RETOUR 
       </button>
     </mat-toolbar>
-    <mat-table #table [dataSource]="dataSource">
-
-      <ng-container matColumnDef="date">
-        <mat-header-cell *matHeaderCellDef> Date Time</mat-header-cell>
-        <mat-cell *matCellDef="let information"> {{information.date | date: 'yyyy-MM-dd HH:mm' }} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="Temp">
-        <mat-header-cell *matHeaderCellDef> Temp </mat-header-cell>
-        <mat-cell *matCellDef="let information">
-          {{information.Temp }}
-        </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="FC">
-        <mat-header-cell *matHeaderCellDef> FC </mat-header-cell>
-        <mat-cell *matCellDef="let information"> {{ information.FC}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="FR">
-        <mat-header-cell *matHeaderCellDef> FR </mat-header-cell>
-        <mat-cell *matCellDef="let information"> {{information.FR}} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="PA">
-        <mat-header-cell *matHeaderCellDef> PA </mat-header-cell>
-        <mat-cell *matCellDef="let information"> {{ information.PA }} </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="SaO2">
-        <mat-header-cell *matHeaderCellDef> SaO2 </mat-header-cell>
-        <mat-cell *matCellDef="let information">
-          {{ information.SaO2 }}
-        </mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
+    <ngx-datatable *ngIf='informations'
+      class="material" [rows]="informations"
+      [columnMode]="'force'" [headerHeight]="50"
+      [footerHeight]="50" [rowHeight]="50"
+      [limit]="4">
+      <ngx-datatable-column [width]="100" name="Date Time" prop="date" [resizeable]="false"> 
+        <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+          {{ value | date: 'yyyy-MM-dd HH:mm' }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column [width]="50" prop="Temp" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="50" name="FC" prop="FC" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="50" name="FR" prop="FR" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="50" name="PA" prop="PA" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="50" name="SaO2" prop="SaO2" [resizeable]="false"></ngx-datatable-column>
+    </ngx-datatable>    
   </mat-card-content>
   <hr>
 </mat-card>
