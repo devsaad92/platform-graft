@@ -1,9 +1,8 @@
 import bcrypt from 'bcrypt';
-import { PubSub } from 'graphql-subscriptions';
 import { tryLogin, tryForgetPassword, tryResetPassword } from '../auth';
 import { requiresAuth, requiresAdmin } from '../permissions';
+import pubsub from '../pubsub';
 
-const pubsub = new PubSub();
 
 export default {
 

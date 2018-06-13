@@ -1,6 +1,5 @@
-import { PubSub } from 'graphql-subscriptions';
+import pubsub from '../pubsub';
 
-const pubsub = new PubSub();
 
 const NEW_MESSAGE_ADDED = 'NEW_MESSAGE_ADDED';
 
