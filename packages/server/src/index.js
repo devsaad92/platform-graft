@@ -17,7 +17,7 @@ import { refreshTokens } from './auth';
 
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schema')));
 const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers')));
-const url = '0.0.0.0';
+const url = 'localhost';
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
