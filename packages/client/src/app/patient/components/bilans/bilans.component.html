@@ -36,7 +36,9 @@
     <h4 class="mt-0 mb-1">Courbe</h4>
     <mat-card-content *ngIf="results">
       <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="results"
-        xAxis="true" yAxis="true" roundDomains="true" legend="true" (select)="onSelect($event)">
+        xAxis="true" yAxis="true" roundDomains="true" legend="true"
+        showXAxisLabel="true" showYAxisLabel="true"
+        [xAxisLabel]="'Time'" [yAxisLabel]="'ms'" [timeline]="true" (select)="onSelect($event)">
       </ngx-charts-line-chart>
     </mat-card-content>
       <br><br>

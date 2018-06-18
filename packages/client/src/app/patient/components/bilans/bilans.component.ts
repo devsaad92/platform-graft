@@ -15,7 +15,7 @@ export class BilansComponent implements OnChanges {
   @Output() updateBilanForm = new EventEmitter();
 
   // ngx-chart
-  view: any[] = [800, 400];
+  view: any[] = [900, 350];
 
   colorScheme = {
     domain: ['#3f51b5', '#2ecc71', '#3498db', '#16a085', '#95a5a6', '#2d3436']

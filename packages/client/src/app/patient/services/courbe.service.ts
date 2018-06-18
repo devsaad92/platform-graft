@@ -35,28 +35,28 @@ export class CourbeService {
 
     bilans.forEach(bilan => {
       if (bilan.soduim) {
-        soduims.push(new BilanShape(bilan.soduim, bilan.date));
+        soduims.push(new BilanShape(bilan.soduim, new Date(bilan.date)));
       }
       if (bilan.crp) {
-        crps.push(new BilanShape(bilan.crp, bilan.date));
+        crps.push(new BilanShape(bilan.crp, new Date(bilan.date)));
       }
       if (bilan.glucose) {
-        glucoses.push(new BilanShape(bilan.glucose, bilan.date));
+        glucoses.push(new BilanShape(bilan.glucose, new Date(bilan.date)));
       }
       if (bilan.magnesuim) {
-        magnesuims.push(new BilanShape(bilan.magnesuim, bilan.date));
+        magnesuims.push(new BilanShape(bilan.magnesuim, new Date(bilan.date)));
       }
       if (bilan.ggt) {
-        ggts.push(new BilanShape(bilan.ggt, bilan.date));
+        ggts.push(new BilanShape(bilan.ggt, new Date(bilan.date)));
       }
       if (bilan.potassuim) {
-        potassuims.push(new BilanShape(bilan.potassuim, bilan.date));
+        potassuims.push(new BilanShape(bilan.potassuim, new Date(bilan.date)));
       }
       if (bilan.uree) {
-        urees.push(new BilanShape(bilan.uree, bilan.date));
+        urees.push(new BilanShape(bilan.uree, new Date(bilan.date)));
       }
       if (bilan.calcuim) {
-        calcuims.push(new BilanShape(bilan.calcuim, bilan.date));
+        calcuims.push(new BilanShape(bilan.calcuim, new Date(bilan.date)));
       }
     });
 
