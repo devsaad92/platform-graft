@@ -17,9 +17,10 @@
     [scrollbarH]="true"
     [selected]="selected"
     [selectionType]="'single'"
+    [limit]="8"
     (select)='onSelectRow($event)'
   >
-  <ngx-datatable-column [frozenLeft]="true" name="Date"  prop="date" [width]="250">
+  <ngx-datatable-column [frozenLeft]="true" name="Date"  prop="date" [width]="250" [resizeable]="false">
     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value"  let-row="row">
         {{ value | date : 'yyyy-MM-dd HH:mm' }}
     </ng-template>
@@ -27,7 +28,7 @@
   <ngx-datatable-column *ngFor="let col of columns"
   [name]="col.name"
   [width]="100"
-  [prop]="col.prop"></ngx-datatable-column>
+  [prop]="col.prop" [resizeable]="false"></ngx-datatable-column>
 
   </ngx-datatable>
   
