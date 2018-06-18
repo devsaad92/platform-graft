@@ -18,11 +18,11 @@
             <mat-tab>
               <ng-template matTabLabel>Chat</ng-template>
               <div fxLayout="row" fxLayoutWrap="wrap">
-                <div fxFlex="65">
+                <div fxFlex.gt-xs="100" fxFlex.gt-sm="65">
                   <h1>Clinique</h1>
                   <app-chat [messages]="cliniques" [patientId]="patientId" [index]="0"></app-chat>
                 </div>
-                <div fxFlex="35">
+                <div fxFlex.gt-xs="100" fxFlex.gt-sm="35">
                   <h1>Instructions</h1>
                   <app-chat [messages]="instructions" [patientId]="patientId" [index]="1"></app-chat>
                 </div>
