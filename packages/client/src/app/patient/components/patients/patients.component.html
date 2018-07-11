@@ -46,6 +46,12 @@
         <a mat-raised-button color="primary" [routerLink]="['/patient/patient-item/'+value]" href="">Voir </a>
       </ng-template>
     </ngx-datatable-column>
+
+    <ngx-datatable-column [width]="120" name="Action" prop="id" [resizeable]="false">
+      <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+        <a mat-raised-button color="warn" (click)="deleteP(value)">Supprimer </a>
+      </ng-template>
+    </ngx-datatable-column>
   </ngx-datatable>
 
   <hr>

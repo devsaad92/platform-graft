@@ -38,6 +38,11 @@
             </ng-template>
           </ngx-datatable-column>
           <!-- <ngx-datatable-column [width]="150" name="Authorized" prop="isAuthorize" [resizeable]="false"></ngx-datatable-column> -->
+          <ngx-datatable-column [width]="120" name="Action" prop="id" [resizeable]="false">
+            <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
+              <a mat-raised-button color="warn" (click)="deleteMm(value)">Supprimer </a>
+            </ng-template>
+          </ngx-datatable-column>
         </ngx-datatable>
       </div>
     </div>

@@ -27,6 +27,10 @@ export class MedcinsComponent implements OnInit {
       });
   }
 
+  deleteM(value) {
+    console.log(value);
+  }
+
  /*
     const allMEdcinQuery = this.apollo.watchQuery<AllMedcinQueryResponse>({
       query: ALL_MEDCINS_QUERY

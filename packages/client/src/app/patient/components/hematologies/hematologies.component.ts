@@ -12,7 +12,6 @@ export class HematologiesComponent implements OnInit, OnChanges {
   @Output() updateHematologie = new EventEmitter();
 
   columns = [];
-  r = [];
 
   selected = [];
 
@@ -28,9 +27,6 @@ export class HematologiesComponent implements OnInit, OnChanges {
   customerTable() {
     if (this.hematologies && this.hematologies[0]) {
       const keys = Object.keys(this.hematologies[0]);
-      this.r = [];
-
-      this.r = this.hematologies;
       this.columns = [];
       for (const i of keys) {
         if (i !== 'id' && i !== '__typename' && i !== 'date') {

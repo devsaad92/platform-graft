@@ -41,4 +41,8 @@ export class MembresComponent {
     }
   }
 
+  deleteMm(value) {
+    console.log(value);
+  }
+
  }

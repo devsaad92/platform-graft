@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, OnInit } from '@angular/core';
 
 import { Bilan } from './../../../shared/models/Bilan';
 import { CourbeService } from './../../services/courbe.service';
@@ -9,7 +9,7 @@ import { CourbeService } from './../../services/courbe.service';
   styleUrls: ['./bilans.component.scss'],
   providers: [CourbeService]
 })
-export class BilansComponent implements OnChanges {
+export class BilansComponent implements OnInit, OnChanges {
   @Input() bilans: Bilan[];
   @Output() ajoutBilanForm = new EventEmitter();
   @Output() updateBilanForm = new EventEmitter();
@@ -22,30 +22,36 @@ export class BilansComponent implements OnChanges {
   };
 
   results = [];
-  done = false;
+
   columns = [];
-  r = [];
   selected = [];
 
-  constructor(private courbeService: CourbeService) {}
+  constructor(private courbeService: CourbeService) { }
+
+  ngOnInit() {
+    if (this.bilans && this.bilans[0]) {
+      const keys = Object.keys(this.bilans[0]);
+      this.columns = [];
+      for (const i of keys) {
+        if (i !== 'id' && i !== '__typename' && i !== 'date') {
+          this.columns.push({ prop: i });
+        }
+      }
+    }
+  }
 
   ngOnChanges() {
     this.showChart();
 
     // this needs optimisation
-    this.done = false;
     if (this.bilans && this.bilans[0]) {
       const keys = Object.keys(this.bilans[0]);
-      this.r = [];
-
-      this.r = this.bilans;
       this.columns = [];
       for (const i of keys) {
         if (i !== 'id' && i !== '__typename' && i !== 'date'  ) {
           this.columns.push({ prop : i});
         }
       }
-      this.done = true;
     }
   }
 

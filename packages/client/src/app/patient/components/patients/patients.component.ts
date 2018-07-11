@@ -16,6 +16,7 @@ export class PatientsComponent implements OnInit {
   waitPation: Patient[] = [] ;
   Currentpations: any;
 
+
   constructor(private patientService: PatientService) { }
 
   ngOnInit() {
@@ -46,5 +47,9 @@ export class PatientsComponent implements OnInit {
     } else {
       this.dataSource = this.waitPation;
     }
+  }
+
+  deleteP(value) {
+    console.log(value);
   }
 }
