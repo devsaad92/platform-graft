@@ -1,7 +1,6 @@
-#GraftPlatform
+# GraftPlatform
 
-This platform is dedicated to help doctors and nurses organise medical records ,discuss and follow up
-patients situations in real time.
+This platform is dedicated to help doctors organise medical records ,discuss and follow up patients situations in real time.
 
 ### Technologies
 
@@ -24,3 +23,6 @@ $ npm start
 ```
 
 * enjoy: http://localhost:4200
+
+* username: saad@gmail.com
+* pwd: 1234
