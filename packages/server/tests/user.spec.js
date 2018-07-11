@@ -27,20 +27,19 @@ describe('user resolvers', () => {
           email
         }
       }
-      `},
-        {
-        headers: {
-            'x-token': token,
-            'x-refresh-token': refreshToken,
-        },
+      `,
+    }, {
+      headers: {
+        'x-token': token,
+        'x-refresh-token': refreshToken,
+      },
     });
 
     const { data } = response;
     expect(data).toMatchObject({
       data: {
         allMedcins: [],
-    },
+      },
     });
   });
-
 });
