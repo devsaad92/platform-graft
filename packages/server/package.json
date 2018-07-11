@@ -7,7 +7,8 @@
     "test": "jest",
     "start": "nodemon --exec babel-node src/index.js",
     "build": "babel src -d dist",
-    "serve": "node dist/index.js"
+    "serve": "node dist/index.js",
+    "initDb": "init_db.sh;"
   },
   "keywords": [],
   "author": "",
