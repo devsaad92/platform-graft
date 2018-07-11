@@ -1,3 +1,4 @@
+import { AuthService } from './../../../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Patient } from './../../../shared/models/Patient';
@@ -15,12 +16,14 @@ export class PatientsComponent implements OnInit {
   greffedPations: Patient[] = [] ;
   waitPation: Patient[] = [] ;
   Currentpations: any;
+  admin = 0;
 
 
-  constructor(private patientService: PatientService) { }
+  constructor(private patientService: PatientService, private authService: AuthService) { }
 
   ngOnInit() {
     this.getAllPatients();
+    this.admin = this.authService.currentUser.roleId;
   }
 
   getAllPatients() {

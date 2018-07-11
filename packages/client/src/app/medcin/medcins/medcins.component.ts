@@ -1,3 +1,4 @@
+import { AuthService } from './../../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Medcin } from '../../shared/models/Medcin';
@@ -12,11 +13,13 @@ import { MedcinService } from './../../shared/services/medcin.service';
 export class MedcinsComponent implements OnInit {
   allMedcins: Medcin[];
   loading: Boolean = true;
+  admin = 0;
 
-  constructor(private medcinService: MedcinService) {  }
+  constructor(private medcinService: MedcinService, private authService: AuthService) {  }
 
   ngOnInit() {
     this.getAllMedcins();
+    this.admin = this.authService.currentUser.roleId;
   }
 
   getAllMedcins() {

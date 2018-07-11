@@ -8,6 +8,8 @@ Node.js, graphQL, Angular 5
 
 ## Getting started
 
+* Clone
+
 * Go to project directory
 
 * install 

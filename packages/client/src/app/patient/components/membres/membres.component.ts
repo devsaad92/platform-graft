@@ -1,3 +1,4 @@
+import { AuthService } from './../../../shared/services/auth.service';
 import { Component, Input } from '@angular/core';
 
 import { Medcin } from './../../../shared/models/Medcin';
@@ -16,8 +17,11 @@ export class MembresComponent {
   selected = '0';
   selecte = [];
   member: Member;
+  admin = 0;
 
-  constructor(private patientService: PatientService) {}
+  constructor(private patientService: PatientService, private authService: AuthService) {
+    this.admin = this.authService.currentUser.roleId;
+  }
 
   addPatientMember() {
     const member = new Member(this.medcinId, this.patientId);
