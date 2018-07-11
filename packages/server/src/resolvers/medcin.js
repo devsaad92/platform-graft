@@ -33,8 +33,14 @@ export default {
       const { id, ...params } = args;
       return models.Medcin.update(params, { where: { id } });
     }),
-    deleteMedcin: async (parent, args, { models }) =>
-      models.Medcin.destroy({ where: { id: args.id } }),
+    deleteMedcin: async (parent, args, { models }) => {
+      try {
+        models.Medcin.destroy({ where: { id: args.id } });
+        return true;
+      } catch (error) {
+        return false;
+      }
+    },
     login: (parent, { email, password }, { models, SECRET, SECRET2 }) =>
       tryLogin(email, password, models, SECRET, SECRET2),
     forgetPassword: async (parent, { email }, { transporter, models, SECRET }) =>

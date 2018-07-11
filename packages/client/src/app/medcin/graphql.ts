@@ -163,9 +163,7 @@ export const DELETE_MEDCIN_MUTATION = gql`
   mutation deleteteMedcinMutation($id: Int!) {
     deleteMedcin(
       id: $id
-    ) {
-      id
-    }
+    )
   }
 `;
 

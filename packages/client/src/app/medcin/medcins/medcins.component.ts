@@ -32,6 +32,7 @@ export class MedcinsComponent implements OnInit {
 
   deleteM(value) {
     console.log(value);
+    this.medcinService.delete(value).subscribe();
   }
 
  /*

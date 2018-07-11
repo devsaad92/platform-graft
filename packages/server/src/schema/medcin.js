@@ -32,7 +32,7 @@ export default `
   type Mutation {
     createMedcin(firstName: String!, lastName: String!, dateDeNaissance: String, sexe: String, specialty: String!, email: String!, password: String!): Medcin!
     updateMedcin(id:Int!, firstName: String, lastName: String, dateDeNaissance: String, sexe: String, specialty: String, email: String, roleId: Int): Int
-    deleteMedcin(id:Int!): Medcin
+    deleteMedcin(id:Int!): Boolean
     login(email: String!, password: String!): userToken!
     forgetPassword(email: String!): Medcin
     resetPassword(email: String!, newPassword: String!): Boolean

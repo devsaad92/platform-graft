@@ -44,11 +44,4 @@ export class EditMedcinComponent implements OnInit {
       .subscribe(() => this.updateForm.emit());
   }
 
-  deleteMedcin() {
-    // this.medcinService.delete(this.medcin.id)
-    //   .subscribe(() => {
-    //     this.router.navigate(['medcin/medcins']);
-    //   });
-  }
-
 }
