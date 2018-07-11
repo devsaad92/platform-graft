@@ -73,6 +73,12 @@ COPY public.instructions (id, text, date, created_at, updated_at, "medcinId", "p
 \.
 
 
+COPY public.roles (id, name, created_at, updated_at) FROM stdin;
+2	Assistant	2018-05-29 20:20:02.139+02	2018-05-29 20:20:02.139+02
+1	Administrateur	2018-05-29 16:20:02.139+02	2018-05-29 16:20:02.139+02
+3	Subscriber	2018-05-29 20:20:02.139+02	2018-05-29 20:20:02.139+02
+\.
+
 
 
 COPY public.medcins (id, "firstName", "lastName", "dateDeNaissance", sexe, specialty, email, password, created_at, updated_at, role_id) FROM stdin;
@@ -109,15 +115,6 @@ COPY public.patients (id, "firstName", "lastName", "dateDeNaissance", sexe, "dat
 4	Tava	Lem	2018-06-05 00:00:00+02	male	\N	2018-06-12 01:48:41.214+02	2018-06-12 01:48:41.214+02
 5	Abdo	Salem	2018-06-10 00:00:00+02	male	2018-06-14 00:00:00+02	2018-06-12 01:55:32.568+02	2018-06-12 01:55:32.568+02
 \.
-
-
-
-COPY public.roles (id, name, created_at, updated_at) FROM stdin;
-2	Assistant	2018-05-29 20:20:02.139+02	2018-05-29 20:20:02.139+02
-1	Administrateur	2018-05-29 16:20:02.139+02	2018-05-29 16:20:02.139+02
-3	Subscriber	2018-05-29 20:20:02.139+02	2018-05-29 20:20:02.139+02
-\.
-
 
 
 
