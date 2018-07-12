@@ -15,6 +15,14 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+        <br>
+        <mat-form-field style="width: 100%">
+          <input
+                matInput
+                placeholder='Tapez pour filtrer la colonne de NOM ...'
+                (keyup)='updateFilter($event)'
+          />
+        </mat-form-field>
   </mat-card-title>
 
   <ngx-datatable *ngIf='dataSource' class="material" 

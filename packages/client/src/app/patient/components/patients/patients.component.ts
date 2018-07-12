@@ -1,5 +1,6 @@
+import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { AuthService } from './../../../shared/services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Patient } from './../../../shared/models/Patient';
 import { PatientService } from './../../services/patient.service';
@@ -18,6 +19,10 @@ export class PatientsComponent implements OnInit {
   Currentpations: any;
   admin = 0;
 
+  @ViewChild(DatatableComponent) table: DatatableComponent;
+
+  temp = [];
+
 
   constructor(private patientService: PatientService, private authService: AuthService) { }
 
@@ -30,14 +35,15 @@ export class PatientsComponent implements OnInit {
     this.patientService.getAll()
       .subscribe(patients => {
         this.allPatients = patients.allPatients;
-        this.allPatients.map(pation => {
-          if (pation.dateDeGreffe === null) {
-            this.waitPation.push(pation);
+        this.allPatients.map(patient => {
+          if (patient.dateDeGreffe === null) {
+            this.waitPation.push(patient);
           } else {
-            this.greffedPations.push(pation);
+            this.greffedPations.push(patient);
           }
         });
         this.dataSource = this.allPatients;
+        this.temp = [...this.allPatients];
       });
   }
 
@@ -54,5 +60,16 @@ export class PatientsComponent implements OnInit {
 
   deleteP(value) {
     console.log(value);
+  }
+
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    const temp = this.temp.filter(d => {
+      return d.firstName.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    this.dataSource = temp;
+    this.table.offset = 0;
   }
 }

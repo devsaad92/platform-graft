@@ -1,8 +1,9 @@
 import { AuthService } from './../../shared/services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { Medcin } from '../../shared/models/Medcin';
 import { MedcinService } from './../../shared/services/medcin.service';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
 
 
 @Component({
@@ -14,6 +15,11 @@ export class MedcinsComponent implements OnInit {
   allMedcins: Medcin[];
   loading: Boolean = true;
   admin = 0;
+
+  @ViewChild(DatatableComponent) table: DatatableComponent;
+
+  temp = [];
+
 
   constructor(private medcinService: MedcinService, private authService: AuthService) {  }
 
@@ -27,12 +33,26 @@ export class MedcinsComponent implements OnInit {
       .subscribe(medcins => {
         this.allMedcins = medcins.allMedcins;
         this.loading = medcins.loading;
+        this.temp = [...medcins.allMedcins];
       });
   }
 
   deleteM(value) {
-    console.log(value);
     this.medcinService.delete(value).subscribe();
+  }
+
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(d => {
+      return d.firstName.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.allMedcins = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
   }
 
  /*

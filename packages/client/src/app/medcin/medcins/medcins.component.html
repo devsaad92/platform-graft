@@ -2,7 +2,18 @@
  <h4 *ngIf="loading">Loading...</h4> 
 
 <mat-card>
-  <mat-card-title>MEDECINS</mat-card-title>
+  <mat-card-title>MEDECINS
+    <br>
+    <br>
+    <mat-form-field style="width: 100%">
+      <input
+            matInput
+            placeholder='Tapez pour filtrer la colonne de NOM ...'
+            (keyup)='updateFilter($event)'
+      />
+    </mat-form-field>
+  </mat-card-title>
+  
     <ngx-datatable *ngIf='allMedcins' class="material" 
       [rows]="allMedcins" [loadingIndicator]="true"
       [columnMode]="'force'" [headerHeight]="50"
