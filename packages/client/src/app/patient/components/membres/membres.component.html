@@ -20,7 +20,7 @@
           </form>
         </mat-card-content>
       </div>
-      <div fxFlex.gt-sm="60" fxFlex="100">
+      <div *ngIf="admin === 1 || memberAdmin" fxFlex.gt-sm="60" fxFlex="100">
         <ngx-datatable *ngIf='members'
           class="material" [rows]="members"
           [columnMode]="'force'" [headerHeight]="50"
@@ -29,9 +29,10 @@
           [selected]="selecte"
           [selectionType]="'single'"
           (select)="onSelectRow($event)">
-          <ngx-datatable-column [width]="150" name="Nom" prop="firstName" [resizeable]="false"></ngx-datatable-column>
-          <ngx-datatable-column [width]="150" name="Prénom" prop="lastName" [resizeable]="false"></ngx-datatable-column>
-          <ngx-datatable-column *ngIf="admin === 1" [width]="150" name="Admin" prop="admin" [resizeable]="false">
+          <ngx-datatable-column [width]="100" name="Nom" prop="firstName" [resizeable]="false"></ngx-datatable-column>
+          <ngx-datatable-column [width]="100" name="Prénom" prop="lastName" [resizeable]="false"></ngx-datatable-column>
+          <ngx-datatable-column [width]="100" name="Spécialité" prop="specialty" [resizeable]="false"></ngx-datatable-column>
+          <ngx-datatable-column *ngIf="admin === 1" [width]="100" name="Admin" prop="admin" [resizeable]="false">
             <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
               <button *ngIf="!value" mat-raised-button color="warn" (click)="setMemberAdmin()">Approve</button>
               <button *ngIf="value" mat-raised-button color="primary" (click)="setMemberAdmin()">Un-approve</button>
@@ -48,6 +49,25 @@
           </ngx-datatable-column>
         </ngx-datatable>
       </div>
+
+      <div *ngIf="admin !== 1 || !memberAdmin" fxFlex.gt-sm="100" fxFlex="100">
+        <ngx-datatable *ngIf='members'
+          class="material" [rows]="members"
+          [columnMode]="'force'" [headerHeight]="50"
+          [footerHeight]="50" [rowHeight]="50"
+          [scrollbarV]="true" [limit]="6"
+          [selected]="selecte"
+          [selectionType]="'single'"
+          (select)="onSelectRow($event)">
+          <ngx-datatable-column [width]="150" name="Id" prop="id" [resizeable]="false"></ngx-datatable-column>
+          <ngx-datatable-column [width]="150" name="Nom" prop="firstName" [resizeable]="false"></ngx-datatable-column>
+          <ngx-datatable-column [width]="150" name="Prénom" prop="lastName" [resizeable]="false"></ngx-datatable-column>
+          <ngx-datatable-column [width]="150" name="Spécialité" prop="specialty" [resizeable]="false"></ngx-datatable-column>
+
+          <ngx-datatable-column [width]="150" name="Admin" prop="admin" [resizeable]="false"></ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+
     </div>
   </mat-card>
 </div>

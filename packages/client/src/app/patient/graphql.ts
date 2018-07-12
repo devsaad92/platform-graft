@@ -144,6 +144,7 @@ export const PATIENT_QUERY = gql`
       id
       firstName
       lastName
+      specialty
       admin
       isAuthorize
     }
