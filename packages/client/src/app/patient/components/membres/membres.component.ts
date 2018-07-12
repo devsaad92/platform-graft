@@ -1,5 +1,5 @@
 import { AuthService } from './../../../shared/services/auth.service';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Medcin } from './../../../shared/models/Medcin';
 import { Member } from './../../../shared/models/Member';
@@ -9,7 +9,7 @@ import { PatientService } from './../../services/patient.service';
   selector: 'app-membres',
   templateUrl: './membres.component.html'
 })
-export class MembresComponent {
+export class MembresComponent implements OnInit {
   @Input() medcins: Medcin[];
   @Input() members: Medcin[];
   @Input() patientId;
@@ -18,9 +18,20 @@ export class MembresComponent {
   selecte = [];
   member: Member;
   admin = 0;
+  memberAdmin: Boolean;
 
   constructor(private patientService: PatientService, private authService: AuthService) {
     this.admin = this.authService.currentUser.roleId;
+  }
+
+  ngOnInit() {
+    if (this.members) {
+    const mb = this.members.find(member => {
+      return member.id === this.admin;
+    });
+    this.memberAdmin = mb['admin'];
+  }
+    // console.log(this.memberAdmin);
   }
 
   addPatientMember() {

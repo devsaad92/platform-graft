@@ -2,7 +2,7 @@
   <mat-card>
     <div fxLayout="row" fxLayoutWrap="wrap">
       <div fxFlex.gt-sm="40" fxFlex="100">
-        <mat-card-content>
+        <mat-card-content *ngIf="admin === 1 || memberAdmin">
           <form #f="ngForm">
           <div fxLayout="column">
             <mat-form-field style="width: 100%">
@@ -31,7 +31,7 @@
           (select)="onSelectRow($event)">
           <ngx-datatable-column [width]="150" name="Nom" prop="firstName" [resizeable]="false"></ngx-datatable-column>
           <ngx-datatable-column [width]="150" name="Prénom" prop="lastName" [resizeable]="false"></ngx-datatable-column>
-          <ngx-datatable-column [width]="150" name="Admin" prop="admin" [resizeable]="false">
+          <ngx-datatable-column *ngIf="admin === 1" [width]="150" name="Admin" prop="admin" [resizeable]="false">
             <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
               <button *ngIf="!value" mat-raised-button color="warn" (click)="setMemberAdmin()">Approve</button>
               <button *ngIf="value" mat-raised-button color="primary" (click)="setMemberAdmin()">Un-approve</button>
