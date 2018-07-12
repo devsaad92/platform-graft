@@ -26,12 +26,12 @@
         [selected]="selected"
         [selectionType]="'single'"
         (select)="onSelectRow($event)">
-        <ngx-datatable-column [width]="50" name="Date Time" prop="date" [resizeable]="false"> 
+        <ngx-datatable-column [width]="80" name="Date Time" prop="date" [resizeable]="false"> 
         <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
           {{ value | date: 'yyyy-MM-dd HH:mm' }}
         </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column [width]="150" name="Description" prop="text" [resizeable]="false"></ngx-datatable-column>
+        <ngx-datatable-column [width]="100" name="Description" prop="text" [resizeable]="false"></ngx-datatable-column>
       </ngx-datatable>
     </div>
   </div>

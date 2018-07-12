@@ -13,24 +13,29 @@
           {{ row.id }}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column [width]="50" name="Nom" prop="firstName" [resizeable]="false"></ngx-datatable-column>
-      <ngx-datatable-column [width]="50" name="Prénom" prop="lastName" [resizeable]="false"></ngx-datatable-column>
-      <ngx-datatable-column [width]="100" name="Date De Naissance" prop="dateDeNaissance" [resizeable]="false"> 
+      <ngx-datatable-column [width]="70" name="Nom" prop="firstName" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="70" name="Prénom" prop="lastName" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="120" name="Date De Naissance" prop="dateDeNaissance" [resizeable]="false"> 
         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
           {{ value | date: 'yyyy-MM-dd HH:mm' }}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column [width]="30" name="Sexe" prop="sexe" [resizeable]="false"></ngx-datatable-column>
-      <ngx-datatable-column [width]="50" name="Spécialité" prop="specialty" [resizeable]="false"></ngx-datatable-column>
-      <ngx-datatable-column [width]="100" name="Email" prop="email" [resizeable]="false"></ngx-datatable-column>
-      <ngx-datatable-column [width]="120" name="Action" prop="id" [resizeable]="false">
+      <ngx-datatable-column [width]="50" name="Sexe" prop="sexe" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="80" name="Spécialité" prop="specialty" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="150" name="Email" prop="email" [resizeable]="false"></ngx-datatable-column>
+      <ngx-datatable-column [width]="80" name="V. Profil" prop="id" [resizeable]="false">
         <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
-            <a mat-raised-button color="primary" [routerLink]="['/medcin/user-profile/'+value]" href="">Voir Profil </a>
+            <a mat-icon-button color="primary" [routerLink]="['/medcin/user-profile/'+value]"> 
+            <mat-icon>person_outline</mat-icon>
+            </a>
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column *ngIf="admin === 1" [width]="120" name="Action" prop="id" [resizeable]="false">
+      <ngx-datatable-column *ngIf="admin === 1" [width]="80" name="Supprimer" prop="id" [resizeable]="false">
         <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-          <a mat-raised-button color="warn" (click)="deleteM(value)">Supprimer </a>
+          <!-- <a mat-raised-button color="warn" (click)="deleteM(value)">Supprimer </a> -->
+          <button mat-icon-button color="warn" (click)="deleteM(value)">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>

@@ -23,33 +23,38 @@
     [footerHeight]="50" [rowHeight]="50"
     [scrollbarV]="true" [limit]="8">
     <ngx-datatable-column [width]="50" name="No" prop="id" [resizeable]="false"></ngx-datatable-column>
-    <ngx-datatable-column [width]="50" name="Nom" prop="firstName" [resizeable]="false"></ngx-datatable-column>
-    <ngx-datatable-column [width]="50" name="Prénom" prop="lastName" [resizeable]="false"></ngx-datatable-column>
-    <ngx-datatable-column [width]="100" name="Date De Naissance" prop="dateDeNaissance" [resizeable]="false"> 
+    <ngx-datatable-column [width]="70" name="Nom" prop="firstName" [resizeable]="false"></ngx-datatable-column>
+    <ngx-datatable-column [width]="57" name="Prénom" prop="lastName" [resizeable]="false"></ngx-datatable-column>
+    <ngx-datatable-column [width]="120" name="Date De Naissance" prop="dateDeNaissance" [resizeable]="false"> 
       <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
         {{ value | age }}
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column [width]="50" name="Sexe" prop="sexe" [resizeable]="false"></ngx-datatable-column>
-    <ngx-datatable-column [width]="100" name="Date De Greffe" prop="dateDeGreffe" [resizeable]="false"> 
+    <ngx-datatable-column [width]="120" name="Date De Greffe" prop="dateDeGreffe" [resizeable]="false"> 
       <ng-template ngx-datatable-cell-template  let-value="value" let-row="row">
         {{ value | date: 'yyyy-MM-dd HH:mm' }}
       </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column class="rouge" [width]="100" name="Post Greffe" prop="dateDeGreffe" [resizeable]="false"> 
+    <ngx-datatable-column class="rouge" [width]="120" name="Post Greffe" prop="dateDeGreffe" [resizeable]="false"> 
       <ng-template ngx-datatable-cell-template  let-value="value" let-row="row">
         <span class="rouge">{{ value | greffe }} </span>
       </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column [width]="120" name="Action" prop="id" [resizeable]="false">
+    <ngx-datatable-column [width]="80" name="V. Profil" prop="id" [resizeable]="false">
       <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        <a mat-raised-button color="primary" [routerLink]="['/patient/patient-item/'+value]" href="">Voir </a>
+        <a mat-icon-button color="primary" [routerLink]="['/patient/patient-item/'+value]">
+         <mat-icon>person_outline</mat-icon>
+        </a>
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column *ngIf="admin === 1" [width]="120" name="Action" prop="id" [resizeable]="false">
+    <ngx-datatable-column *ngIf="admin === 1" [width]="80" name="Supprimer" prop="id" [resizeable]="false">
       <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        <a mat-raised-button color="warn" (click)="deleteP(value)">Supprimer </a>
+        <!-- <a mat-raised-button color="warn" (click)="deleteP(value)">Supprimer </a> -->
+         <button mat-icon-button color="warn" (click)="deleteP(value)">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
       </ng-template>
     </ngx-datatable-column>
   </ngx-datatable>

@@ -38,9 +38,12 @@
             </ng-template>
           </ngx-datatable-column>
           <!-- <ngx-datatable-column [width]="150" name="Authorized" prop="isAuthorize" [resizeable]="false"></ngx-datatable-column> -->
-          <ngx-datatable-column *ngIf="admin === 1" [width]="150" name="Action" prop="id" [resizeable]="false">
+          <ngx-datatable-column *ngIf="admin === 1" [width]="80" name="Supprimer" prop="id" [resizeable]="false">
             <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-              <a mat-raised-button color="warn" (click)="deleteMm(value)">Supprimer </a>
+              <!-- <a mat-raised-button color="warn" (click)="deleteMm(value)">Supprimer </a> -->
+              <button mat-icon-button color="warn" (click)="deleteMm(value)">
+                <mat-icon>delete_outline</mat-icon>
+              </button>
             </ng-template>
           </ngx-datatable-column>
         </ngx-datatable>
