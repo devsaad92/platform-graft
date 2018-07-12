@@ -1,1 +1,74 @@
-Dashboard Works!
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="100" fxFlex="100">
+    <mat-card class="card-widget mat-teal">
+      <div mat-card-widget>
+        <div mat-card-float-icon>
+          <mat-icon>people_outline</mat-icon>
+        </div>
+        <div class="pl-0">
+          <h2 mat-card-widget-title>05</h2>
+          <p>Medecins</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card class="card-widget mat-purple">
+      <div mat-card-widget>
+        <div mat-card-float-icon>
+          <mat-icon>people_outline</mat-icon>
+        </div>
+        <div class="pl-0">
+          <h2 mat-card-widget-title>08</h2>
+          <p>Infirmiers</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card class="card-widget mat-red">
+      <div mat-card-widget>
+        <div mat-card-float-icon>
+          <mat-icon>people_outline</mat-icon>
+        </div>
+        <div class="pl-0">
+          <h2 mat-card-widget-title>10</h2>
+          <p>Patients</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <div fxFlex="100">
+    <mat-card>
+      <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+        L'évolution du nombre d'utilisateurs et de patients &nbsp;
+        <span class="font-weight-bold mat-text-primary"></span>
+        <span fxFlex></span>
+        <button mat-icon-button mat-button-sm [matMenuTriggerFor]="card1" aria-label="Open card menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-card-subtitle>
+      <mat-menu #card1="matMenu" x-position="before">
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          Settings
+        </button>
+        <button mat-menu-item>
+          <mat-icon>more</mat-icon>
+          View More
+        </button>
+      </mat-menu>
+      <mat-card-content style="padding-bottom: 400px;">
+        <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [results]="results"
+            xAxis="true" yAxis="true" roundDomains="true" legend="true"
+            showXAxisLabel="true" showYAxisLabel="true"
+            [xAxisLabel]="'Time'" [yAxisLabel]="''" [timeline]="true">
+        </ngx-charts-line-chart>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+

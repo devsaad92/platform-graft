@@ -9,8 +9,8 @@ export const AppRoutes: Routes = [{
   canActivate: [AuthGuardService],
   children: [{
     path: '',
-    // loadChildren: './dashboard/dashboard.module#DashboardModule',
-    loadChildren: './patient/patient.module#PatientModule'
+    loadChildren: './dashboard/dashboard.module#DashboardModule',
+    // loadChildren: './patient/patient.module#PatientModule'
   }, {
       path: 'medcin',
       loadChildren: './medcin/medcin.module#MedcinModule'

@@ -1,3 +1,4 @@
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -8,7 +9,8 @@ import { DashboardRoutes } from './dashboard.routing';
 @NgModule({
   imports: [
     RouterModule.forChild(DashboardRoutes),
-    SharedModule
+    SharedModule,
+    NgxChartsModule
   ],
   declarations: [ DashboardComponent ]
 })
