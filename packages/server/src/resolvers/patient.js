@@ -32,6 +32,23 @@ export default {
       const { medcinId, patientId, ...params } = args;
       return models.Member.update(params, { where: { medcinId, patientId } });
     },
+    deletePatient: async (parent, args, { models }) => {
+      try {
+        models.Patient.destroy({ where: { id: args.id } });
+        return true;
+      } catch (error) {
+        return false;
+      }
+    },
+    deleteMedcinM: async (parent, args, { models }) => {
+      try {
+        const { medcinId, patientId } = args;
+        models.Member.destroy({ where: { medcinId, patientId } });
+        return true;
+      } catch (error) {
+        return false;
+      }
+    },
   },
   Patient: {
     bilans: ({ id }, args, { models }) => models.Bilan.findAll({ where: { patientId: id } }),

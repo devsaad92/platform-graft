@@ -42,6 +42,9 @@ export default `
 
     addMedcinPatient(medcinId: Int!, patientId: Int!): Boolean
     updateMember(medcinId: Int!, patientId: Int!, admin: Boolean!): Boolean
+
+    deletePatient(id: Int!): Boolean
+    deleteMedcinM(medcinId: Int!, patientId: Int!): Boolean
   }
 
 `;

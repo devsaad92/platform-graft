@@ -50,7 +50,7 @@
         </ngx-datatable>
       </div>
 
-      <div *ngIf="admin !== 1 || !memberAdmin" fxFlex.gt-sm="100" fxFlex="100">
+      <div *ngIf="admin !== 1 || memberAdmin === false" fxFlex.gt-sm="100" fxFlex="100">
         <ngx-datatable *ngIf='members'
           class="material" [rows]="members"
           [columnMode]="'force'" [headerHeight]="50"

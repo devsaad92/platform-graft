@@ -604,3 +604,5 @@ export const UPDATE_MUTATION_MEMBER = gql`
 `;
 
 
+// Delete fonctionnalities
+
