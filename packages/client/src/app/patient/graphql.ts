@@ -606,3 +606,22 @@ export const UPDATE_MUTATION_MEMBER = gql`
 
 // Delete fonctionnalities
 
+export const DELETE_PATIENT_MUTATION = gql`
+
+  mutation deletetePatientsMutation($id: Int!) {
+    deletePatient(
+      id: $id
+    )
+  }
+`;
+
+export const DELETE_MEDCINPT_MUTATION = gql`
+
+  mutation deleteteMedcinPtMutation($medcinId: Int!, $patientId: Int!) {
+    deleteMedcinM(
+      medcinId: $medcinId,
+      patientId: $patientId
+    )
+  }
+`;
+

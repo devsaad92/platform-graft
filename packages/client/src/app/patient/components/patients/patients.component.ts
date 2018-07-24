@@ -59,7 +59,7 @@ export class PatientsComponent implements OnInit {
   }
 
   deleteP(value) {
-    console.log(value);
+    this.patientService.deletePatient(value).subscribe();
   }
 
   updateFilter(event) {

@@ -57,7 +57,7 @@ export class MembresComponent implements OnInit {
   }
 
   deleteMm(value) {
-    console.log(value);
+    this.patientService.deletePatientM(value, this.patientId).subscribe();
   }
 
  }

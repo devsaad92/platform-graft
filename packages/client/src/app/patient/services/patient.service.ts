@@ -34,7 +34,9 @@ import {
   CREATE_MUTATION_TRAITEMENT,
   UPDATE_MUTATION_TRAITEMENT,
   CREATE_MUTATION_addMedcinPatient,
-  UPDATE_MUTATION_MEMBER
+  UPDATE_MUTATION_MEMBER,
+  DELETE_PATIENT_MUTATION,
+  DELETE_MEDCINPT_MUTATION
 } from './../graphql';
 
 @Injectable()
@@ -284,6 +286,27 @@ export class PatientService {
         admin: member.isAdmin
       },
       refetchQueries: [{ query: PATIENT_QUERY, variables: { id: member.patientId } }]
+    }).map(response => response.data);
+  }
+
+  deletePatient(id) {
+    return this.apollo.mutate({
+      mutation: DELETE_PATIENT_MUTATION,
+      variables: {
+        id
+      },
+      refetchQueries: [{ query: ALL_PATIENTS_QUERY }]
+    }).map(response => response.data);
+  }
+
+  deletePatientM(medcinId, patientId) {
+    return this.apollo.mutate({
+      mutation: DELETE_MEDCINPT_MUTATION,
+      variables: {
+        medcinId,
+        patientId
+      },
+      refetchQueries: [{ query: PATIENT_QUERY, variables: { id: patientId } }]
     }).map(response => response.data);
   }
 
